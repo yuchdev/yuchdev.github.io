@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body {
+  margin: 0;
+  font-family: 'Raleway', serif;
+  font-size: 16px;
+  line-height: 1.8em;
+}
+
+a {
+  color: #1C9C94;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+
+article {
+  padding:0 1em;
+}
+
+main section{
+  margin: 1em;
+  padding: 1em;
+}
+
+header, main, footer {
+  margin: 0 auto;
+}
+
+header {
+  padding: 2em;
+  text-align: center;
+  background-image: url('./img/bg.jpg');
+  background-size: cover;
+  color: white;
+}
+
+header section {
+  margin: 0 auto;
+  max-width: 640px;
+}
+
+header img {
+  border-radius: 50%;
+  max-width: 150px;
+}
+
+h1 {
+  text-transform: uppercase;
+  margin: 1em 0;
+}
+
+h3 {
+  text-transform: uppercase;
+}
+
+h3, h4 {
+  font-weight: bold;
+}
+
+main {
+  max-width: 1140px;
+}
+
+main section:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.fab {
+  border: 1px solid white;
+  border-radius: 50%;
+  font-size: 1.5em;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  margin: 5px;
+  text-align: center;
+}
+
+a .fab {
+  color: white;
+}
+
+footer {
+ padding: 1em 1.5em;
+ background: #A7B8BF;
+ color: white;
+ text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+p, th, td, li, dl, dt, dd {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Header */
+table.personal-details {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.personal-details th,
+table.personal-details td {
+  padding: 8px;
+  text-align: left;
+}
+
+table.personal-details th {
+  font-weight: bold;
+}
+
+table.personal-details tr:nth-child(odd) th,
+table.personal-details tr:nth-child(odd) td {
+  background-color: #f9f9f9;
+}
+
+table.personal-details tr td:first-child {
+  text-align: left;
+  font-weight: bold;
+}
+
+table.personal-details tr td:last-child {
+  text-align: left;
+}
+
+table.personal-details tr td ul {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* Overview */
+
+/* Professional Experience */
+table.job-description {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table.job-description th,
+table.job-description td {
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+table.job-description th {
+  width:  190px;
+  font-style: italic;
+  font-size: smaller;
+  vertical-align: top;
+  text-align: left;
+}
+
+/* Education */
