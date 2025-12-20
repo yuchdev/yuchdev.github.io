@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body {
+    margin: 0;
+    font-family: 'Raleway', serif;
+    font-size: 16px;
+    line-height: 1.8em;
+}
+
+a {
+    color: #1C9C94;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.5;
+}
+
+article {
+    padding: 0 1em;
+}
+
+main section {
+    margin: 1em;
+    padding: 1em;
+}
+
+header, main, footer {
+    margin: 0 auto;
+}
+
+header {
+    padding: 2em;
+    text-align: center;
+    background-image: url('./img/bg.jpg');
+    background-size: cover;
+    color: white;
+}
+
+header section {
+    margin: 0 auto;
+    max-width: 640px;
+}
+
+header img {
+    border-radius: 50%;
+    max-width: 150px;
+}
+
+h1 {
+    text-transform: uppercase;
+    margin: 1em 0;
+}
+
+h3 {
+    text-transform: uppercase;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+h3, h4 {
+    font-weight: bold;
+}
+
+main {
+    max-width: 1140px;
+}
+
+main section:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
+.fab {
+    border: 1px solid white;
+    border-radius: 50%;
+    font-size: 1.5em;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+    margin: 5px;
+    text-align: center;
+}
+
+a .fab {
+    color: white;
+}
+
+footer {
+    padding: 1em 1.5em;
+    background: #A7B8BF;
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+p, th, td, li, dl, dt, dd {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+ul.projects {
+    list-style: none;
+    padding: 0;
+}
+
+ul.projects li.project-item {
+    margin-bottom: 1.5em;
+}
+
+.project-header {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+}
+
+.project-value {
+    display: block;
+    width: 100%;
+}
+
+ul.projects p {
+    margin: 0;
+}
+
+/* Generic Flexbox Layout */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+}
+
+.personal-left,
+.experience-left {
+    flex: 50%;
+    box-sizing: border-box;
+}
+
+.personal-left {
+    align-self: center;
+}
+
+.experience-left,
+.experience-right {
+    align-self: flex-start;
+}
+
+.personal-right,
+.experience-right {
+    flex: 50%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 800px) {
+    .personal-left, .personal-right, .experience-left, .experience-right {
+        flex: 100%;
+    }
+}
+
+/* Header */
+.personal-details {
+    margin-bottom: 1em;
+}
+
+.personal-details .personal-left,
+.personal-details .personal-right {
+    padding: 8px;
+    text-align: left;
+}
+
+.personal-details ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.personal-details ul:has(li:nth-child(2)) {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.personal-details li {
+    line-height: 1.5;
+}
+
+.personal-details .personal-left {
+    font-weight: bold;
+}
+
+/* Zebra striping for personal-details */
+.personal-details .flex-container:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Professional Experience */
+.job-description {
+    margin-bottom: 1em;
+}
+
+.job-description .experience-left,
+.job-description .experience-right {
+    padding: 8px;
+    text-align: left;
+}
+
+.job-description .experience-left {
+    flex: 0 0 190px;
+    font-weight: bold;
+    font-style: italic;
+    font-size: smaller;
+}
+
+.job-description .experience-right {
+    flex: 1;
+}
+
+@media (max-width: 800px) {
+    .job-description .experience-left,
+    .job-description .experience-right {
+        flex: 100%;
+        width: 100%;
+    }
+}
+
+/* Education */
