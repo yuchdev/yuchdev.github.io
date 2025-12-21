@@ -1,5 +1,28 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway');
+/* ==========================================================================
+   style.css
+   --------------------------------------------------------------------------
+   Purpose:
+   - Global base styles (typography, links, layout containers)
+   - Header (hero) presentation + top navigation
+   - Reusable layout helpers (flex utilities)
+   - CV-specific blocks (personal details + experience)
+   - Contacts page form styling
 
+   Notes:
+   - Uses the "Raleway" Google Font (400, 550 weights).
+   - Colors:
+     - Accent teal: #1C9C94
+     - Footer background: #A7B8BF
+   ========================================================================== */
+
+/* ----------------------------------------------------------------------------
+   1) Google Fonts (Raleway)
+   ---------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;550&display=swap');
+
+/* ----------------------------------------------------------------------------
+   2) Base / Reset-ish
+   ---------------------------------------------------------------------------- */
 body {
     margin: 0;
     font-family: 'Raleway', serif;
@@ -13,6 +36,7 @@ a {
 }
 
 a:hover {
+    /* Global hover behavior for links */
     opacity: 0.5;
 }
 
@@ -20,23 +44,34 @@ article {
     padding: 0 1em;
 }
 
+/* Basic spacing for content sections */
 main section {
     margin: 1em;
     padding: 1em;
 }
 
-header, main, footer {
+/* Center the main layout containers */
+header,
+main,
+footer {
     margin: 0 auto;
 }
 
+/* ----------------------------------------------------------------------------
+   3) Header (hero)
+   ---------------------------------------------------------------------------- */
 header {
     padding: 2em;
     text-align: center;
+
+    /* Hero background image */
     background-image: url('./img/bg.jpg');
     background-size: cover;
+
     color: white;
 }
 
+/* Constrain header content width */
 header section {
     margin: 0 auto;
     max-width: 640px;
@@ -47,9 +82,17 @@ header img {
     max-width: 150px;
 }
 
+/* ----------------------------------------------------------------------------
+   4) Typography
+   ---------------------------------------------------------------------------- */
 h1 {
     text-transform: uppercase;
     margin: 1em 0;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
 }
 
 h3 {
@@ -58,33 +101,32 @@ h3 {
     margin-bottom: 0.5em;
 }
 
-h3, h4 {
+h3,
+h4 {
     font-weight: bold;
 }
 
+/* Normalize text sizing across common elements */
+p, th, td, li, dl, dt, dd {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* ----------------------------------------------------------------------------
+   5) Main layout
+   ---------------------------------------------------------------------------- */
 main {
     max-width: 1140px;
 }
 
+/* Separate sections visually except the last one */
 main section:not(:last-child) {
     border-bottom: 1px solid #ccc;
 }
 
-.fab {
-    border: 1px solid white;
-    border-radius: 50%;
-    font-size: 1.5em;
-    width: 1.5em;
-    height: 1.5em;
-    line-height: 1.5em;
-    margin: 5px;
-    text-align: center;
-}
-
-a .fab {
-    color: white;
-}
-
+/* ----------------------------------------------------------------------------
+   6) Footer
+   ---------------------------------------------------------------------------- */
 footer {
     padding: 1em 1.5em;
     background: #A7B8BF;
@@ -92,16 +134,31 @@ footer {
     text-align: center;
 }
 
-h2 {
-    font-size: 24px;
-    font-weight: bold;
+/* ----------------------------------------------------------------------------
+   7) Icons (Font Awesome brand icons)
+   ---------------------------------------------------------------------------- */
+/* Circular icon badge */
+.fab {
+    border: 1px solid white;
+    border-radius: 50%;
+    font-size: 1.5em;
+
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+
+    margin: 5px;
+    text-align: center;
 }
 
-p, th, td, li, dl, dt, dd {
-    font-size: 16px;
-    line-height: 1.5;
+/* Keep icons white when used inside links */
+a .fab {
+    color: white;
 }
 
+/* ----------------------------------------------------------------------------
+   8) Projects list (blog / portfolio style sections)
+   ---------------------------------------------------------------------------- */
 ul.projects {
     list-style: none;
     padding: 0;
@@ -111,6 +168,7 @@ ul.projects li.project-item {
     margin-bottom: 1.5em;
 }
 
+/* Two-line "label/value" pattern for project entries */
 .project-header {
     font-weight: bold;
     display: block;
@@ -126,7 +184,9 @@ ul.projects p {
     margin: 0;
 }
 
-/* Generic Flexbox Layout */
+/* ----------------------------------------------------------------------------
+   9) Generic Flexbox Layout Helpers
+   ---------------------------------------------------------------------------- */
 .flex-container {
     display: flex;
     flex-wrap: wrap;
@@ -134,12 +194,20 @@ ul.projects p {
     align-items: center;
 }
 
+/* Default: two-column split */
 .personal-left,
 .experience-left {
     flex: 50%;
     box-sizing: border-box;
 }
 
+.personal-right,
+.experience-right {
+    flex: 50%;
+    box-sizing: border-box;
+}
+
+/* Vertical alignment differences by content type */
 .personal-left {
     align-self: center;
 }
@@ -149,19 +217,19 @@ ul.projects p {
     align-self: flex-start;
 }
 
-.personal-right,
-.experience-right {
-    flex: 50%;
-    box-sizing: border-box;
-}
-
+/* Responsive: stack columns on smaller screens */
 @media (max-width: 800px) {
-    .personal-left, .personal-right, .experience-left, .experience-right {
+    .personal-left,
+    .personal-right,
+    .experience-left,
+    .experience-right {
         flex: 100%;
     }
 }
 
-/* Header */
+/* ----------------------------------------------------------------------------
+   10) CV: Personal details block
+   ---------------------------------------------------------------------------- */
 .personal-details {
     margin-bottom: 1em;
 }
@@ -178,6 +246,11 @@ ul.projects p {
     list-style: none;
 }
 
+/*
+  If the list contains at least 2 items, render it as a bulleted list.
+  NOTE: :has() support is not universal in older browsers. If you need broader
+  support, consider adding an explicit class in HTML instead of using :has().
+*/
 .personal-details ul:has(li:nth-child(2)) {
     list-style: disc;
     padding-left: 20px;
@@ -191,12 +264,14 @@ ul.projects p {
     font-weight: bold;
 }
 
-/* Zebra striping for personal-details */
+/* Zebra striping for alternating rows inside personal details */
 .personal-details .flex-container:nth-of-type(odd) {
     background-color: #f9f9f9;
 }
 
-/* Professional Experience */
+/* ----------------------------------------------------------------------------
+   11) CV: Professional experience block
+   ---------------------------------------------------------------------------- */
 .job-description {
     margin-bottom: 1em;
 }
@@ -207,6 +282,7 @@ ul.projects p {
     text-align: left;
 }
 
+/* Left column acts like a fixed-width meta column (company/date/etc.) */
 .job-description .experience-left {
     flex: 0 0 190px;
     font-weight: bold;
@@ -214,10 +290,12 @@ ul.projects p {
     font-size: smaller;
 }
 
+/* Right column takes remaining space for description content */
 .job-description .experience-right {
     flex: 1;
 }
 
+/* Responsive: stack left/right within each job */
 @media (max-width: 800px) {
     .job-description .experience-left,
     .job-description .experience-right {
@@ -226,4 +304,119 @@ ul.projects p {
     }
 }
 
-/* Education */
+/* ----------------------------------------------------------------------------
+   12) Header navigation (top-right pill buttons)
+   ---------------------------------------------------------------------------- */
+.top-nav {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    display: flex;
+    gap: 14px;
+    align-items: center;
+
+    /* Ensure it stays above the hero background and content */
+    z-index: 2;
+}
+
+.top-nav__item {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1;
+
+    /* Glassy pill effect */
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(6px);
+}
+
+.top-nav__item:hover {
+    /* Override global link hover opacity for better readability here */
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+/* Responsive: allow wrapping and reduce spacing/font slightly */
+@media (max-width: 640px) {
+    .top-nav {
+        top: 12px;
+        right: 12px;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        max-width: calc(100% - 24px);
+    }
+
+    .top-nav__item {
+        font-size: 13px;
+        padding: 6px 9px;
+    }
+}
+
+/* ----------------------------------------------------------------------------
+   13) Forms (contacts page)
+   ---------------------------------------------------------------------------- */
+.form-card {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+}
+
+.form-row label {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.form-row input,
+.form-row textarea {
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+/* Focus state uses the same accent teal as links/buttons */
+.form-row input:focus,
+.form-row textarea:focus {
+    border-color: #1C9C94;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* Button styles (primary + secondary) */
+.button {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 10px;
+
+    border: 1px solid #1C9C94;
+    background: #1C9C94;
+    color: white;
+
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.button.secondary {
+    background: transparent;
+    color: #1C9C94;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="./img/favicon.ico"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="style.css"/>
+    <title>Yurii Cherkasov — Contacts</title>
+</head>
+<body>
+<header>
+    <nav class="top-nav" aria-label="Primary">
+        <a class="top-nav__item" href="./index.html">About</a>
+        <a class="top-nav__item" href="./cv.html">My CV</a>
+        <a class="top-nav__item" href="./blog.html">Blog</a>
+        <a class="top-nav__item" href="./contact.html">Contacts</a>
+    </nav>
+
+    <div id="avatar-container">
+        <img src="./img/avatar.jpg" alt="Profile photo"/>
+    </div>
+    <h1>Yurii Cherkasov</h1>
+    <p class="latin-quote">Verba volant scripta manent</p>
+    <section id="header-social">
+        <a href="https://www.linkedin.com/in/yurii-cherkasov-653b213a0/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/yuchdev" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github-alt"></i>
+        </a>
+        <a href="https://www.facebook.com/yuchdev" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://x.com/yuchdev" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/yuchdev" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </section>
+</header>
+
+<main>
+    <section id="container">
+        <div class="section">
+            <h2>Contacts</h2>
+            <p>
+                I’m always open to discussing new opportunities, collaborations, or just connecting with like-minded
+                professionals. Feel free to reach out to me using the contact form below or via my social media
+                channels.
+            </p>
+        </div>
+
+        <div class="section form-card">
+            <h2>Message me</h2>
+
+            <noscript>
+                <p><b>JavaScript is disabled.</b> Please contact me via LinkedIn/GitHub instead.</p>
+            </noscript>
+
+            <form id="contact-form" action="#" method="post" autocomplete="on">
+                <!-- Honeypot: bots tend to fill everything. Humans should never see/fill this. -->
+                <div style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
+                    <label for="website">Website</label>
+                    <input id="website" name="website" type="text" tabindex="-1" autocomplete="off"/>
+                </div>
+
+                <div class="form-row">
+                    <label for="name">Your name</label>
+                    <input id="name" name="name" type="text" placeholder="John Smith" autocomplete="name" maxlength="120" required/>
+                </div>
+
+                <div class="form-row">
+                    <label for="email">Your email</label>
+                    <input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="email" maxlength="200" required/>
+                </div>
+
+                <div class="form-row">
+                    <label for="subject">Subject</label>
+                    <input id="subject" name="subject" type="text" placeholder="Hello!" maxlength="160" required/>
+                </div>
+
+                <div class="form-row">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="7" placeholder="Write your message here..." maxlength="4000" required></textarea>
+                </div>
+
+                <p id="contact-status" aria-live="polite" style="margin-top: 10px;"></p>
+
+                <div class="form-actions">
+                    <button class="button secondary" type="reset">Reset</button>
+                    <button class="button" id="send-btn" type="submit">Send</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    Yurii Cherkasov &copy; 2025
+</footer>
+
+<script src="contact.js"></script>
+</body>
+</html>

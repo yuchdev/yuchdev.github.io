@@ -6,558 +6,72 @@
     <link rel="icon" href="./img/favicon.ico"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css"/>
-    <title>
-        Yurii Cherkasov CV
-    </title>
+    <title>Yurii Cherkasov CV</title>
 </head>
 <body>
 <header>
+    <nav class="top-nav" aria-label="Primary">
+        <a class="top-nav__item" href="./index.html">About</a>
+        <a class="top-nav__item" href="./cv.html">My CV</a>
+        <a class="top-nav__item" href="./blog.html">Blog</a>
+        <a class="top-nav__item" href="contact.html">Contacts</a>
+    </nav>
     <div id="avatar-container">
         <img src="./img/avatar.jpg" alt="Profile photo"/>
     </div>
     <h1>Yurii Cherkasov</h1>
     <p class="latin-quote">Verba volant scripta manent</p>
     <section id="header-social">
-        <a href="https://www.linkedin.com/in/yurii-cherkasov-653b213a0/" target="_blank">
+        <a href="https://www.linkedin.com/in/yurii-cherkasov-653b213a0/" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-linkedin-in"></i>
         </a>
-        <a href="https://github.com/yuchdev" target="_blank">
+        <a href="https://github.com/yuchdev" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-github-alt"></i>
         </a>
-        <a href="https://www.facebook.com/yuchdev" target="_blank">
+        <a href="https://www.facebook.com/yuchdev" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-facebook-f"></i>
         </a>
-        <a href="https://x.com/yuchdev" target="_blank">
+        <a href="https://x.com/yuchdev" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-x-twitter"></i>
         </a>
-        <a href="https://www.instagram.com/yuchdev" target="_blank">
+        <a href="https://www.instagram.com/yuchdev" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-instagram"></i>
         </a>
     </section>
 </header>
+
 <main>
     <section id="container">
-        <div class="personal-details">
-            <div class="flex-container">
-                <div class="personal-left">Name</div>
-                <div class="personal-right">Yurii Cherkasov</div>
-            </div>
-            <div class="flex-container">
-                <div class="personal-left">Birthdate</div>
-                <div class="personal-right">21.05.1982</div>
-            </div>
-            <div class="flex-container">
-                <div class="personal-left">E-mail</div>
-                <div class="personal-right">yurii.cherkasov-0xfa@atatat.net</div>
-            </div>
-            <div class="flex-container">
-                <div class="personal-left">Phone</div>
-                <div class="personal-right">
-                    <ul>
-                        <li>+380 (97) 2849791</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="flex-container">
-                <div class="personal-left">Current location</div>
-                <div class="personal-right">Bangkok, Thailand (UTC+7)</div>
-            </div>
-        </div>
         <div class="section">
-            <h2>
-                Overview
-            </h2>
-            <p>I am a dedicated software engineer, having more than a decade of experience in software design and
-                development, with the passion for creating good programs and products. My biggest expertise is in C++,
-                as well as Java/Python as secondary languages, separately or together. I supported legacy systems,
-                implemented new systems, and designed them from scratch. I have experience both in enterprise and in
-                startups, setting up development processes and workflows, Agile/Scrum, code review, Continuous
-                Integration, and task tracking, and providing technical leadership to a small team of Software
-                Engineers, DevOps and QA. You can take a look at my projects on Github, including but not limited to
-                the following software projects</p>
+            <h2>About</h2>
+            <p>
+                I’m a Senior-to-Lead C++ / Python / Java Software Engineer with almost two decades of hands-on experience
+                building and modernizing complex systems: from performance-critical infrastructure to cross-platform
+                desktop applications. I’m most at home in modern C++ (up to C++20), but I also ship production code in
+                Python and Java, especially for tooling, automation, and integration work.
+            </p>
+            <p>
+                I focus on pragmatic engineering: clean architecture, measurable performance, maintainable codebases,
+                and reliable delivery. I’m comfortable taking ownership of legacy systems, introducing modern practices
+                safely, and mentoring teams through technical decisions.
+            </p>
         </div>
+
         <div class="section">
-            <h2>
-                Projects
-            </h2>
-            <ul class="projects">
-                <li class="project-item">
-                    <div class="project-header">Advanced C++ by Example</div>
-                    <div class="project-value">I create <a href="https://github.com/yuchdev/cpp">educational material</a> for the Advanced
-                        C++ course</div>
-                </li>
-                <li class="project-item">
-                    <div class="project-header">Comprehensive C++ Books Catalog</div>
-                    <div class="project-value">I’m a creator and maintainer of the most <a href="https://github.com/yuchdev/CppBooks">Comprehensive
-                        C++ Books Catalog</a></div>
-                </li>
-                <li class="project-item">
-                    <div class="project-header">Probabilistic Calculator</div>
-                    <div class="project-value"><a href="https://github.com/yuchdev/entropy_calculator">Probabilistic calculator</a>,
-                        checking whether the file of other binary data is encrypted or not</div>
-                </li>
-                <li class="project-item">
-                    <div class="project-header">MD5 Bruteforcer</div>
-                    <div class="project-value">Simple multithreaded <a href="https://github.com/yuchdev/md5bruteforcer">MD5 password
-                        bruteforcer</a> for MD5 hash (with educational purpose only!)</div>
-                </li>
-                <li class="project-item">
-                    <div class="project-header">Code Generator</div>
-                    <div class="project-value"><a href="https://github.com/yuchdev/code_generator">Generator of program code and reports</a>
-                        supporting C++, Java, HTML5 and Markdown. This CV has been generated with the help of this exact
-                        generator</div>
-                </li>
-            </ul>
-        </div>
-        <div class="section">
-            <h2>
-                Professional Skills
-            </h2>
+            <h2>Focus areas</h2>
             <ul class="skills">
-                <li class="skill">
-                    Strong experience in С/C++ (incl. C++14/17, STL, Templates)
-                    <ul class="subskills">
-                        <li class="subskill">Boost (general purpose libraries, Networking, Metaprogramming)</li>
-                        <li class="subskill">Qt5, QtLinguist, Qt Installer Framework</li>
-                        <li class="subskill">Cross-platform Development, which I consider my valuable asset</li>
-                        <li class="subskill">Concurrency, lock-based and lock-free techniques, IPC, distributed
-                            computing
-                        </li>
-                        <li class="subskill">Educational content</li>
-                    </ul>
-                </li>
-                <li class="skill">
-                    Smaller but still good experience in Python
-                    <ul class="subskills">
-                        <li class="subskill">Django REST Framework</li>
-                        <li class="subskill">PyQt5, PyQML, developing desktop applications with Python</li>
-                        <li class="subskill">CI/CD pipeline automation</li>
-                        <li class="subskill">In general, I can automate basically everything with Python, and like to do
-                            so
-                        </li>
-                    </ul>
-                </li>
-                <li class="skill">
-                    Working experience in Java
-                    <ul class="subskills">
-                        <li class="subskill">Core Java and JavaFX for cross-platform desktop development</li>
-                        <li class="subskill">High-load blackbox testing platform for REST API</li>
-                    </ul>
-                </li>
-                <li class="skill">
-                    Unix development
-                    <ul class="subskills">
-                        <li class="subskill">Traditional Unix Toolchains: Scripting (bash), Building (gcc, Makefiles),
-                            Debugging (gdb)
-                        </li>
-                        <li class="subskill">Modern Unix Toolchains: Profiling (perf, Valgrind), Containerization
-                            (Docker), Virtualization (KVM, Xen)
-                        </li>
-                        <li class="subskill">POSIX, pthreads, high-performance techniques like CPU affinity or kernel
-                            bypassing
-                        </li>
-                        <li class="subskill">Experience of developing for Linux, BSD family and proprietary Unix
-                            systems
-                        </li>
-                    </ul>
-                </li>
-                <li class="skill">
-                    Windows development
-                    <ul class="subskills">
-                        <li class="subskill">Windows API, multithreading, services, COM and RPC</li>
-                        <li class="subskill">Low-level development, exploit guards, system hooks</li>
-                        <li class="subskill">WinDbg usage and crash-dumps analysis</li>
-                    </ul>
-                </li>
-                <li class="skill">
-                    Database development
-                    <ul class="subskills">
-                        <li class="subskill">Use SQL queries, stored procedures, triggers, views, and indexes</li>
-                        <li class="subskill">Working experience with large relational databases: MS SQL, Oracle 11g,
-                            Postgres
-                        </li>
-                        <li class="subskill">Use NoSQL (MongoDB, Redis) in a variety of projects, from design to
-                            optimizations
-                        </li>
-                        <li class="subskill">Using embedded databases on a regular basis: SQLite, UnQLite</li>
-                    </ul>
-                </li>
-                <li class="skill">
-                    DevOps skills
-                    <ul class="subskills">
-                        <li class="subskill">Continuous Integration and Delivery: TeamCity, GitLab CI, GitHub Actions
-                        </li>
-                        <li class="subskill">Git(Hub): Version control, Branch and Release Management</li>
-                        <li class="subskill">Docker, Ansible and general workflow automation on Linux</li>
-                        <li class="subskill">AWS, deployment and management tools, AWS CLI and Boto3 API</li>
-                        <li class="subskill">MS Server-Side Technologies: Active Directory and LDAP, Hyper-V Server,
-                            Docker for Windows
-                        </li>
-                    </ul>
-                </li>
-                <li class="skill">
-                    General skills
-                    <ul class="subskills">
-                        <li class="subskill">Common tools for version control, issue tracking and documentation: Git,
-                            Jira, Confluence, Doxygen
-                        </li>
-                        <li class="subskill">Modern Object-Oriented Analysis and Design</li>
-                        <li class="subskill">XML/XSL/XSD libraries and XPath Queries</li>
-                    </ul>
-                </li>
+                <li class="skill"><strong>C++ systems engineering:</strong> performance, concurrency, cross-platform, modernization</li>
+                <li class="skill"><strong>Automation & tooling:</strong> Python/CI pipelines, build systems, developer productivity</li>
+                <li class="skill"><strong>Product delivery:</strong> predictable releases, documentation, code review, mentoring</li>
             </ul>
         </div>
+
         <div class="section">
-            <h2>
-                Experience
-            </h2>
-            <div class="job">
-                <h3>
-                    12.2019 - 04.2022
-                </h3>
-                <h4>
-                    Vektor T13 Technologies, LLC - IT-Security Startup
-                </h4>
-                <div class="job-description">
-                    <div class="flex-container">
-                        <div class="experience-left">Position:</div>
-                        <div class="experience-right">Lead C++ developer</div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Description:</div>
-                        <div class="experience-right">We were a small startup, attempting to create a line of
-                            privacy-related products, including protection against fingerprinting, surveillance and
-                            tracking, and had plans of a hardened VPN service
-                        </div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Projects:</div>
-                        <div class="experience-right">
-                            <ul class="projects">
-                                <li class="project-item">
-                                    <div class="project-header">Virtualbox</div>
-                                    <div class="project-value">Powerful opensource x86/AMD64/Intel64 virtualization product. I created my own
-                                        branch with slight improvements over the Oracle version, implemented a
-                                        cross-platform build toolchain, and worked on documentation.
-                                    </div>
-                                </li>
-                                <li class="project-item">
-                                    <div class="project-header">IP Audit</div>
-                                    <div class="project-value">Anti-fraud system for a comprehensive audit of IP addresses, providing reports
-                                        about geographical location, connection details, and threats that could possess
-                                        that IP address. I was working on the server-side, developing an Anti-Fraud API
-                                        Aggregator for collecting information about requested IP from a number of
-                                        third-party APIs
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Languages, products and technologies:</div>
-                        <div class="experience-right">C, C++, Qt5, Python, PyQt, Django REST Framework, CMake, TeamCity
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="job">
-                <h3>
-                    09.2019 - 12.2019
-                </h3>
-                <h4>
-                    Massive, LLC - Distributed computing service provider
-                </h4>
-                <div class="job-description">
-                    <div class="flex-container">
-                        <div class="experience-left">Position:</div>
-                        <div class="experience-right">Senior Software Engineer</div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Description:</div>
-                        <div class="experience-right">Working on cross-platform Windows/macOS SDK for an alternate
-                            application monetization platform, giving the developer much more freedom of earning on his free
-                            applications, than just adding annoying ads.
-                        </div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Projects:</div>
-                        <div class="experience-right">
-                            <ul class="projects">
-                                <li class="project-item">
-                                    <div class="project-header">Continuous Integration</div>
-                                    <div class="project-value">Here I made significant improvements in the development process and Continuous
-                                        Integration pipeline, creating a unified system for building, signing and
-                                        packaging the application.
-                                    </div>
-                                </li>
-                                <li class="project-item">
-                                    <div class="project-header">CPU Workload</div>
-                                    <div class="project-value">Designed and implemented a system to keep CPU workload limited to a certain
-                                        value to ensure the comfortable user experience.
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Languages, products and technologies:</div>
-                        <div class="experience-right">C++, Python, JavaScript, CMake, AWS API, Google Test</div>
-                    </div>
-                </div>
-            </div>
-            <div class="job">
-                <h3>
-                    10.2014 - 07.2018
-                </h3>
-                <h4>
-                    WebGear Services, LTD (Trademark CyberYozh) - Internet Privacy Startup
-                </h4>
-                <div class="job-description">
-                    <div class="flex-container">
-                        <div class="experience-left">Position:</div>
-                        <div class="experience-right">Consultant, Lead C++ developer</div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Description:</div>
-                        <div class="experience-right">From this point, I had period away from large corporations in favor
-                            of small startups. With my enterprise experience, I defined basically everything from architecture
-                            to process from scratch, including CI/CD, QA, and technical hiring process - but still, it was still
-                            mostly technical, not a management position.
-                        </div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Projects:</div>
-                        <div class="experience-right">
-                            <ul class="projects">
-                                <li class="project-item">
-                                    <div class="project-header">VPN client</div>
-                                    <div class="project-value">VPN client with traffic leakage protection</div>
-                                </li>
-                                <li class="project-item">
-                                    <div class="project-header">PanicButton</div>
-                                    <div class="project-value">An Emergency Data Wiping System, which destroys all sensitive
-                                        data without the possibility of recovery in case of a critical situation, like
-                                        get the laptop with confidential information stolen
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Languages, products and technologies:</div>
-                        <div class="experience-right">C++, Boost, Qt5, Python, Windows RAS API, REST API, CMake,
-                            TeamCity
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="job">
-                <h3>
-                    11.2012 - 09.2014
-                </h3>
-                <h4>
-                    Deutsche Bank AG - Global Investment Bank
-                </h4>
-                <div class="job-description">
-                    <div class="flex-container">
-                        <div class="experience-left">Position:</div>
-                        <div class="experience-right">Associate Software Engineer</div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Description:</div>
-                        <div class="experience-right"></div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Projects:</div>
-                        <div class="experience-right">
-                            <ul class="projects">
-                                <li class="project-item">
-                                    <div class="project-header">RAPID</div>
-                                    <div class="project-value">Probably, the most technically challenging project in my corporate career so
-                                        far. It was a low-latency trading platform, and I improved latency-critical (&lt;20
-                                        mcs for the trading cycle) messaging system performance. At last, I used
-                                        lock-free algorithms not as a programming brain-teaser, but in production code.
-                                    </div>
-                                </li>
-                                <li class="project-item">
-                                    <div class="project-header">RMS</div>
-                                    <div class="project-value">A significant risk-management system with multi-tier architecture, where I
-                                        touched modules doing analytics, computation, and distributed computing, but the
-                                        scale of the system was 100 times more than I knew. Here I worked closely with
-                                        the analytics team, converting business requirements to software architecture
-                                        and program code, and providing occasional support to business users. During
-                                        this time I significantly improved the continuous integration pipeline based on
-                                        the TeamCity server and Python automation.
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Languages, products and technologies:</div>
-                        <div class="experience-right">C++, Boost, MS Excel/VBA, Python, XML/XSL/XPath, CppUnit, Oracle
-                            11g, TeamCity, REST API
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="job">
-                <h3>
-                    07.2011 - 08.2012
-                </h3>
-                <h4>
-                    Numerix, LLC - Analytics Provider for derivatives and financial products
-                </h4>
-                <div class="job-description">
-                    <div class="flex-container">
-                        <div class="experience-left">Position:</div>
-                        <div class="experience-right">Senior Software Developer</div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Description:</div>
-                        <div class="experience-right"></div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Projects:</div>
-                        <div class="experience-right">
-                            <ul class="projects">
-                                <li class="project-item">
-                                    <div class="project-header">CrossAsset</div>
-                                    <div class="project-value">My primary project was Numerix CrossAsset, a flexible platform for structuring,
-                                        pricing, and risk managing derivatives, accessible through Excel add-ins, C++,
-                                        C#, or Java API. I did lots of QA automation of all sorts, introducing writing
-                                        black-box tests in Python for my team, since numbers are very testable,
-                                        naturally including performance profiling in the test coverage.
-                                    </div>
-                                </li>
-                                <li class="project-item">
-                                    <div class="project-header">Embedded Key-Value Database</div>
-                                    <div class="project-value">Also, I increased the speed of the internal database by about 400% using
-                                        system-dependent optimizations using Windows and POSIX APIs, instead of generic
-                                        C++ implementation.
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Languages, products and technologies:</div>
-                        <div class="experience-right">С/C++, Python, Excel COM API, WinAPI, POSIX API, Valgrind</div>
-                    </div>
-                </div>
-            </div>
-            <div class="job">
-                <h3>
-                    01.2010 - 07.2011
-                </h3>
-                <h4>
-                    Wärtsilä, Corp. - World-Leading developer and supplier of marine and aviation
-                    onboard equipment
-                </h4>
-                <div class="job-description">
-                    <div class="flex-container">
-                        <div class="experience-left">Position:</div>
-                        <div class="experience-right">Software Developer</div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Description:</div>
-                        <div class="experience-right"></div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Projects:</div>
-                        <div class="experience-right">
-                            <ul class="projects">
-                                <li class="project-item">
-                                    <div class="project-header">Gravity</div>
-                                    <div class="project-value">I designed and developed land equipment and onboard software for wildfire
-                                        monitoring drones, GUI and GIS in Java, and ground control and onboard software
-                                        in C/C++. My role included the full-scale development tasks - application
-                                        design, bug fixing, writing unit-tests, and performing code reviews.
-                                    </div>
-                                </li>
-                                <li class="project-item">
-                                    <div class="project-header">Automation</div>
-                                    <div class="project-value">A number of internal projects. Here I developed X-Window events logging module
-                                        for a complex security and monitoring system using Xlib API, and improved the
-                                        Continuous Integration pipeline.
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Languages, products and technologies:</div>
-                        <div class="experience-right">С/C++, Java SE, Python, Autotools, CMake, XML/XSL/XPath, Google
-                            Test
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="job">
-                <h3>
-                    07.2006 - 07.2009
-                </h3>
-                <h4>
-                    DoctorWeb, LLC - Provider of anti-malware and security solutions
-                </h4>
-                <div class="job-description">
-                    <div class="flex-container">
-                        <div class="experience-left">Position:</div>
-                        <div class="experience-right">Junior Software Engineer</div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Description:</div>
-                        <div class="experience-right">Here’s where my Software Engineer career has started. I wanted to
-                            touch as much as possible, but also I wanted to participate in a whole cycle from design
-                            analysis to release. Kind of success in it.
-                        </div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Projects:</div>
-                        <div class="experience-right">
-                            <ul class="projects">
-                                <li class="project-item">
-                                    <div class="project-header">Doctor Web Security Space</div>
-                                    <div class="project-value">My first project was a multi-module solution for the protection of workstations
-                                        and small servers against malware. First I was working on GUI, then switched to
-                                        other components, like C++ SQLite library, asynchronous RPC-server for Windows,
-                                        as well as some routine work like legacy codebase maintaining, fixing some bugs
-                                        and refactoring.
-                                    </div>
-                                </li>
-                                <li class="project-item">
-                                    <div class="project-header">Doctor Web Updater</div>
-                                    <div class="project-value">It was a cross-platform module, supposed to update any company product, from
-                                        Windows antivirus to server-scale solutions for ISP. Here I implemented a
-                                        cross-platform update service using plain C++ and Boost libraries, and an
-                                        embedded Lua module for business logic.
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="experience-left">Languages, products and technologies:</div>
-                        <div class="experience-right">C/C++, Lua, MFC, WTL, Watcom</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <h2>
-                Education
-            </h2>
-            <div class="education">
-                <h3>
-                    Saint-Petersburg State Polytechnic University
-                </h3>
-                <h4>
-                    BSc in Software Engineering, 2010
-                </h4>
-                <p>
-                    The best average grade in the group, experience in student conferences and publications
-                </p>
-            </div>
+            <h2>Open to opportunities</h2>
+            <p>
+                I’m open to contract work and full-time roles. Starting remotely; willing to relocate later for the right
+                role and team.
+            </p>
         </div>
     </section>
 </main>
