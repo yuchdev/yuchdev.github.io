@@ -160,7 +160,7 @@
     // Re-enable after a moment (mail client may not open in all browsers)
     setTimeout(() => {
       sendBtn.disabled = false;
-      setStatus("If your email app didn’t open, please copy your message and contact me via LinkedIn/GitHub.", false);
+      setStatus("If your email app didn't open, please copy your message and contact me via LinkedIn/GitHub.", false);
     }, 2500);
   });
 })();

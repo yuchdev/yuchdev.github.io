@@ -9,16 +9,14 @@
    - Contacts page form styling
 
    Notes:
-   - Uses the "Raleway" Google Font (400, 550 weights).
-   - Colors:
-     - Accent teal: #1C9C94
-     - Footer background: #A7B8BF
+   - Uses the "Raleway" Google Font (400, 500 weights).
+   - Colors theme: teal, light blue, white.
    ========================================================================== */
 
 /* ----------------------------------------------------------------------------
    1) Google Fonts (Raleway)
    ---------------------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;550&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap');
 
 /* ----------------------------------------------------------------------------
    2) Base / Reset-ish
