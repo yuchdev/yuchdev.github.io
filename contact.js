@@ -4,6 +4,7 @@
     const sendBtn = document.getElementById("send-btn");
     const BACKEND_URL = window.CONTACT_BACKEND_URL;
     const TIMEOUT_MS = 12000;
+    const FALLBACK_EMAIL = "yurii.cherkasov-0xfa@atatat.net";
     const CONTACT_SECRET = decodeBase64Utf8(
         window.CONTACT_BACKEND_SECRET_B64 || ""
     );
@@ -26,6 +27,11 @@
         statusEl.style.color = isError ? "#b42318" : "";
     }
 
+    function setStatusHtml(html, isError) {
+        statusEl.innerHTML = html;
+        statusEl.style.color = isError ? "#b42318" : "";
+    }
+
     function setSending(isSending) {
         sendBtn.disabled = isSending;
         sendBtn.textContent = isSending ? "Sending..." : "Send";
@@ -41,6 +47,17 @@
             window.location.hostname === "localhost" ||
             window.location.hostname === "127.0.0.1"
         );
+    }
+
+    function showFallback(reason) {
+        const name = (form.elements.namedItem("name")?.value || "").trim();
+        const subject = (form.elements.namedItem("subject")?.value || "").trim();
+        const message = (form.elements.namedItem("message")?.value || "").trim();
+
+        const body = `Name: ${name}\n\n${message}`;
+        const mailtoUrl = `mailto:${FALLBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        setStatusHtml(`${reason} Would you like to <a href="${mailtoUrl}" style="color: inherit; text-decoration: underline;">send an email</a> instead?`, true);
     }
 
     async function postJson(url, payload) {
@@ -77,7 +94,7 @@
         setStatus("");
 
         if (!BACKEND_URL || !CONTACT_SECRET) {
-            setStatus("Contact form is not configured yet.", true);
+            showFallback("Contact form is not configured yet.");
             return;
         }
 
@@ -129,12 +146,12 @@
 
             // Generic error (don’t leak backend details)
             if (res.status === 403 && isLocal()) {
-                setStatus("Submission failed (403). Backend likely rejects local requests due to CORS/Origin restrictions.", true);
+                showFallback("Submission failed (403). Backend likely rejects local requests due to CORS/Origin restrictions.");
             } else {
-                setStatus("Could not send your message. Please try again later.", true);
+                showFallback("Could not send your message.");
             }
         } catch (e) {
-            setStatus("Network error. Please try again later.", true);
+            showFallback("Network error.");
         } finally {
             setSending(false);
         }
