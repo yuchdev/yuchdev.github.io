@@ -54,7 +54,7 @@
         const subject = (form.elements.namedItem("subject")?.value || "").trim();
         const message = (form.elements.namedItem("message")?.value || "").trim();
 
-        const body = `Name: ${name}\n\n${message}`;
+        const body = `From: ${name} \n\nMessage: ${message}`;
         const mailtoUrl = `mailto:${FALLBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
         setStatusHtml(`${reason} Would you like to <a href="${mailtoUrl}" style="color: inherit; text-decoration: underline;">send an email</a> instead?`, true);
