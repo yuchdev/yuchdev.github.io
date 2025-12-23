@@ -4,7 +4,8 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" href="./img/favicon.ico"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css"/>
     <title>Yurii Cherkasov — Contacts</title>
 </head>
@@ -68,12 +69,14 @@
 
                 <div class="form-row">
                     <label for="name">Your name</label>
-                    <input id="name" name="name" type="text" placeholder="John Smith" autocomplete="name" maxlength="120" required/>
+                    <input id="name" name="name" type="text" placeholder="John Smith" autocomplete="name"
+                           maxlength="120" required/>
                 </div>
 
                 <div class="form-row">
                     <label for="email">Your email</label>
-                    <input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="email" maxlength="200" required/>
+                    <input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="email"
+                           maxlength="200" required/>
                 </div>
 
                 <div class="form-row">
@@ -83,7 +86,8 @@
 
                 <div class="form-row">
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="7" placeholder="Write your message here..." maxlength="4000" required></textarea>
+                    <textarea id="message" name="message" rows="7" placeholder="Write your message here..."
+                              maxlength="4000" required></textarea>
                 </div>
 
                 <p id="contact-status" aria-live="polite" style="margin-top: 10px;"></p>
@@ -101,6 +105,25 @@
     Yurii Cherkasov &copy; 2025
 </footer>
 
-<script src="contact.js"></script>
+<!-- ContactBackend client config -->
+<script>
+    (function () {
+        const isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+
+        // Prod Worker URL:
+        const PROD_BACKEND_URL = "https://contact-backend.cflare-45ffee.workers.dev/api/contact";
+
+        // Local dev Worker URL:
+        const DEV_BACKEND_URL = "http://127.0.0.1:8787/api/contact";
+
+        window.CONTACT_BACKEND_URL = isLocal ? DEV_BACKEND_URL : PROD_BACKEND_URL;
+
+        // Obfuscated (still visible)
+        window.CONTACT_BACKEND_SECRET_B64 =
+            "YmQ2NGQzMDItNDNlNC00NjI2LTk2NTYtMWRhMDQ0MzU2MmVk";
+    })();
+</script>
+
+<script src="contact.js" defer></script>
 </body>
 </html>

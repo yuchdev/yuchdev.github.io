@@ -1,166 +1,142 @@
-// contact.js
-// Temporary static-only implementation:
-// - Collect form fields
-// - Apply basic anti-bot checks (honeypot + min time + simple client-side throttling)
-// - Open user's mail client with a prefilled mailto: link
-//
-// NOTE: Static sites cannot safely "send email" themselves without a backend.
-// This is a stopgap until you add a serverless endpoint next weekend.
+(() => {
+    const form = document.getElementById("contact-form");
+    const statusEl = document.getElementById("contact-status");
+    const sendBtn = document.getElementById("send-btn");
+    const BACKEND_URL = window.CONTACT_BACKEND_URL;
+    const TIMEOUT_MS = 12000;
+    const CONTACT_SECRET = decodeBase64Utf8(
+        window.CONTACT_BACKEND_SECRET_B64 || ""
+    );
 
-(function () {
-  "use strict";
 
-  // === Configure your weekly alias HERE (obfuscated to reduce scraping) ===
-  // Replace the string below with your NEW alias each week.
-  // How to generate: in DevTools console -> btoa("alias@example.com")
-  const aliasB64 = "dGVtcC1hbGlhcy1jaGFuZ2UtbWVAZXhhbXBsZS5jb20="; // temp-alias-change-me@example.com
-  const TO_EMAIL = safeAtob(aliasB64);
-
-  // === Simple client-side throttling (per-browser) ===
-  const STORAGE_KEY_LAST_SENT = "contact_last_sent_ms";
-  const MIN_SECONDS_BETWEEN_SENDS = 45; // per browser tab/device (not real security)
-
-  // === Minimum time on page before allowing submit (helps against some bots) ===
-  const PAGE_LOAD_MS = Date.now();
-  const MIN_SECONDS_ON_PAGE = 4;
-
-  const form = document.getElementById("contact-form");
-  const statusEl = document.getElementById("contact-status");
-  const sendBtn = document.getElementById("send-btn");
-
-  if (!form || !statusEl || !sendBtn) return;
-
-  function safeAtob(b64) {
-    try {
-      return atob(b64);
-    } catch (e) {
-      return "";
-    }
-  }
-
-  function setStatus(msg, isError) {
-    statusEl.textContent = msg || "";
-    statusEl.style.color = isError ? "#b00020" : "inherit";
-  }
-
-  function nowMs() {
-    return Date.now();
-  }
-
-  function getLastSentMs() {
-    const v = localStorage.getItem(STORAGE_KEY_LAST_SENT);
-    const n = Number(v);
-    return Number.isFinite(n) ? n : 0;
-  }
-
-  function setLastSentMs(ms) {
-    try {
-      localStorage.setItem(STORAGE_KEY_LAST_SENT, String(ms));
-    } catch (e) {
-      // ignore
-    }
-  }
-
-  function isHoneypotTripped() {
-    const hp = document.getElementById("website");
-    return hp && String(hp.value || "").trim().length > 0;
-  }
-
-  function isTooSoonSincePageLoad() {
-    return (nowMs() - PAGE_LOAD_MS) < (MIN_SECONDS_ON_PAGE * 1000);
-  }
-
-  function isRateLimited() {
-    const last = getLastSentMs();
-    return last > 0 && (nowMs() - last) < (MIN_SECONDS_BETWEEN_SENDS * 1000);
-  }
-
-  function normalize(s) {
-    return String(s || "").replace(/\r\n/g, "\n").trim();
-  }
-
-  function buildMailto(to, subject, body) {
-    // Keep it small-ish: mailto links can break if too long.
-    // We'll be careful with encoding.
-    const params = new URLSearchParams();
-    params.set("subject", subject);
-    params.set("body", body);
-    return `mailto:${encodeURIComponent(to)}?${params.toString()}`;
-  }
-
-  form.addEventListener("submit", function (ev) {
-    ev.preventDefault();
-    setStatus("");
-
-    if (!TO_EMAIL) {
-      setStatus("Contact form is not configured (missing alias).", true);
-      return;
+    function decodeBase64Utf8(b64) {
+        try {
+            // atob gives binary string → decode UTF-8 properly
+            const binary = atob(b64);
+            const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+            return new TextDecoder("utf-8").decode(bytes);
+        } catch {
+            return "";
+        }
     }
 
-    // Anti-bot checks
-    if (isHoneypotTripped()) {
-      setStatus("Submission rejected.", true);
-      return;
+    function setStatus(text, isError) {
+        statusEl.textContent = text;
+        // optional inline styling without touching CSS:
+        statusEl.style.color = isError ? "#b42318" : "";
     }
 
-    if (isTooSoonSincePageLoad()) {
-      setStatus(`Please wait a couple seconds before sending (anti-bot check).`, true);
-      return;
+    function setSending(isSending) {
+        sendBtn.disabled = isSending;
+        sendBtn.textContent = isSending ? "Sending..." : "Send";
     }
 
-    if (isRateLimited()) {
-      setStatus(`Please wait before sending another message (rate limit).`, true);
-      return;
+    function basicEmailOk(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-    const name = normalize(document.getElementById("name")?.value);
-    const email = normalize(document.getElementById("email")?.value);
-    const subject = normalize(document.getElementById("subject")?.value);
-    const message = normalize(document.getElementById("message")?.value);
-
-    if (!name || !email || !subject || !message) {
-      setStatus("Please fill in all fields.", true);
-      return;
+    function isLocal() {
+        return (
+            window.location.protocol === "file:" ||
+            window.location.hostname === "localhost" ||
+            window.location.hostname === "127.0.0.1"
+        );
     }
 
-    // Basic email sanity check (not strict)
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setStatus("Please enter a valid email address.", true);
-      return;
+    async function postJson(url, payload) {
+        const controller = new AbortController();
+        const t = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+        try {
+            const res = await fetch(url, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(payload),
+                signal: controller.signal
+            });
+
+            let data = null;
+            const ct = res.headers.get("Content-Type") || "";
+            if (ct.includes("application/json")) {
+                try {
+                    data = await res.json();
+                } catch { /* ignore */
+                }
+            }
+
+            return {res, data};
+        } finally {
+            clearTimeout(t);
+        }
     }
 
-    // Compose body
-    const body = [
-      "New message from your website contact form",
-      "",
-      `Name: ${name}`,
-      `Email: ${email}`,
-      "",
-      "Message:",
-      message,
-      "",
-      "---",
-      `Sent from: ${window.location.href}`,
-      `Timestamp: ${new Date().toISOString()}`
-    ].join("\n");
+    if (!form) return;
 
-    // Build mailto URL
-    const mailtoUrl = buildMailto(TO_EMAIL, `[Website] ${subject}`, body);
+    form.addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        setStatus("");
 
-    // Record "send" attempt for throttling
-    setLastSentMs(nowMs());
+        if (!BACKEND_URL || !CONTACT_SECRET) {
+            setStatus("Contact form is not configured yet.", true);
+            return;
+        }
 
-    // UX
-    sendBtn.disabled = true;
-    setStatus("Opening your email client…");
+        const name = (form.elements.namedItem("name")?.value || "").trim();
+        const email = (form.elements.namedItem("email")?.value || "").trim();
+        const subject = (form.elements.namedItem("subject")?.value || "").trim();
+        const message = (form.elements.namedItem("message")?.value || "").trim();
+        const website = (form.elements.namedItem("website")?.value || "").trim(); // honeypot
 
-    // Trigger mail client
-    window.location.href = mailtoUrl;
+        // Client-side validation (backend will validate too)
+        if (!name || !email || !subject || !message) {
+            setStatus("Please fill in all required fields.", true);
+            return;
+        }
+        if (!basicEmailOk(email)) {
+            setStatus("Please enter a valid email address.", true);
+            return;
+        }
 
-    // Re-enable after a moment (mail client may not open in all browsers)
-    setTimeout(() => {
-      sendBtn.disabled = false;
-      setStatus("If your email app didn't open, please copy your message and contact me via LinkedIn/GitHub.", false);
-    }, 2500);
-  });
+        // Your backend contract
+        const payload = {
+            secret: CONTACT_SECRET,
+            name,
+            email,
+            subject,
+            message,
+            website
+        };
+
+        setSending(true);
+        setStatus("Sending...", false);
+
+        try {
+            const {res, data} = await postJson(BACKEND_URL, payload);
+
+            // Success
+            if (res.ok && data && data.status === "ok") {
+                setStatus(data.message || "Thank you! Message sent.", false);
+                form.reset();
+                return;
+            }
+
+            // Accepted but queued (GitHub failed / Telegram fallback / etc.)
+            if (res.status === 202 && data && data.status === "queued") {
+                setStatus(data.message || "Received. I’ll get back to you soon.", false);
+                form.reset();
+                return;
+            }
+
+            // Generic error (don’t leak backend details)
+            if (res.status === 403 && isLocal()) {
+                setStatus("Submission failed (403). Backend likely rejects local requests due to CORS/Origin restrictions.", true);
+            } else {
+                setStatus("Could not send your message. Please try again later.", true);
+            }
+        } catch (e) {
+            setStatus("Network error. Please try again later.", true);
+        } finally {
+            setSending(false);
+        }
+    });
 })();
