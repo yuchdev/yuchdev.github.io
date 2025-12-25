@@ -93,10 +93,11 @@
     }
 
     /**
-     * Sends a POST request with JSON payload.
-     * @param {string} url - The URL to send the request to.
-     * @param {Object} payload - The data to send in the request body.
-     * @returns {Promise<{res: Response, data: Object|null}>} A promise that resolves to an object containing the response and its parsed data.
+     * Sends a POST request with a JSON payload to the specified URL and returns the response and parsed JSON.
+     *
+     * @param {string} url - The URL to which the POST request is sent.
+     * @param {object} payload - The data to be sent as the request body, which will be serialized into JSON format.
+     * @return {Promise<{res: Response, data: any}>} An object containing the JSON response object.
      */
     async function postJson(url, payload) {
         const controller = new AbortController();
@@ -129,7 +130,7 @@
 
     form.addEventListener("submit", async (ev) => {
         ev.preventDefault();
-        setStatus("");
+        setStatus("", false);
 
         if (!BACKEND_URL || !CONTACT_SECRET) {
             showFallback("Contact form is not configured yet.");
@@ -196,12 +197,12 @@
     });
 
     // Export functions for testing
+    // noinspection JSUnresolvedReference
     if (typeof module !== "undefined" && module.exports) {
+        // noinspection JSUnresolvedReference
         module.exports = {
             decodeBase64Utf8,
             setStatus,
-            setStatusHtml,
-            setSending,
             basicEmailOk,
             isLocal,
             showFallback,
