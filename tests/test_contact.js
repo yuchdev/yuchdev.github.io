@@ -39,7 +39,7 @@ const {
     isLocal,
     showFallback,
     postJson
-} = require('../contact');
+} = require('../js/contact');
 
 /**
  * Runs all tests.

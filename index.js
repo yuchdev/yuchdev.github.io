@@ -34,8 +34,53 @@
     ];
 
     const el = document.querySelector("p.latin-quote");
-    if (!el) {
-        return;
+    if (el) {
+        el.textContent = quotes[Math.floor(Math.random() * quotes.length)];
     }
-    el.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+
+    /**
+     * Social media links data.
+     * @type {{href: string, icon: string}[]}
+     */
+    const socialLinks = [
+        { href: "https://www.linkedin.com/in/yurii-cherkasov-653b213a0/", icon: "fab fa-linkedin-in" },
+        { href: "https://github.com/yuchdev", icon: "fab fa-github-alt" },
+        { href: "https://www.facebook.com/yuchdev", icon: "fab fa-facebook-f" },
+        { href: "https://x.com/yuchdev", icon: "fab fa-x-twitter" },
+        { href: "https://www.instagram.com/yuchdev", icon: "fab fa-instagram" }
+    ];
+
+    /**
+     * Injects social media links into the header.
+     */
+    const injectSocialLinks = () => {
+        const header = document.querySelector("header");
+        if (!header) return;
+
+        // Try to find the placeholder or existing section
+        let socialSection = document.getElementById("header-social");
+        if (!socialSection) {
+            socialSection = document.createElement("section");
+            socialSection.id = "header-social";
+            header.appendChild(socialSection);
+        } else {
+            // Clear existing content if it's there
+            socialSection.innerHTML = "";
+        }
+
+        socialLinks.forEach(link => {
+            const anchor = document.createElement("a");
+            anchor.href = link.href;
+            anchor.target = "_blank";
+            anchor.rel = "noopener noreferrer";
+
+            const icon = document.createElement("i");
+            icon.className = link.icon;
+
+            anchor.appendChild(icon);
+            socialSection.appendChild(anchor);
+        });
+    };
+
+    injectSocialLinks();
 })();
