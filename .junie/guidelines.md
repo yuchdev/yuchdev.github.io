@@ -11,32 +11,7 @@ This is a static personal website hosted on GitHub Pages. It uses vanilla HTML, 
 
 ### Testing Information
 There is no formal testing framework like Jest or Mocha integrated. 
-Testing is performed using simple Node.js scripts to verify utility logic.
-
-#### Running Tests
-To run the existing logic tests (if any are present):
-
-```bash
-node <test-file>.js
-```
-
-#### Adding New Tests
-1. Create a new `.js` file (e.g., `test-feature.js`).
-2. Use Node.js built-in `assert` module for assertions.
-3. If testing browser-specific logic, consider mocking globals or using a tool like Playwright if the project scales.
-
-#### Sample Test Example
-
-```javascript
-const assert = require('assert');
-const { execSync } = require('child_process');
-
-// Example: Verifying encode.js output
-const secret = 'test-secret';
-const output = execSync(`node encode.js ${secret}`).toString().trim();
-assert.strictEqual(output, Buffer.from(secret).toString('base64'));
-console.log('Test Passed');
-```
+Testing is performed using simple Node.js scripts located in the `test/` directory.
 
 ### Additional Development Information
 - **Code Style**:
