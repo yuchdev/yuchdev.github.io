@@ -63,7 +63,7 @@ header {
     text-align: center;
 
     /* Hero background image */
-    background-image: url('./img/bg.jpg');
+    background-image: url('images/bg.jpg');
     background-size: cover;
 
     color: white;
