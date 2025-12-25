@@ -194,4 +194,18 @@
             setSending(false);
         }
     });
+
+    // Export functions for testing
+    if (typeof module !== "undefined" && module.exports) {
+        module.exports = {
+            decodeBase64Utf8,
+            setStatus,
+            setStatusHtml,
+            setSending,
+            basicEmailOk,
+            isLocal,
+            showFallback,
+            postJson
+        };
+    }
 })();

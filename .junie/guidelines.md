@@ -10,7 +10,8 @@ This is a static personal website hosted on GitHub Pages. It uses vanilla HTML, 
     - `encode.js` is provided to encode secrets to Base64 for use in the contact form configuration.
 
 ### Testing Information
-There is no formal testing framework like Jest or Mocha integrated. Testing is performed using simple Node.js scripts to verify utility logic.
+There is no formal testing framework like Jest or Mocha integrated. 
+Testing is performed using simple Node.js scripts to verify utility logic.
 
 #### Running Tests
 To run the existing logic tests (if any are present):
