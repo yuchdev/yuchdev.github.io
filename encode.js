@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+/**
+ * Simple Node.js script to encode a string to Base64.
+ * Usage: node encode.js <secret>
+ */
 const secret = process.argv[2];
 
 if (!secret) {

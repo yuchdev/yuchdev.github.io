@@ -10,6 +10,11 @@
     );
 
 
+    /**
+     * Decodes a Base64 string into a UTF-8 string.
+     * @param {string} b64 - The Base64 encoded string.
+     * @returns {string} The decoded UTF-8 string, or an empty string if decoding fails.
+     */
     function decodeBase64Utf8(b64) {
         try {
             // atob gives binary string → decode UTF-8 properly
@@ -21,26 +26,49 @@
         }
     }
 
+    /**
+     * Sets the status message text and optional error styling.
+     * @param {string} text - The message to display.
+     * @param {boolean} isError - Whether the message indicates an error.
+     */
     function setStatus(text, isError) {
         statusEl.textContent = text;
         // optional inline styling without touching CSS:
         statusEl.style.color = isError ? "#b42318" : "";
     }
 
+    /**
+     * Sets the status message HTML and optional error styling.
+     * @param {string} html - The HTML content to display.
+     * @param {boolean} isError - Whether the message indicates an error.
+     */
     function setStatusHtml(html, isError) {
         statusEl.innerHTML = html;
         statusEl.style.color = isError ? "#b42318" : "";
     }
 
+    /**
+     * Updates the UI to indicate whether a message is currently being sent.
+     * @param {boolean} isSending - Whether the message is being sent.
+     */
     function setSending(isSending) {
         sendBtn.disabled = isSending;
         sendBtn.textContent = isSending ? "Sending..." : "Send";
     }
 
+    /**
+     * Performs a basic regex check for email validity.
+     * @param {string} email - The email address to check.
+     * @returns {boolean} True if the email format is valid, false otherwise.
+     */
     function basicEmailOk(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
+    /**
+     * Checks if the script is running in a local environment.
+     * @returns {boolean} True if running on localhost, 127.0.0.1, or via file protocol.
+     */
     function isLocal() {
         return (
             window.location.protocol === "file:" ||
@@ -49,6 +77,10 @@
         );
     }
 
+    /**
+     * Shows a fallback message with a mailto link when submission fails.
+     * @param {string} reason - The reason for showing the fallback.
+     */
     function showFallback(reason) {
         const name = (form.elements.namedItem("name")?.value || "").trim();
         const subject = (form.elements.namedItem("subject")?.value || "").trim();
@@ -60,6 +92,12 @@
         setStatusHtml(`${reason} Would you like to <a href="${mailtoUrl}" style="color: inherit; text-decoration: underline;">send an email</a> instead?`, true);
     }
 
+    /**
+     * Sends a POST request with JSON payload.
+     * @param {string} url - The URL to send the request to.
+     * @param {Object} payload - The data to send in the request body.
+     * @returns {Promise<{res: Response, data: Object|null}>} A promise that resolves to an object containing the response and its parsed data.
+     */
     async function postJson(url, payload) {
         const controller = new AbortController();
         const t = setTimeout(() => controller.abort(), TIMEOUT_MS);
