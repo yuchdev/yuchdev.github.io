@@ -424,6 +424,19 @@ async function getCachedMarkdown(slug, date, file) {
     }
 
     /**
+     * Loads post with markdown, preview, and reading time
+     * @param {Object} post - post metadata
+     * @returns {Promise<{preview: string[], readingTime: number}>}
+     */
+    async function loadPostMetadata(post) {
+        const markdown = await getCachedMarkdown(post.slug, post.date, post.file);
+        const preview = extractPreview(markdown);
+        const plainText = markdownToPlainText(removeFrontMatter(removeCodeBlocks(markdown)));
+        const readingTime = calculateReadingTime(plainText);
+        return { preview, readingTime };
+    }
+
+    /**
      * Main initialization function
      */
     async function init() {
@@ -546,13 +559,10 @@ async function getCachedMarkdown(slug, date, file) {
                 let postsToShow = filteredPosts;
                 
                 // Only show featured on first page without filters
-                if (validPage === 1 && !tagFilter && !searchQuery.trim()) {
+                if (validPage === 1 && !tagFilter && !searchQuery.trim() && filteredPosts.length > 0) {
                     const newestPost = filteredPosts[0];
                     try {
-                        const markdown = await getCachedMarkdown(newestPost.slug, newestPost.date, newestPost.file);
-                        const preview = extractPreview(markdown);
-                        const plainText = markdownToPlainText(removeFrontMatter(removeCodeBlocks(markdown)));
-                        const readingTime = calculateReadingTime(plainText);
+                        const { preview, readingTime } = await loadPostMetadata(newestPost);
                         featuredHtml = renderFeaturedPost(newestPost, preview, readingTime);
                         
                         // Remove featured post from paginated list
@@ -563,8 +573,8 @@ async function getCachedMarkdown(slug, date, file) {
                 }
                 
                 // Recalculate pagination after removing featured post
-                const adjustedTotalPages = Math.ceil(postsToShow.length / pageSize);
-                const adjustedValidPage = Math.min(validPage, Math.max(1, adjustedTotalPages));
+                const adjustedTotalPages = postsToShow.length === 0 ? 0 : Math.ceil(postsToShow.length / pageSize);
+                const adjustedValidPage = postsToShow.length === 0 ? 0 : Math.min(validPage, Math.max(1, adjustedTotalPages));
                 
                 const startIdx = (adjustedValidPage - 1) * pageSize;
                 const endIdx = Math.min(startIdx + pageSize, postsToShow.length);
@@ -574,10 +584,7 @@ async function getCachedMarkdown(slug, date, file) {
                 const cards = [];
                 for (const post of pageSlice) {
                     try {
-                        const markdown = await getCachedMarkdown(post.slug, post.date, post.file);
-                        const preview = extractPreview(markdown);
-                        const plainText = markdownToPlainText(removeFrontMatter(removeCodeBlocks(markdown)));
-                        const readingTime = calculateReadingTime(plainText);
+                        const { preview, readingTime } = await loadPostMetadata(post);
                         cards.push(renderBlogCard(post, preview, readingTime));
                     } catch (err) {
                         console.error(`Error loading post ${post.slug}:`, err);

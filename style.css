@@ -23,7 +23,7 @@
    ---------------------------------------------------------------------------- */
 body {
     margin: 0;
-    font-family: 'Raleway', serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 16px;
     line-height: 1.8em;
 }
@@ -678,7 +678,7 @@ ul.projects p {
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 1em;
-    font-family: 'Raleway', serif;
+    font-family: 'Raleway', sans-serif;
     transition: border-color 0.2s;
 }
 
