@@ -11,6 +11,41 @@ Social:
 - X (Twitter): https://x.com/yuchdev
 - Instagram: https://www.instagram.com/yuchdev
 
+## Blog
+
+This site includes a blog with markdown-based articles. To add a new article:
+
+1. Create a markdown file in the `articles/` directory (e.g., `2026-01-15-my-article.md`)
+2. Add YAML front matter at the top:
+   ```yaml
+   ---
+   title: My Article Title
+   date: 2026-01-15
+   tags: [tag1, tag2]
+   ---
+   ```
+3. Write your content using markdown
+4. Add an entry to `articles/index.json`:
+   ```json
+   {
+     "slug": "2026-01-15-my-article",
+     "title": "My Article Title",
+     "date": "2026-01-15",
+     "file": "2026-01-15-my-article.md",
+     "tags": ["tag1", "tag2"]
+   }
+   ```
+
+The blog supports:
+- Headings (# to ######)
+- Paragraphs
+- Inline code: `` `code` ``
+- Fenced code blocks: ` ```language ... ``` `
+- Links: `[text](url)` (only http/https/mailto URLs allowed for security)
+- Unordered lists: `- item`
+
+Security features prevent HTML injection and malicious links.
+
 ## Overview
 
 I am a dedicated software engineer with more than a decade of experience in software design and development, with a passion for creating good programs and products. My strongest expertise is in C++, as well as Java and Python as secondary languages, separately or together. I have supported legacy systems, implemented new systems, and designed them from scratch. I have experience both in enterprise and startups, setting up development processes and workflows, Agile/Scrum, code review, Continuous Integration, and task tracking, and providing technical leadership to a small team of Software Engineers, DevOps, and QA. You can take a look at my projects on GitHub, including but not limited to the following:
