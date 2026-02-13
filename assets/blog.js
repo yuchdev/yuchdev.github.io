@@ -336,3 +336,297 @@
     // Initialize on page load
     init();
 })();
+
+// Article page functionality
+(() => {
+    // Only run on article.html
+    if (!document.querySelector("#article")) return;
+
+    /**
+     * GitHub Pages base-path safety helper
+     * @param {string} path - relative path
+     * @returns {string} - full URL
+     */
+    function baseUrl(path) {
+        return new URL(path, document.baseURI).toString();
+    }
+
+    /**
+     * Escapes HTML special characters
+     * @param {string} text
+     * @returns {string}
+     */
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    /**
+     * Checks if URL is safe (http, https, mailto, or relative)
+     * @param {string} url
+     * @returns {boolean}
+     */
+    function isSafeUrl(url) {
+        if (!url) return false;
+        const trimmed = url.trim();
+        // Allow relative URLs
+        if (!trimmed.includes(':')) return true;
+        // Allow only http, https, mailto
+        return /^(https?|mailto):/i.test(trimmed);
+    }
+
+    /**
+     * Converts markdown to safe HTML
+     * @param {string} markdown
+     * @returns {string}
+     */
+    function markdownToHtml(markdown) {
+        // First, escape all HTML
+        let html = escapeHtml(markdown);
+        
+        // Process fenced code blocks first (```lang\n...\n```)
+        html = html.replace(/```([^\n]*)\n([\s\S]*?)```/g, (match, lang, code) => {
+            // code is already escaped
+            return `<pre><code>${code.trim()}</code></pre>`;
+        });
+
+        // Split into lines for processing
+        const lines = html.split('\n');
+        const result = [];
+        let inList = false;
+        let currentParagraph = [];
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            const trimmedLine = line.trim();
+
+            // Skip empty lines - they end paragraphs
+            if (trimmedLine === '') {
+                if (currentParagraph.length > 0) {
+                    result.push(`<p>${currentParagraph.join('<br>')}</p>`);
+                    currentParagraph = [];
+                }
+                if (inList) {
+                    result.push('</ul>');
+                    inList = false;
+                }
+                continue;
+            }
+
+            // Check if line is already a code block (from our pre-processing)
+            if (trimmedLine.startsWith('&lt;pre&gt;&lt;code&gt;')) {
+                if (currentParagraph.length > 0) {
+                    result.push(`<p>${currentParagraph.join('<br>')}</p>`);
+                    currentParagraph = [];
+                }
+                if (inList) {
+                    result.push('</ul>');
+                    inList = false;
+                }
+                // Find the end of the code block
+                let codeBlock = [line];
+                while (i + 1 < lines.length && !lines[i + 1].includes('&lt;/code&gt;&lt;/pre&gt;')) {
+                    i++;
+                    codeBlock.push(lines[i]);
+                }
+                if (i + 1 < lines.length) {
+                    i++;
+                    codeBlock.push(lines[i]);
+                }
+                // Unescape the code block tags
+                result.push(codeBlock.join('\n')
+                    .replace(/&lt;pre&gt;&lt;code&gt;/g, '<pre><code>')
+                    .replace(/&lt;\/code&gt;&lt;\/pre&gt;/g, '</code></pre>'));
+                continue;
+            }
+
+            // Headings (# to ######)
+            const headingMatch = trimmedLine.match(/^(#{1,6})\s+(.+)$/);
+            if (headingMatch) {
+                if (currentParagraph.length > 0) {
+                    result.push(`<p>${currentParagraph.join('<br>')}</p>`);
+                    currentParagraph = [];
+                }
+                if (inList) {
+                    result.push('</ul>');
+                    inList = false;
+                }
+                const level = headingMatch[1].length;
+                const text = headingMatch[2];
+                result.push(`<h${level}>${processInline(text)}</h${level}>`);
+                continue;
+            }
+
+            // Unordered list items (- item)
+            const listMatch = trimmedLine.match(/^-\s+(.+)$/);
+            if (listMatch) {
+                if (currentParagraph.length > 0) {
+                    result.push(`<p>${currentParagraph.join('<br>')}</p>`);
+                    currentParagraph = [];
+                }
+                if (!inList) {
+                    result.push('<ul>');
+                    inList = true;
+                }
+                const itemText = listMatch[1];
+                result.push(`<li>${processInline(itemText)}</li>`);
+                continue;
+            }
+
+            // Regular text - accumulate into current paragraph
+            if (inList) {
+                result.push('</ul>');
+                inList = false;
+            }
+            currentParagraph.push(processInline(trimmedLine));
+        }
+
+        // Close any open paragraph or list
+        if (currentParagraph.length > 0) {
+            result.push(`<p>${currentParagraph.join('<br>')}</p>`);
+        }
+        if (inList) {
+            result.push('</ul>');
+        }
+
+        return result.join('\n');
+    }
+
+    /**
+     * Process inline markdown (code, links)
+     * @param {string} text - already HTML-escaped text
+     * @returns {string}
+     */
+    function processInline(text) {
+        // Inline code: `code` (text is already escaped)
+        text = text.replace(/`([^`]+)`/g, (match, code) => {
+            return `<code>${code}</code>`;
+        });
+
+        // Links: [text](url) (text is already escaped)
+        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, url) => {
+            if (isSafeUrl(url)) {
+                return `<a href="${url}">${linkText}</a>`;
+            } else {
+                // Unsafe URL - render as plain text
+                return linkText;
+            }
+        });
+
+        return text;
+    }
+
+    /**
+     * Removes YAML front matter from markdown
+     * @param {string} markdown
+     * @returns {string}
+     */
+    function removeFrontMatter(markdown) {
+        if (markdown.trim().startsWith('---')) {
+            const lines = markdown.split('\n');
+            let endIndex = -1;
+            for (let i = 1; i < lines.length; i++) {
+                if (lines[i].trim() === '---') {
+                    endIndex = i;
+                    break;
+                }
+            }
+            if (endIndex !== -1) {
+                return lines.slice(endIndex + 1).join('\n');
+            }
+        }
+        return markdown;
+    }
+
+    /**
+     * Gets slug from URL query params
+     * @returns {string|null}
+     */
+    function getSlug() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('slug');
+    }
+
+    /**
+     * Renders article content
+     * @param {Object} post - post metadata
+     * @param {string} markdown - markdown content
+     */
+    function renderArticle(post, markdown) {
+        const articleEl = document.getElementById('article');
+        
+        // Remove front matter
+        const content = removeFrontMatter(markdown);
+        
+        // Convert markdown to HTML
+        const htmlContent = markdownToHtml(content);
+        
+        // Render article
+        articleEl.innerHTML = `
+            <h1>${escapeHtml(post.title)}</h1>
+            <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
+            ${htmlContent}
+        `;
+    }
+
+    /**
+     * Shows error message
+     * @param {string} message
+     */
+    function showError(message) {
+        const articleEl = document.getElementById('article');
+        articleEl.innerHTML = `
+            <div class="blog-error">
+                <p>${escapeHtml(message)}</p>
+                <p><a href="./blog.html">← Back to Blog</a></p>
+            </div>
+        `;
+    }
+
+    /**
+     * Main initialization function
+     */
+    async function init() {
+        try {
+            // Get slug from URL
+            const slug = getSlug();
+            if (!slug) {
+                showError('No article specified. Please provide a slug parameter.');
+                return;
+            }
+
+            // Load manifest
+            const manifestResponse = await fetch(baseUrl('articles/index.json'));
+            if (!manifestResponse.ok) {
+                throw new Error(`Failed to load manifest: ${manifestResponse.status}`);
+            }
+            const manifest = await manifestResponse.json();
+
+            // Find post by slug
+            const post = manifest.find(p => p.slug === slug);
+            if (!post) {
+                showError(`Article not found: "${slug}"`);
+                return;
+            }
+
+            // Load markdown
+            const mdResponse = await fetch(baseUrl('articles/' + post.file));
+            if (!mdResponse.ok) {
+                throw new Error(`Failed to load article: ${mdResponse.status}`);
+            }
+            const markdown = await mdResponse.text();
+
+            // Render article
+            renderArticle(post, markdown);
+
+        } catch (err) {
+            console.error('Error loading article:', err);
+            showError(`Failed to load article: ${err.message}`);
+        }
+    }
+
+    // Initialize on page load
+    init();
+})();
+
