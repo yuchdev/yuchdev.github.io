@@ -1,76 +1,140 @@
 // assets/blog.js
+
+// ============================================================================
+// Shared Utilities (used by both blog list and article pages)
+// ============================================================================
+
+// Configuration constants
+const READING_SPEED_WPM = 200;
+const MAX_CACHE_SIZE = 250000;
+
+/**
+ * GitHub Pages base-path safety helper
+ * @param {string} path - relative path
+ * @returns {string} - full URL
+ */
+function baseUrl(path) {
+    return new URL(path, document.baseURI).toString();
+}
+
+/**
+ * Escapes HTML special characters
+ * @param {string} text
+ * @returns {string}
+ */
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+/**
+ * Removes YAML front matter from markdown
+ * @param {string} markdown
+ * @returns {string}
+ */
+function removeFrontMatter(markdown) {
+    if (markdown.trim().startsWith('---')) {
+        const lines = markdown.split('\n');
+        let endIndex = -1;
+        for (let i = 1; i < lines.length; i++) {
+            if (lines[i].trim() === '---') {
+                endIndex = i;
+                break;
+            }
+        }
+        if (endIndex !== -1) {
+            return lines.slice(endIndex + 1).join('\n');
+        }
+    }
+    return markdown;
+}
+
+/**
+ * Removes fenced code blocks from markdown
+ * @param {string} markdown
+ * @returns {string}
+ */
+function removeCodeBlocks(markdown) {
+    return markdown.replace(/```[\s\S]*?```/g, '');
+}
+
+/**
+ * Converts markdown to plain text for length measurement
+ * @param {string} markdown
+ * @returns {string}
+ */
+function markdownToPlainText(markdown) {
+    let text = markdown;
+    // Remove inline code
+    text = text.replace(/`([^`]+)`/g, '$1');
+    // Remove emphasis markers
+    text = text.replace(/[*_~]/g, '');
+    // Transform links [text](url) → text
+    text = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+    // Remove heading markers
+    text = text.replace(/^#+\s+/gm, '');
+    return text;
+}
+
+/**
+ * Calculates reading time for text
+ * @param {string} text - plain text
+ * @returns {number} - reading time in minutes
+ */
+function calculateReadingTime(text) {
+    const words = text.trim().split(/\s+/).length;
+    return Math.max(1, Math.round(words / READING_SPEED_WPM));
+}
+
+/**
+ * Gets markdown from cache or fetches it
+ * @param {string} slug - post slug
+ * @param {string} date - post date
+ * @param {string} file - markdown file path
+ * @returns {Promise<string>} - markdown content
+ */
+async function getCachedMarkdown(slug, date, file) {
+    const cacheKey = `md:${slug}:${date}`;
+    
+    // Try to get from cache
+    try {
+        const cached = sessionStorage.getItem(cacheKey);
+        if (cached) {
+            return cached;
+        }
+    } catch (e) {
+        // sessionStorage might be disabled
+        console.warn('sessionStorage not available:', e);
+    }
+
+    // Fetch markdown
+    const response = await fetch(baseUrl('articles/' + file));
+    if (!response.ok) {
+        throw new Error(`Failed to load ${file}`);
+    }
+    const markdown = await response.text();
+
+    // Cache it (with size limit)
+    if (markdown.length <= MAX_CACHE_SIZE) {
+        try {
+            sessionStorage.setItem(cacheKey, markdown);
+        } catch (e) {
+            // Quota exceeded or other error - not critical
+            console.warn('Failed to cache markdown:', e);
+        }
+    }
+
+    return markdown;
+}
+
+// ============================================================================
+// Blog List Page
+// ============================================================================
+
 (() => {
     // Only run on blog.html
     if (!document.querySelector("#blog-list")) return;
-
-    /**
-     * GitHub Pages base-path safety helper
-     * @param {string} path - relative path
-     * @returns {string} - full URL
-     */
-    function baseUrl(path) {
-        return new URL(path, document.baseURI).toString();
-    }
-
-    /**
-     * Escapes HTML special characters
-     * @param {string} text
-     * @returns {string}
-     */
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    /**
-     * Removes YAML front matter from markdown
-     * @param {string} markdown
-     * @returns {string}
-     */
-    function removeFrontMatter(markdown) {
-        if (markdown.trim().startsWith('---')) {
-            const lines = markdown.split('\n');
-            let endIndex = -1;
-            for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim() === '---') {
-                    endIndex = i;
-                    break;
-                }
-            }
-            if (endIndex !== -1) {
-                return lines.slice(endIndex + 1).join('\n');
-            }
-        }
-        return markdown;
-    }
-
-    /**
-     * Removes fenced code blocks from markdown
-     * @param {string} markdown
-     * @returns {string}
-     */
-    function removeCodeBlocks(markdown) {
-        return markdown.replace(/```[\s\S]*?```/g, '');
-    }
-
-    /**
-     * Converts markdown to plain text for length measurement
-     * @param {string} markdown
-     * @returns {string}
-     */
-    function markdownToPlainText(markdown) {
-        let text = markdown;
-        // Remove inline code
-        text = text.replace(/`([^`]+)`/g, '$1');
-        // Remove emphasis markers
-        text = text.replace(/[*_~]/g, '');
-        // Transform links [text](url) → text
-        text = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
-        // Remove heading markers
-        text = text.replace(/^#+\s+/gm, '');
-        return text;
-    }
 
     /**
      * Splits markdown into paragraphs (blank-line separated)
@@ -339,57 +403,6 @@
         }
         const query = url.toString();
         return query ? `./blog.html?${query}` : './blog.html';
-    }
-
-    /**
-     * Calculates reading time for text
-     * @param {string} text - plain text
-     * @returns {number} - reading time in minutes
-     */
-    function calculateReadingTime(text) {
-        const words = text.trim().split(/\s+/).length;
-        return Math.max(1, Math.round(words / 200));
-    }
-
-    /**
-     * Gets markdown from cache or fetches it
-     * @param {string} slug - post slug
-     * @param {string} date - post date
-     * @param {string} file - markdown file path
-     * @returns {Promise<string>} - markdown content
-     */
-    async function getCachedMarkdown(slug, date, file) {
-        const cacheKey = `md:${slug}:${date}`;
-        
-        // Try to get from cache
-        try {
-            const cached = sessionStorage.getItem(cacheKey);
-            if (cached) {
-                return cached;
-            }
-        } catch (e) {
-            // sessionStorage might be disabled
-            console.warn('sessionStorage not available:', e);
-        }
-
-        // Fetch markdown
-        const response = await fetch(baseUrl('articles/' + file));
-        if (!response.ok) {
-            throw new Error(`Failed to load ${file}`);
-        }
-        const markdown = await response.text();
-
-        // Cache it (with size limit)
-        if (markdown.length <= 250000) {
-            try {
-                sessionStorage.setItem(cacheKey, markdown);
-            } catch (e) {
-                // Quota exceeded or other error - not critical
-                console.warn('Failed to cache markdown:', e);
-            }
-        }
-
-        return markdown;
     }
 
     /**
@@ -832,28 +845,6 @@
     }
 
     /**
-     * Removes YAML front matter from markdown
-     * @param {string} markdown
-     * @returns {string}
-     */
-    function removeFrontMatter(markdown) {
-        if (markdown.trim().startsWith('---')) {
-            const lines = markdown.split('\n');
-            let endIndex = -1;
-            for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim() === '---') {
-                    endIndex = i;
-                    break;
-                }
-            }
-            if (endIndex !== -1) {
-                return lines.slice(endIndex + 1).join('\n');
-            }
-        }
-        return markdown;
-    }
-
-    /**
      * Gets slug from URL query params
      * @returns {string|null}
      */
@@ -876,10 +867,9 @@
         // Convert markdown to HTML
         const htmlContent = markdownToHtml(content);
         
-        // Calculate reading time
+        // Calculate reading time using shared function
         const plainText = markdownToPlainText(removeCodeBlocks(content));
-        const words = plainText.trim().split(/\s+/).length;
-        const readingTime = Math.max(1, Math.round(words / 200));
+        const readingTime = calculateReadingTime(plainText);
         
         // Render article
         articleEl.innerHTML = `
@@ -890,74 +880,6 @@
             </div>
             ${htmlContent}
         `;
-    }
-
-    /**
-     * Removes fenced code blocks from markdown
-     * @param {string} markdown
-     * @returns {string}
-     */
-    function removeCodeBlocks(markdown) {
-        return markdown.replace(/```[\s\S]*?```/g, '');
-    }
-
-    /**
-     * Converts markdown to plain text for length measurement
-     * @param {string} markdown
-     * @returns {string}
-     */
-    function markdownToPlainText(markdown) {
-        let text = markdown;
-        // Remove inline code
-        text = text.replace(/`([^`]+)`/g, '$1');
-        // Remove emphasis markers
-        text = text.replace(/[*_~]/g, '');
-        // Transform links [text](url) → text
-        text = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
-        // Remove heading markers
-        text = text.replace(/^#+\s+/gm, '');
-        return text;
-    }
-
-    /**
-     * Gets markdown from cache or fetches it
-     * @param {string} slug - post slug
-     * @param {string} date - post date
-     * @param {string} file - markdown file path
-     * @returns {Promise<string>} - markdown content
-     */
-    async function getCachedMarkdown(slug, date, file) {
-        const cacheKey = `md:${slug}:${date}`;
-        
-        // Try to get from cache
-        try {
-            const cached = sessionStorage.getItem(cacheKey);
-            if (cached) {
-                return cached;
-            }
-        } catch (e) {
-            // sessionStorage might be disabled
-            console.warn('sessionStorage not available:', e);
-        }
-
-        // Fetch markdown
-        const response = await fetch(baseUrl('articles/' + file));
-        if (!response.ok) {
-            throw new Error(`Failed to load article: ${response.status}`);
-        }
-        const markdown = await response.text();
-
-        // Cache it (with size limit)
-        if (markdown.length <= 250000) {
-            try {
-                sessionStorage.setItem(cacheKey, markdown);
-            } catch (e) {
-                // Quota exceeded or other error - not critical
-                console.warn('Failed to cache markdown:', e);
-            }
-        }
-
-        return markdown;
     }
 
     /**
