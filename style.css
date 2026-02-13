@@ -660,3 +660,149 @@ ul.projects p {
 .blog-article a:hover {
     opacity: 0.7;
 }
+
+/* ----------------------------------------------------------------------------
+   16) Blog Search and Filter Controls
+   ---------------------------------------------------------------------------- */
+
+/* Search controls container */
+.blog-controls {
+    margin-bottom: 1.5em;
+}
+
+/* Search input */
+#blog-search {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.75em 1em;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Raleway', serif;
+    transition: border-color 0.2s;
+}
+
+#blog-search:focus {
+    outline: none;
+    border-color: #1C9C94;
+}
+
+#blog-search::placeholder {
+    color: #999;
+}
+
+/* Filter controls (clear filter/search buttons) */
+.blog-filter-controls {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+}
+
+.blog-clear-filter,
+.blog-clear-search {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.blog-clear-filter:hover,
+.blog-clear-search:hover {
+    background: #e0e0e0;
+    opacity: 1;
+}
+
+/* ----------------------------------------------------------------------------
+   17) Featured Post Block
+   ---------------------------------------------------------------------------- */
+
+.blog-featured {
+    padding: 2em;
+    margin-bottom: 2em;
+    border: 2px solid #1C9C94;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f8fffe 0%, #fff 100%);
+    box-shadow: 0 4px 12px rgba(28, 156, 148, 0.1);
+}
+
+.blog-featured__label {
+    display: inline-block;
+    margin-bottom: 0.5em;
+    padding: 0.25em 0.75em;
+    background: #1C9C94;
+    color: white;
+    font-size: 0.8em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+}
+
+.blog-featured__title {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-size: 1.8em;
+}
+
+.blog-featured__title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.blog-featured__title a:hover {
+    color: #1C9C94;
+    opacity: 1;
+}
+
+.blog-featured .blog-meta {
+    margin-bottom: 1em;
+}
+
+.blog-featured .blog-preview {
+    margin-bottom: 1em;
+}
+
+/* ----------------------------------------------------------------------------
+   18) Reading Time Display
+   ---------------------------------------------------------------------------- */
+
+.blog-reading-time {
+    color: #999;
+    font-size: 0.9em;
+}
+
+/* Article meta container (for date + reading time) */
+.blog-article-meta {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.blog-article-meta time {
+    font-weight: 500;
+}
+
+/* Responsive adjustments for search and featured */
+@media (max-width: 640px) {
+    #blog-search {
+        max-width: 100%;
+    }
+    
+    .blog-featured {
+        padding: 1.5em;
+    }
+    
+    .blog-featured__title {
+        font-size: 1.4em;
+    }
+}
