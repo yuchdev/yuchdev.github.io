@@ -4,7 +4,7 @@ date: 2026-01-27
 tags: [cpp, interviews]
 ---
 
-# General C++ Knowledge~~
+# General C++ Knowledge
 
 In continuation of the discussion about C++ interview practices, a recurring question inevitably arises: *what exactly is "general C++ knowledge"?* Is it truly important when hiring an engineer, and if so, how can it be evaluated in a meaningful way?
 

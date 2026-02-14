@@ -806,3 +806,27 @@ ul.projects p {
         font-size: 1.4em;
     }
 }
+
+/* ----------------------------------------------------------------------------
+   19) Latin Quote Tooltip
+   ---------------------------------------------------------------------------- */
+.latin-quote {
+    position: relative;
+    display: inline-block; /* Ensure it only takes up needed space for better hover */
+}
+
+.quote-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.4;
+    z-index: 1000;
+    max-width: 300px;
+    pointer-events: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
