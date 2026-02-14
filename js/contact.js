@@ -178,12 +178,12 @@
 
             // Accepted but queued (GitHub failed / Telegram fallback / etc.)
             if (res.status === 202 && data && data.status === "queued") {
-                setStatus(data.message || "Received. I’ll get back to you soon.", false);
+                setStatus(data.message || "Received. I'll get back to you soon.", false);
                 form.reset();
                 return;
             }
 
-            // Generic error (don’t leak backend details)
+            // Generic error (don't leak backend details)
             if (res.status === 403 && isLocal()) {
                 showFallback("Submission failed (403). Backend likely rejects local requests due to CORS/Origin restrictions.");
             } else {

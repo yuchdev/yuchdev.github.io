@@ -7,24 +7,24 @@
     "tags": ["cpp", "interviews"]
   },
   {
-    "slug": "2026-01-20-long-with-punctuation",
-    "title": "Long Text With Punctuation Test",
+    "slug": "2026-01-20-planed-obsolescence-perfected",
+    "title": "Planed Obsolescence: Perfected",
     "date": "2026-01-20",
-    "file": "2026-01-20-long-with-punctuation.md",
-    "tags": ["test"]
+    "file": "2026-01-20-planed-obsolescence-perfected.md",
+    "tags": ["apple", "obsolescence", "marketing", "ecosystem"]
   },
   {
-    "slug": "2026-01-15-two-short-paragraphs",
-    "title": "Two Short Paragraphs Test",
+    "slug": "2026-01-15-ctrl-c-ctrl-candidate",
+    "title": "Ctrl-C (Ctrl-Candidate)",
     "date": "2026-01-15",
-    "file": "2026-01-15-two-short-paragraphs.md",
-    "tags": ["test"]
+    "file": "2026-01-15-ctrl-c-ctrl-candidate.md",
+    "tags": ["interviews", "c++", "qt", "anti-patterns"]
   },
   {
-    "slug": "2026-01-10-long-no-punctuation",
-    "title": "Long Text Without Punctuation Test",
+    "slug": "2026-01-10-vibe-coding-from-engineering",
+    "title": "Vibe-Coding from Engineering Perspective: A Horror Story",
     "date": "2026-01-10",
-    "file": "2026-01-10-long-no-punctuation.md",
-    "tags": ["test"]
+    "file": "2026-01-10-vibe-coding-from-engineering.md",
+    "tags": ["ai", "software", "engineering", "experiments", "vibe-coding"]
   }
 ]

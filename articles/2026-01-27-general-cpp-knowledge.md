@@ -4,6 +4,8 @@ date: 2026-01-27
 tags: [cpp, interviews]
 ---
 
+# General C++ Knowledge
+
 In continuation of the discussion about C++ interview practices, a recurring question inevitably arises: *what exactly is "general C++ knowledge"?* Is it truly important when hiring an engineer, and if so, how can it be evaluated in a meaningful way?
 
 When we speak about "good", "excellent", or even "outstanding" C++ knowledge, we are rarely talking about a single, linear skill set. In practice, C++ expertise is a conglomerate of several weakly intersecting domains. The classification below is subjective, but it reflects what years of real-world development and interviewing tend to reveal. You may extend it, refine it, or construct your own model.
