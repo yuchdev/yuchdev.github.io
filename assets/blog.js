@@ -1,76 +1,140 @@
 // assets/blog.js
+
+// ============================================================================
+// Shared Utilities (used by both blog list and article pages)
+// ============================================================================
+
+// Configuration constants
+const READING_SPEED_WPM = 200;
+const MAX_CACHE_SIZE = 250000;
+
+/**
+ * GitHub Pages base-path safety helper
+ * @param {string} path - relative path
+ * @returns {string} - full URL
+ */
+function baseUrl(path) {
+    return new URL(path, document.baseURI).toString();
+}
+
+/**
+ * Escapes HTML special characters
+ * @param {string} text
+ * @returns {string}
+ */
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+/**
+ * Removes YAML front matter from markdown
+ * @param {string} markdown
+ * @returns {string}
+ */
+function removeFrontMatter(markdown) {
+    if (markdown.trim().startsWith('---')) {
+        const lines = markdown.split('\n');
+        let endIndex = -1;
+        for (let i = 1; i < lines.length; i++) {
+            if (lines[i].trim() === '---') {
+                endIndex = i;
+                break;
+            }
+        }
+        if (endIndex !== -1) {
+            return lines.slice(endIndex + 1).join('\n');
+        }
+    }
+    return markdown;
+}
+
+/**
+ * Removes fenced code blocks from markdown
+ * @param {string} markdown
+ * @returns {string}
+ */
+function removeCodeBlocks(markdown) {
+    return markdown.replace(/```[\s\S]*?```/g, '');
+}
+
+/**
+ * Converts markdown to plain text for length measurement
+ * @param {string} markdown
+ * @returns {string}
+ */
+function markdownToPlainText(markdown) {
+    let text = markdown;
+    // Remove inline code
+    text = text.replace(/`([^`]+)`/g, '$1');
+    // Remove emphasis markers
+    text = text.replace(/[*_~]/g, '');
+    // Transform links [text](url) → text
+    text = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+    // Remove heading markers
+    text = text.replace(/^#+\s+/gm, '');
+    return text;
+}
+
+/**
+ * Calculates reading time for text
+ * @param {string} text - plain text
+ * @returns {number} - reading time in minutes
+ */
+function calculateReadingTime(text) {
+    const words = text.trim().split(/\s+/).length;
+    return Math.max(1, Math.round(words / READING_SPEED_WPM));
+}
+
+/**
+ * Gets markdown from cache or fetches it
+ * @param {string} slug - post slug
+ * @param {string} date - post date
+ * @param {string} file - markdown file path
+ * @returns {Promise<string>} - markdown content
+ */
+async function getCachedMarkdown(slug, date, file) {
+    const cacheKey = `md:${slug}:${date}`;
+    
+    // Try to get from cache
+    try {
+        const cached = sessionStorage.getItem(cacheKey);
+        if (cached) {
+            return cached;
+        }
+    } catch (e) {
+        // sessionStorage might be disabled
+        console.warn('sessionStorage not available:', e);
+    }
+
+    // Fetch markdown
+    const response = await fetch(baseUrl('articles/' + file));
+    if (!response.ok) {
+        throw new Error(`Failed to load ${file}`);
+    }
+    const markdown = await response.text();
+
+    // Cache it (with size limit)
+    if (markdown.length <= MAX_CACHE_SIZE) {
+        try {
+            sessionStorage.setItem(cacheKey, markdown);
+        } catch (e) {
+            // Quota exceeded or other error - not critical
+            console.warn('Failed to cache markdown:', e);
+        }
+    }
+
+    return markdown;
+}
+
+// ============================================================================
+// Blog List Page
+// ============================================================================
+
 (() => {
     // Only run on blog.html
     if (!document.querySelector("#blog-list")) return;
-
-    /**
-     * GitHub Pages base-path safety helper
-     * @param {string} path - relative path
-     * @returns {string} - full URL
-     */
-    function baseUrl(path) {
-        return new URL(path, document.baseURI).toString();
-    }
-
-    /**
-     * Escapes HTML special characters
-     * @param {string} text
-     * @returns {string}
-     */
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    /**
-     * Removes YAML front matter from markdown
-     * @param {string} markdown
-     * @returns {string}
-     */
-    function removeFrontMatter(markdown) {
-        if (markdown.trim().startsWith('---')) {
-            const lines = markdown.split('\n');
-            let endIndex = -1;
-            for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim() === '---') {
-                    endIndex = i;
-                    break;
-                }
-            }
-            if (endIndex !== -1) {
-                return lines.slice(endIndex + 1).join('\n');
-            }
-        }
-        return markdown;
-    }
-
-    /**
-     * Removes fenced code blocks from markdown
-     * @param {string} markdown
-     * @returns {string}
-     */
-    function removeCodeBlocks(markdown) {
-        return markdown.replace(/```[\s\S]*?```/g, '');
-    }
-
-    /**
-     * Converts markdown to plain text for length measurement
-     * @param {string} markdown
-     * @returns {string}
-     */
-    function markdownToPlainText(markdown) {
-        let text = markdown;
-        // Remove inline code
-        text = text.replace(/`([^`]+)`/g, '$1');
-        // Remove emphasis markers
-        text = text.replace(/[*_~]/g, '');
-        // Transform links [text](url) → text
-        text = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
-        // Remove heading markers
-        text = text.replace(/^#+\s+/gm, '');
-        return text;
-    }
 
     /**
      * Splits markdown into paragraphs (blank-line separated)
@@ -162,11 +226,16 @@
      * Renders a single blog card
      * @param {Object} post - post metadata
      * @param {string[]} previewHtml - array of preview paragraph HTML
+     * @param {number} readingTime - reading time in minutes (optional)
      * @returns {string}
      */
-    function renderBlogCard(post, previewHtml) {
+    function renderBlogCard(post, previewHtml, readingTime = null) {
         const tags = post.tags && post.tags.length > 0 
             ? `<span class="blog-tags">${post.tags.join(' • ')}</span>`
+            : '';
+
+        const readingTimeHtml = readingTime 
+            ? `<span class="blog-reading-time">~${readingTime} min read</span>`
             : '';
 
         return `
@@ -177,6 +246,7 @@
                 <div class="blog-meta">
                     <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
                     ${tags}
+                    ${readingTimeHtml}
                 </div>
                 <div class="blog-preview">
                     ${previewHtml.join('\n')}
@@ -187,19 +257,59 @@
     }
 
     /**
+     * Renders featured post block
+     * @param {Object} post - post metadata
+     * @param {string[]} previewHtml - array of preview paragraph HTML
+     * @param {number} readingTime - reading time in minutes (optional)
+     * @returns {string}
+     */
+    function renderFeaturedPost(post, previewHtml, readingTime = null) {
+        const tags = post.tags && post.tags.length > 0 
+            ? `<span class="blog-tags">${post.tags.join(' • ')}</span>`
+            : '';
+
+        const readingTimeHtml = readingTime 
+            ? `<span class="blog-reading-time">~${readingTime} min read</span>`
+            : '';
+
+        // Use shorter preview for featured post (first paragraph only)
+        const shortPreview = previewHtml.length > 0 ? previewHtml[0] : '';
+
+        return `
+            <article class="blog-featured">
+                <div class="blog-featured__label">Latest Post</div>
+                <h3 class="blog-featured__title">
+                    <a href="./article.html?slug=${escapeHtml(post.slug)}">${escapeHtml(post.title)}</a>
+                </h3>
+                <div class="blog-meta">
+                    <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
+                    ${tags}
+                    ${readingTimeHtml}
+                </div>
+                <div class="blog-preview">
+                    ${shortPreview}
+                </div>
+                <a class="blog-readmore" href="./article.html?slug=${escapeHtml(post.slug)}">Continue reading →</a>
+            </article>
+        `;
+    }
+
+    /**
      * Renders pagination UI
      * @param {number} currentPage
      * @param {number} totalPages
+     * @param {string|null} tagFilter
      * @returns {string}
      */
-    function renderPagination(currentPage, totalPages) {
+    function renderPagination(currentPage, totalPages, tagFilter = null) {
         if (totalPages <= 1) return '';
 
         let html = '';
         
         // Previous button
         if (currentPage > 1) {
-            html += `<a href="./blog.html?page=${currentPage - 1}" class="pager-btn">← Prev</a>`;
+            const url = buildUrl({ page: currentPage - 1, tag: tagFilter });
+            html += `<a href="${url}" class="pager-btn">← Prev</a>`;
         } else {
             html += `<span class="pager-btn pager-btn--disabled">← Prev</span>`;
         }
@@ -244,13 +354,15 @@
             } else if (page === currentPage) {
                 html += `<span class="pager-num pager-num--active">${page}</span>`;
             } else {
-                html += `<a href="./blog.html?page=${page}" class="pager-num">${page}</a>`;
+                const url = buildUrl({ page, tag: tagFilter });
+                html += `<a href="${url}" class="pager-num">${page}</a>`;
             }
         });
 
         // Next button
         if (currentPage < totalPages) {
-            html += `<a href="./blog.html?page=${currentPage + 1}" class="pager-btn">Next →</a>`;
+            const url = buildUrl({ page: currentPage + 1, tag: tagFilter });
+            html += `<a href="${url}" class="pager-btn">Next →</a>`;
         } else {
             html += `<span class="pager-btn pager-btn--disabled">Next →</span>`;
         }
@@ -269,12 +381,252 @@
     }
 
     /**
+     * Gets tag filter from URL query params
+     * @returns {string|null}
+     */
+    function getTagFilter() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('tag');
+    }
+
+    /**
+     * Builds URL with query parameters
+     * @param {Object} params - query parameters
+     * @returns {string}
+     */
+    function buildUrl(params) {
+        const url = new URLSearchParams();
+        for (const [key, value] of Object.entries(params)) {
+            if (value) {
+                url.set(key, value);
+            }
+        }
+        const query = url.toString();
+        return query ? `./blog.html?${query}` : './blog.html';
+    }
+
+    /**
+     * Debounce function
+     * @param {Function} func - function to debounce
+     * @param {number} wait - milliseconds to wait
+     * @returns {Function}
+     */
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    /**
+     * Loads post with markdown, preview, and reading time
+     * @param {Object} post - post metadata
+     * @returns {Promise<{preview: string[], readingTime: number}>}
+     */
+    async function loadPostMetadata(post) {
+        const markdown = await getCachedMarkdown(post.slug, post.date, post.file);
+        const preview = extractPreview(markdown);
+        const plainText = markdownToPlainText(removeFrontMatter(removeCodeBlocks(markdown)));
+        const readingTime = calculateReadingTime(plainText);
+        return { preview, readingTime };
+    }
+
+    /**
      * Main initialization function
      */
     async function init() {
         const blogList = document.getElementById('blog-list');
         const blogPager = document.getElementById('blog-pager');
+        const searchInput = document.getElementById('blog-search');
+        const blogHeader = document.querySelector('.section h2');
         
+        let allPosts = [];
+        let searchQuery = '';
+        
+        /**
+         * Filters and renders posts based on current state
+         */
+        async function renderPosts() {
+            try {
+                // Get current filters
+                const tagFilter = getTagFilter();
+                const currentPage = getCurrentPage();
+                
+                // Apply tag filter
+                let filteredPosts = allPosts;
+                if (tagFilter) {
+                    filteredPosts = allPosts.filter(post => 
+                        post.tags && post.tags.some(tag => 
+                            tag.toLowerCase() === tagFilter.toLowerCase()
+                        )
+                    );
+                }
+
+                // Apply search filter
+                if (searchQuery.trim()) {
+                    const query = searchQuery.toLowerCase().trim();
+                    const searchResults = [];
+                    
+                    for (const post of filteredPosts) {
+                        // Search in title and tags
+                        const titleMatch = post.title.toLowerCase().includes(query);
+                        const tagsMatch = post.tags && post.tags.some(tag => 
+                            tag.toLowerCase().includes(query)
+                        );
+                        
+                        if (titleMatch || tagsMatch) {
+                            searchResults.push(post);
+                            continue;
+                        }
+                        
+                        // Search in preview text if available in cache
+                        const cacheKey = `md:${post.slug}:${post.date}`;
+                        try {
+                            const cached = sessionStorage.getItem(cacheKey);
+                            if (cached) {
+                                const content = removeFrontMatter(removeCodeBlocks(cached));
+                                const plainText = markdownToPlainText(content);
+                                if (plainText.toLowerCase().includes(query)) {
+                                    searchResults.push(post);
+                                }
+                            }
+                        } catch (e) {
+                            // sessionStorage not available or error
+                        }
+                    }
+                    
+                    filteredPosts = searchResults;
+                }
+
+                // Update header with filter info
+                let headerText = 'Blog';
+                if (tagFilter) {
+                    headerText += ` — tag: ${escapeHtml(tagFilter)}`;
+                }
+                if (searchQuery.trim()) {
+                    headerText += ` — search: "${escapeHtml(searchQuery.trim())}"`;
+                }
+                blogHeader.innerHTML = headerText;
+
+                // Show filter controls if needed
+                let filterControls = '';
+                if (tagFilter || searchQuery.trim()) {
+                    filterControls = `<div class="blog-filter-controls">`;
+                    if (tagFilter) {
+                        filterControls += `<a href="./blog.html" class="blog-clear-filter">Clear tag filter</a>`;
+                    }
+                    if (searchQuery.trim()) {
+                        filterControls += `<button class="blog-clear-search" id="clear-search">Clear search</button>`;
+                    }
+                    filterControls += `</div>`;
+                }
+
+                // Check if we have any posts to show
+                if (filteredPosts.length === 0) {
+                    let message = 'No posts found';
+                    if (tagFilter && !searchQuery.trim()) {
+                        message = `No posts for tag: ${escapeHtml(tagFilter)}`;
+                    } else if (searchQuery.trim()) {
+                        message = 'No posts match your search';
+                    }
+                    
+                    blogList.innerHTML = filterControls + `
+                        <div class="blog-error">
+                            <p>${message}</p>
+                        </div>
+                    `;
+                    blogPager.innerHTML = '';
+                    
+                    // Add clear search handler
+                    attachClearSearchHandler();
+                    return;
+                }
+
+                // Pagination
+                const pageSize = 10;
+                const totalPages = Math.ceil(filteredPosts.length / pageSize);
+                
+                // Clamp page to valid range
+                const validPage = Math.min(currentPage, Math.max(1, totalPages));
+                
+                // Feature the newest post (first in list)
+                let featuredHtml = '';
+                let postsToShow = filteredPosts;
+                
+                // Only show featured on first page without filters
+                if (validPage === 1 && !tagFilter && !searchQuery.trim() && filteredPosts.length > 0) {
+                    const newestPost = filteredPosts[0];
+                    try {
+                        const { preview, readingTime } = await loadPostMetadata(newestPost);
+                        featuredHtml = renderFeaturedPost(newestPost, preview, readingTime);
+                        
+                        // Remove featured post from paginated list
+                        postsToShow = filteredPosts.slice(1);
+                    } catch (err) {
+                        console.error(`Error loading featured post ${newestPost.slug}:`, err);
+                    }
+                }
+                
+                // Recalculate pagination after removing featured post
+                const adjustedTotalPages = postsToShow.length === 0 ? 0 : Math.ceil(postsToShow.length / pageSize);
+                const adjustedValidPage = postsToShow.length === 0 ? 0 : Math.min(validPage, Math.max(1, adjustedTotalPages));
+                
+                const startIdx = (adjustedValidPage - 1) * pageSize;
+                const endIdx = Math.min(startIdx + pageSize, postsToShow.length);
+                const pageSlice = postsToShow.slice(startIdx, endIdx);
+
+                // Fetch and render posts
+                const cards = [];
+                for (const post of pageSlice) {
+                    try {
+                        const { preview, readingTime } = await loadPostMetadata(post);
+                        cards.push(renderBlogCard(post, preview, readingTime));
+                    } catch (err) {
+                        console.error(`Error loading post ${post.slug}:`, err);
+                        cards.push(`
+                            <article class="blog-card blog-card--error">
+                                <h3 class="blog-card__title">${escapeHtml(post.title)}</h3>
+                                <p>Failed to load preview: ${escapeHtml(err.message)}</p>
+                            </article>
+                        `);
+                    }
+                }
+
+                blogList.innerHTML = filterControls + featuredHtml + cards.join('\n');
+                blogPager.innerHTML = renderPagination(adjustedValidPage, adjustedTotalPages, tagFilter);
+                
+                // Add clear search handler
+                attachClearSearchHandler();
+
+            } catch (err) {
+                console.error('Error rendering blog:', err);
+                blogList.innerHTML = `
+                    <div class="blog-error">
+                        <p>Failed to render blog posts: ${escapeHtml(err.message)}</p>
+                    </div>
+                `;
+            }
+        }
+
+        /**
+         * Attaches handler for clear search button
+         */
+        function attachClearSearchHandler() {
+            const clearBtn = document.getElementById('clear-search');
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    searchInput.value = '';
+                    searchQuery = '';
+                    renderPosts();
+                });
+            }
+        }
+
         try {
             // Load manifest
             const manifestResponse = await fetch(baseUrl('articles/index.json'));
@@ -284,44 +636,26 @@
             const manifest = await manifestResponse.json();
 
             // Sort by date (newest first)
-            manifest.sort((a, b) => b.date.localeCompare(a.date));
+            allPosts = manifest.sort((a, b) => b.date.localeCompare(a.date));
 
-            // Pagination
-            const currentPage = getCurrentPage();
-            const pageSize = 10;
-            const totalPages = Math.ceil(manifest.length / pageSize);
-            
-            // Clamp page to valid range
-            const validPage = Math.min(currentPage, Math.max(1, totalPages));
-            
-            const startIdx = (validPage - 1) * pageSize;
-            const endIdx = Math.min(startIdx + pageSize, manifest.length);
-            const postsToShow = manifest.slice(startIdx, endIdx);
+            // Initial render
+            await renderPosts();
 
-            // Fetch and render posts
-            const cards = [];
-            for (const post of postsToShow) {
-                try {
-                    const mdResponse = await fetch(baseUrl('articles/' + post.file));
-                    if (!mdResponse.ok) {
-                        throw new Error(`Failed to load ${post.file}`);
+            // Set up search handler (debounced)
+            if (searchInput) {
+                const debouncedSearch = debounce(() => {
+                    searchQuery = searchInput.value;
+                    // Reset to page 1 on search
+                    const tagFilter = getTagFilter();
+                    if (searchQuery.trim() || tagFilter) {
+                        const url = buildUrl({ tag: tagFilter });
+                        window.history.replaceState({}, '', url);
                     }
-                    const markdown = await mdResponse.text();
-                    const preview = extractPreview(markdown);
-                    cards.push(renderBlogCard(post, preview));
-                } catch (err) {
-                    console.error(`Error loading post ${post.slug}:`, err);
-                    cards.push(`
-                        <article class="blog-card blog-card--error">
-                            <h3 class="blog-card__title">${escapeHtml(post.title)}</h3>
-                            <p>Failed to load preview: ${escapeHtml(err.message)}</p>
-                        </article>
-                    `);
-                }
-            }
+                    renderPosts();
+                }, 250);
 
-            blogList.innerHTML = cards.join('\n');
-            blogPager.innerHTML = renderPagination(validPage, totalPages);
+                searchInput.addEventListener('input', debouncedSearch);
+            }
 
         } catch (err) {
             console.error('Error initializing blog:', err);
@@ -518,28 +852,6 @@
     }
 
     /**
-     * Removes YAML front matter from markdown
-     * @param {string} markdown
-     * @returns {string}
-     */
-    function removeFrontMatter(markdown) {
-        if (markdown.trim().startsWith('---')) {
-            const lines = markdown.split('\n');
-            let endIndex = -1;
-            for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim() === '---') {
-                    endIndex = i;
-                    break;
-                }
-            }
-            if (endIndex !== -1) {
-                return lines.slice(endIndex + 1).join('\n');
-            }
-        }
-        return markdown;
-    }
-
-    /**
      * Gets slug from URL query params
      * @returns {string|null}
      */
@@ -562,10 +874,17 @@
         // Convert markdown to HTML
         const htmlContent = markdownToHtml(content);
         
+        // Calculate reading time using shared function
+        const plainText = markdownToPlainText(removeCodeBlocks(content));
+        const readingTime = calculateReadingTime(plainText);
+        
         // Render article
         articleEl.innerHTML = `
             <h1>${escapeHtml(post.title)}</h1>
-            <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
+            <div class="blog-article-meta">
+                <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
+                <span class="blog-reading-time">~${readingTime} min read</span>
+            </div>
             ${htmlContent}
         `;
     }
@@ -610,12 +929,8 @@
                 return;
             }
 
-            // Load markdown
-            const mdResponse = await fetch(baseUrl('articles/' + post.file));
-            if (!mdResponse.ok) {
-                throw new Error(`Failed to load article: ${mdResponse.status}`);
-            }
-            const markdown = await mdResponse.text();
+            // Load markdown (with caching)
+            const markdown = await getCachedMarkdown(post.slug, post.date, post.file);
 
             // Render article
             renderArticle(post, markdown);
