@@ -879,8 +879,9 @@ async function getCachedMarkdown(slug, date, file) {
         const readingTime = calculateReadingTime(plainText);
         
         // Render article
+        const titleHtml = post.display_title !== false ? `<h1>${escapeHtml(post.title)}</h1>` : '';
         articleEl.innerHTML = `
-            <h1>${escapeHtml(post.title)}</h1>
+            ${titleHtml}
             <div class="blog-article-meta">
                 <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
                 <span class="blog-reading-time">~${readingTime} min read</span>

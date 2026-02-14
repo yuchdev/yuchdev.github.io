@@ -4,27 +4,31 @@
     "title": "General C++ Knowledge",
     "date": "2026-01-27",
     "file": "2026-01-27-general-cpp-knowledge.md",
-    "tags": ["cpp", "interviews"]
+    "tags": ["cpp", "interviews"],
+    "display_title": false
   },
   {
     "slug": "2026-01-20-planed-obsolescence-perfected",
     "title": "Planed Obsolescence: Perfected",
     "date": "2026-01-20",
     "file": "2026-01-20-planed-obsolescence-perfected.md",
-    "tags": ["apple", "obsolescence", "marketing", "ecosystem"]
+    "tags": ["apple", "obsolescence", "marketing", "ecosystem"],
+    "display_title": false
   },
   {
     "slug": "2026-01-15-ctrl-c-ctrl-candidate",
     "title": "Ctrl-C (Ctrl-Candidate)",
     "date": "2026-01-15",
     "file": "2026-01-15-ctrl-c-ctrl-candidate.md",
-    "tags": ["interviews", "c++", "qt", "anti-patterns"]
+    "tags": ["interviews", "c++", "qt", "anti-patterns"],
+    "display_title": false
   },
   {
     "slug": "2026-01-10-vibe-coding-from-engineering",
     "title": "Vibe-Coding from Engineering Perspective: A Horror Story",
     "date": "2026-01-10",
     "file": "2026-01-10-vibe-coding-from-engineering.md",
-    "tags": ["ai", "software", "engineering", "experiments", "vibe-coding"]
+    "tags": ["ai", "software", "engineering", "experiments", "vibe-coding"],
+    "display_title": false
   }
 ]

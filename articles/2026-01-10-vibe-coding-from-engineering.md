@@ -1,10 +1,10 @@
 ---
-title: Vibe-Coding from Engineering Perspective A Horror Story
+title: Vibe-Coding from the Engineering Perspective A Horror Story
 date: 2026-01-10
 tags: [ai, software, engineering, experiments, vibe-coding]
 ---
 
-# Vibe-Coding from Engineering Perspective: A Horror Story
+# Vibe-Coding from the Engineering Perspective: A Horror Story
 
 I can tell about "vibe-coding" experiment from engineering prospective.
 
