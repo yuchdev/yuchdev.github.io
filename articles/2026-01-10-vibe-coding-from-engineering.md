@@ -6,10 +6,10 @@ I asked an AI agent to write a game, and I asked for all the "grown-up" things t
 
 Features landed fast. Bugs got fixed faster than I could reproduce them. The agent looked like a disciplined team: every module had docstrings, everything was neatly formatted, the tests were green. It felt like watching a factory line - request goes in, working feature comes out. And because I wasn't inspecting anything, the codebase stayed "Schrödinger-maintainable" - alive as long as nobody opened the box.
 
-Then came a totally normal request. I wanted more power in (already implemented) scripting engine - the part you extend when you want flexible game logic without rewriting the core - more hooks, more events, a better API. Slightly richer state access. Nothing exotic.
+Then came a totally normal request. I wanted more power in the (already implemented) scripting engine - the part you extend when you want flexible game logic without rewriting the core - more hooks, more events, a better API. Slightly richer state access. Nothing exotic.
 
 And that's where the system hit the wall.
-Not "one more bug." Not "we need a refactor." A wall. Every attempt to add feature produced a new weird failure somewhere else: some unrelated subsystem broke, tests stayed green when they should have screamed, or everything "worked" but the behavior was wrong. I tried more precise prompts, additional tests, "don't touch unrelated files", "preserve public API" - nothing worked.
+Not "one more bug." Not "we need a refactor." A wall. Every attempt to add a feature produced a new weird failure somewhere else: some unrelated subsystem broke, tests stayed green when they should have screamed, or everything "worked" but the behavior was wrong. I tried more precise prompts, additional tests, "don't touch unrelated files," "preserve public API" - nothing worked.
 
 Then, under a fanfare, I revealed the code.
 
@@ -33,7 +33,7 @@ At that point the "complexity barrier" finally made sense.
 Vibe-coding can sprint on surface plausibility: clean code style, confident explanations, locally reasonable changes. And if you keep requesting features, it can keep producing output that resembles progress.
 
 But software complexity isn't just "more code." It's interlocking constraints: invariants that must hold everywhere,
-boundaries that prevent state from leaking, contracts that make composition possible, tests that fail for the right reason.
+boundaries that prevent the state from leaking, contracts that make composition possible, tests that fail for the right reason.
 
 And the funniest part - abd the real twist - is this:
 

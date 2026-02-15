@@ -1,6 +1,14 @@
 [
   {
-    "slug": "2026-01-27-general-cpp-knowledge",
+    "slug": "congrats-we-optimized-away",
+    "title": "Congratulations, We Optimized Away the Future",
+    "date": "2026-02-14",
+    "file": "2026-02-14-congrats-we-optimized-away.md",
+    "tags": ["engineering", "juniors", "ai"],
+    "display_title": false
+  },
+  {
+    "slug": "general-cpp-knowledge",
     "title": "General C++ Knowledge",
     "date": "2026-01-27",
     "file": "2026-01-27-general-cpp-knowledge.md",
@@ -8,7 +16,7 @@
     "display_title": false
   },
   {
-    "slug": "2026-01-20-planed-obsolescence-perfected",
+    "slug": "planed-obsolescence-perfected",
     "title": "Planed Obsolescence: Perfected",
     "date": "2026-01-20",
     "file": "2026-01-20-planed-obsolescence-perfected.md",
@@ -16,7 +24,7 @@
     "display_title": false
   },
   {
-    "slug": "2026-01-15-ctrl-c-ctrl-candidate",
+    "slug": "ctrl-c-ctrl-candidate",
     "title": "Ctrl-C (Ctrl-Candidate)",
     "date": "2026-01-15",
     "file": "2026-01-15-ctrl-c-ctrl-candidate.md",
@@ -24,7 +32,7 @@
     "display_title": false
   },
   {
-    "slug": "2026-01-10-vibe-coding-from-engineering",
+    "slug": "vibe-coding-from-engineering",
     "title": "Vibe-Coding from Engineering Perspective: A Horror Story",
     "date": "2026-01-10",
     "file": "2026-01-10-vibe-coding-from-engineering.md",

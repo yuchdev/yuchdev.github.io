@@ -2,7 +2,7 @@
 
 In continuation of the discussion about C++ interview practices, a recurring question inevitably arises: *what exactly is "general C++ knowledge"?* Is it truly important when hiring an engineer, and if so, how can it be evaluated in a meaningful way?
 
-When we speak about "good", "excellent", or even "outstanding" C++ knowledge, we are rarely talking about a single, linear skill set. In practice, C++ expertise is a conglomerate of several weakly intersecting domains. The classification below is subjective, but it reflects what years of real-world development and interviewing tend to reveal. You may extend it, refine it, or construct your own model.
+When we speak about "good," "excellent," or even "outstanding" C++ knowledge, we are rarely talking about a single, linear skill set. In practice, C++ expertise is a conglomerate of several weakly intersecting domains. The classification below is subjective, but it reflects what years of real-world development and interviewing tend to reveal. You may extend it, refine it, or construct your own model.
 
 ## 1. C-legacy and low-level subset
 
@@ -10,7 +10,7 @@ This subset covers the foundations inherited from C and extended by C++: fundame
 
 ## 2. Object-Oriented Programming subset
 
-Classes, encapsulation, inheritance, virtual functions, and polymorphism live here - along with design patterns and their corresponding anti-patterns. This is also where developers encounter the notorious complexities of multiple and virtual inheritance. Understanding not only *how* OOP works in C++, but *when it should not be used*, is part of mature knowledge.
+Classes, encapsulation, inheritance, virtual functions, and polymorphism live here - along with design patterns and their corresponding antipatterns. This is also where developers encounter the notorious complexities of multiple and virtual inheritance. Understanding not only *how* OOP works in C++, but *when it should not be used* is part of mature knowledge.
 
 ## 3. Template programming and metaprogramming subset
 
