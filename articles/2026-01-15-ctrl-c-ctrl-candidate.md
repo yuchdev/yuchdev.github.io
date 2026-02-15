@@ -1,9 +1,3 @@
----
-title: Ctrl-C Ctrl-Candidate
-date: 2026-01-15
-tags: [interviews, c++, qt, anti-patterns]
----
-
 # Ctrl-C (Ctrl-Candidate)
 
 Another episode in my collection of "alternative-reality interviews"

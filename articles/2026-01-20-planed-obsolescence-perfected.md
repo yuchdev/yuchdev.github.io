@@ -1,9 +1,3 @@
----
-title: Planed Obsolescence Perfected
-date: 2026-01-20
-tags: [apple, obsolescence, marketing, ecosystem]
----
-
 # Planed Obsolescence: Perfected
 
 My opinion on Apple is quite unorthodox. I've been a user of Apple laptops for more than a decade, and I genuinely consider them a pinnacle of UX engineering. But when it comes to the smartphone, I increasingly see it not as a tool - but as a token of participation.

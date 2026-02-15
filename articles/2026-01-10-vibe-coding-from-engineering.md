@@ -1,12 +1,6 @@
----
-title: Vibe-Coding from the Engineering Perspective A Horror Story
-date: 2026-01-10
-tags: [ai, software, engineering, experiments, vibe-coding]
----
-
 # Vibe-Coding from the Engineering Perspective: A Horror Story
 
-I can tell about "vibe-coding" experiment from engineering prospective.
+I can tell about the "vibe-coding" experiment from an engineering prospective.
 
 I asked an AI agent to write a game, and I asked for all the "grown-up" things too: documentation per component, ADRs, and a full test suite - unit tests for logic, mocks for boundaries, integration for the wiring. And I made one rule: I would not look at the code, only at errors. No architecture reviews. No "wait, why is this class doing that?" I wanted the pure experiment: can vibe-coded momentum outrun engineering gravity?
 
