@@ -872,6 +872,9 @@ async function getCachedMarkdown(slug, date, file) {
      * @param {string} Markdown - Markdown content
      */
     function renderArticle(post, Markdown) {
+        // Set window title to article name
+        document.title = post.title;
+
         const articleEl = document.getElementById('article');
         
         // Remove front matter
