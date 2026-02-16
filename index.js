@@ -44,7 +44,7 @@
         /**
          * Shows the translation as a tooltip.
          */
-        const showTooltip = (event) => {
+        const showTooltip = (_) => {
             if (tooltipEl) return;
 
             tooltipEl = document.createElement("div");
@@ -73,11 +73,11 @@
         });
 
         el.addEventListener("mouseleave", hideTooltip);
-        el.addEventListener("mousemove", (event) => {
+        el.addEventListener("mousemove", (_) => {
             // If the mouse is moving but the tooltip isn't shown yet, we don't reset the timer
             // unless we want it to be 1 second of STILLNESS. 
             // The prompt says "hovering over the quote's text for a second". 
-            // Usually this means mouse being inside the area for a second.
+            // Usually this means the mouse being inside the area for a second.
         });
     }
 
