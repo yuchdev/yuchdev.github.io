@@ -1,3 +1,5 @@
+Congratulations, we Optimized Away the Future!
+
 Five years ago, giving a tedious task to a Junior Developer wasn't charity - it was strategy. Writing unit tests for legacy code. Refactoring a crusty module. Converting schemas. Cleaning up edge cases. It was boring work for Seniors, but it was formative work for Juniors. That's how they learned how systems break - and how to fix them.
 
 The "boring but formative" tasks quietly moved from "give it to a Junior Dev" to "give it to Copilot/Claude," and everyone celebrates the throughput - while the natural technical experience ladder rots.
