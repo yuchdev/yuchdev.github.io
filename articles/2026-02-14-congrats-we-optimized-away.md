@@ -1,4 +1,4 @@
-### Congratulations, we Optimized Away the Future
+### Congratulations, we Optimized Away the Future!
 
 For years, the entry point into engineering wasn't glamorous. It was maintenance work. Edge cases. Tests nobody wanted to write. Refactors that required patience more than brilliance. But that work wasn't filler - it was exposure. It forced people to read unfamiliar code, trace behavior, and understand why things were built the way they were.
 
