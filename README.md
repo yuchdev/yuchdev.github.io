@@ -13,37 +13,7 @@ Social:
 
 ## Blog
 
-This site includes a blog with markdown-based articles. To add a new article:
-
-1. Create a markdown file in the `articles/` directory (e.g., `2026-01-15-my-article.md`)
-2. Add YAML front matter at the top:
-   ```yaml
-   ---
-   title: My Article Title
-   date: 2026-01-15
-   tags: [tag1, tag2]
-   ---
-   ```
-3. Write your content using markdown
-4. Add an entry to `articles/index.json`:
-   ```json
-   {
-     "slug": "2026-01-15-my-article",
-     "title": "My Article Title",
-     "date": "2026-01-15",
-     "file": "2026-01-15-my-article.md",
-     "tags": ["tag1", "tag2"]
-   }
-   ```
-
-The blog supports:
-- Headings (# to ######)
-- Paragraphs
-- Inline code: `` `code` ``
-- Fenced code blocks: ` ```language ... ``` `
-- Links: `[text](url)` (only http/https/mailto URLs allowed for security)
-- Unordered lists: `- item`
-
+This site includes a blog with markdown-based articles. 
 Security features prevent HTML injection and malicious links.
 
 ## Overview
