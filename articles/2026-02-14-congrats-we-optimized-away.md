@@ -1,15 +1,14 @@
 ### Congratulations, we Optimized Away the Future
 
-Five years ago, giving a tedious task to a Junior Developer wasn't charity - it was strategy. Writing unit tests for legacy code. Refactoring a crusty module. Converting schemas. Cleaning up edge cases. It was boring work for Seniors, but it was formative work for Juniors. That's how they learned how systems break - and how to fix them.
+For years, the entry point into engineering wasn't glamorous. It was maintenance work. Edge cases. Tests nobody wanted to write. Refactors that required patience more than brilliance. But that work wasn't filler - it was exposure. It forced people to read unfamiliar code, trace behavior, and understand why things were built the way they were.
 
-The "boring but formative" tasks quietly moved from "give it to a Junior Dev" to "give it to Copilot/Claude," and everyone celebrates the throughput - while the natural technical experience ladder rots.
+in my company we basically don't hire Juniors anymore - or at least I haven't noticed any Junior pipeline for a while - no onboarding, no trainings. The "boring but formative" tasks quietly moved from "give it to a Junior Dev" to "give it to Copilot/Claude", and everyone celebrates the throughput - while the natural technical experience ladder rots.
 
-It's faster. It's cheaper. It's often syntactically flawless. And that efficiency is quietly dismantling the apprenticeship model our industry was built on.
-
-In my company, I barely see Junior hiring anymore. Maybe it still happens somewhere, but the visible pipeline has thinned dramatically. The "bottom rung" is disappearing - not because we hate Juniors, but because AI handles the tasks we once used to train them.
+But something subtle is shifting beneath that efficiency. The early-career proving ground - the place where engineers developed mechanical sympathy for systems - is shrinking. Not out of malice. Not because teams dislike Juniors. Simply because machines now perform the exercises that once built foundational intuition.
 
 And here's the uncomfortable truth: if we remove the grunt work, we remove the growth path.
-"Even if the industry is writing juniors off, I'd rather engineer a fix than accept the loss."
+
+That's why I say, "Even if the industry is writing juniors off, I'd rather engineer a fix than accept the loss."
 
 Because this isn't some sentimental considerations. It's risk management. A Senior Developer isn't produced by reading documentation or prompting an LLM. A Senior Developer is forged by touching fragile systems, breaking things, debugging production incidents, and slowly building a mental model of how software actually behaves under stress.
 
@@ -18,7 +17,7 @@ That's not a philosophical question. It's a structural one.
 
 So instead of debating whether AI replaces Juniors pronounce their roles outright dead, I think we need to redesign what "Junior" means in an AI-first environment.
 
-A few working ways out (that don't require pretending AI goes away):
+A few working ways out that 100% work (and don't require pretending AI goes away):
 
 1. Turn Juniors into "LLM verification engineers"
 We've more or less reached the same conclusion: AI autonomy without hard guardrails doesn't degrade gracefully - it fails catastrophically. So someone has to own the responsibility for observing failure modes and, based on real incident data, adding lexical, structural, and architectural checks that fail the build when violated.
