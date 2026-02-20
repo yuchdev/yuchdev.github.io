@@ -22,11 +22,11 @@ I am a dedicated software engineer with more than a decade of experience in soft
 
 ## Projects
 
-- Advanced C++ by Example — I create educational material for the Advanced C++ course: https://github.com/yuchdev/cpp
-- Comprehensive C++ Books Catalog — Creator and maintainer of the most Comprehensive C++ Books Catalog: https://github.com/yuchdev/CppBooks
-- Probabilistic Calculator — Checking whether a file or other binary data is encrypted or not: https://github.com/yuchdev/entropy_calculator
-- MD5 Bruteforcer — Simple multithreaded MD5 password bruteforcer (for educational purposes only): https://github.com/yuchdev/md5bruteforcer
-- Code Generator — Generator of program code and reports supporting C++, Java, HTML5 and Markdown. This CV was generated with the help of this exact generator: https://github.com/yuchdev/code_generator
+- Advanced C++ by Example - I create educational material for the Advanced C++ course: https://github.com/yuchdev/cpp
+- Comprehensive C++ Books Catalog - Creator and maintainer of the most Comprehensive C++ Books Catalog: https://github.com/yuchdev/CppBooks
+- Probabilistic Calculator - Checking whether a file or other binary data is encrypted or not: https://github.com/yuchdev/entropy_calculator
+- MD5 Bruteforcer - Simple multithreaded MD5 password bruteforcer (for educational purposes only): https://github.com/yuchdev/md5bruteforcer
+- Code Generator - Generator of program code and reports supporting C++, Java, HTML5 and Markdown. This CV was generated with the help of this exact generator: https://github.com/yuchdev/code_generator
 
 ## Professional Skills
 
@@ -200,7 +200,7 @@ C++, Python, JavaScript, CMake, AWS API, Google Test
 
 #### Overview
 
-Transitioned from large enterprise environments to early-stage privacy-focused startups, applying prior enterprise experience to establish technical foundations from the ground up. Played a key role in defining system architecture, development workflows, and engineering standards, including CI/CD pipelines, quality assurance processes, and participation in technical hiring—while remaining primarily hands-on and deeply involved in implementation.
+Transitioned from large enterprise environments to early-stage privacy-focused startups, applying prior enterprise experience to establish technical foundations from the ground up. Played a key role in defining system architecture, development workflows, and engineering standards, including CI/CD pipelines, quality assurance processes, and participation in technical hiring-while remaining primarily hands-on and deeply involved in implementation.
 
 Worked extensively on privacy and security-critical software, with a strong focus on C++, cross-platform development, and system-level behavior. The role emphasized building reliable, defensive software for high-risk scenarios, balancing usability with strict security requirements.
 
@@ -210,7 +210,7 @@ Worked extensively on privacy and security-critical software, with a strong focu
 
 Developed a cross-platform VPN client with built-in traffic leakage protection, focusing on reliable tunnel management, fail-safe behavior, and preventing accidental exposure of user traffic under adverse network conditions.
 
-##### Emergency Data Wipe System (“Panic Button”)
+##### Emergency Data Wipe System ("Panic Button")
 
 Designed and implemented an emergency data destruction mechanism capable of securely and irreversibly wiping sensitive data in critical situations, such as device seizure or theft. Engineered to minimize recovery possibility while remaining fast and reliable under real-world constraints.
 
@@ -332,7 +332,7 @@ C/C++, Lua, MFC, WTL, Watcom
 
 ## Education
 
-##### Saint-Petersburg State Polytechnic University — BSc in Software Engineering, 2010
+##### Saint-Petersburg State Polytechnic University - BSc in Software Engineering, 2010
 
 - Best average grade in the group
 - Participant of student conferences and publications
