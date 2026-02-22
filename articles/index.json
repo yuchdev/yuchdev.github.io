@@ -1,5 +1,13 @@
 [
   {
+    "slug": "modern-cpp-still-stands",
+    "title": "Modern C++ still stands on raw pointers",
+    "date": "2026-02-20",
+    "file": "2026-02-20-modern-cpp-still-stands.md",
+    "tags": ["cpp", "c++", "lowlevel"],
+    "display_title": false
+  },
+  {
     "slug": "congrats-we-optimized-away",
     "title": "Congratulations, We Optimized Away the Future!",
     "date": "2026-02-14",
@@ -12,7 +20,7 @@
     "title": "General C++ Knowledge",
     "date": "2026-01-27",
     "file": "2026-01-27-general-cpp-knowledge.md",
-    "tags": ["cpp", "interviews"],
+    "tags": ["cpp", "c++", "interviews"],
     "display_title": false
   },
   {
@@ -28,7 +36,7 @@
     "title": "Ctrl-C (Ctrl-Candidate)",
     "date": "2026-01-15",
     "file": "2026-01-15-ctrl-c-ctrl-candidate.md",
-    "tags": ["interviews", "c++", "qt", "humor", "anti-patterns"],
+    "tags": ["interviews", "cpp", "c++", "qt", "humor", "antipatterns"],
     "display_title": false
   },
   {
@@ -36,7 +44,7 @@
     "title": "Vibe-Coding from Engineering Perspective: A Horror Story",
     "date": "2026-01-10",
     "file": "2026-01-10-vibe-coding-from-engineering.md",
-    "tags": ["ai", "software", "engineering", "experiments", "vibe-coding"],
+    "tags": ["ai", "software", "engineering", "experiments", "vibecoding"],
     "display_title": false
   }
 ]
