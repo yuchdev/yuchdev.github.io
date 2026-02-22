@@ -2,48 +2,64 @@
   {
     "slug": "modern-cpp-still-stands",
     "title": "Modern C++ still stands on raw pointers",
-    "date": "2026-02-20",
-    "file": "2026-02-20-modern-cpp-still-stands.md",
+    "date": "20260220",
+    "file": "20260220-modern-cpp-still-stands.md",
     "tags": ["cpp", "c++", "lowlevel"],
+    "display_title": false
+  },
+  {
+    "slug": "freestanding-cpp-explained",
+    "title": "Freestanding C++ Explained",
+    "date": "20260220",
+    "file": "20260220-freestanding-cpp-explained.md",
+    "tags": ["cpp", "c++", "embedded"],
+    "display_title": false
+  },
+  {
+    "slug": "portfolio-is-not-decoration",
+    "title": "Portfolio Is Not Decoration. It's Due Diligence.",
+    "date": "20260219",
+    "file": "20260219-portfolio-is-not-decoration.md",
+    "tags": ["career", "engineering"],
     "display_title": false
   },
   {
     "slug": "congrats-we-optimized-away",
     "title": "Congratulations, We Optimized Away the Future!",
-    "date": "2026-02-14",
-    "file": "2026-02-14-congrats-we-optimized-away.md",
+    "date": "20260214",
+    "file": "20260214-congrats-we-optimized-away.md",
     "tags": ["engineering", "juniors", "ai"],
     "display_title": false
   },
   {
     "slug": "general-cpp-knowledge",
     "title": "General C++ Knowledge",
-    "date": "2026-01-27",
-    "file": "2026-01-27-general-cpp-knowledge.md",
+    "date": "20260127",
+    "file": "20260127-general-cpp-knowledge.md",
     "tags": ["cpp", "c++", "interviews"],
     "display_title": false
   },
   {
     "slug": "planed-obsolescence-perfected",
     "title": "Planed Obsolescence: Perfected",
-    "date": "2026-01-20",
-    "file": "2026-01-20-planed-obsolescence-perfected.md",
+    "date": "20260120",
+    "file": "20260120-planed-obsolescence-perfected.md",
     "tags": ["apple", "obsolescence", "marketing", "ecosystem"],
     "display_title": false
   },
   {
     "slug": "ctrl-c-ctrl-candidate",
     "title": "Ctrl-C (Ctrl-Candidate)",
-    "date": "2026-01-15",
-    "file": "2026-01-15-ctrl-c-ctrl-candidate.md",
+    "date": "20260115",
+    "file": "20260115-ctrl-c-ctrl-candidate.md",
     "tags": ["interviews", "cpp", "c++", "qt", "humor", "antipatterns"],
     "display_title": false
   },
   {
     "slug": "vibe-coding-from-engineering",
     "title": "Vibe-Coding from Engineering Perspective: A Horror Story",
-    "date": "2026-01-10",
-    "file": "2026-01-10-vibe-coding-from-engineering.md",
+    "date": "20260110",
+    "file": "20260110-vibe-coding-from-engineering.md",
     "tags": ["ai", "software", "engineering", "experiments", "vibecoding"],
     "display_title": false
   }

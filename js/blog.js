@@ -9,6 +9,38 @@ const READING_SPEED_WPM = 200;
 const MAX_CACHE_SIZE = 250000;
 
 /**
+ * Formats YYYYMMDD date string to YYYY-MM-DD
+ * @param {string} dateStr
+ * @returns {string}
+ */
+function formatDatetime(dateStr) {
+    if (dateStr.length === 8) {
+        return `${dateStr.substring(0, 4)}-${dateStr.substring(4, 6)}-${dateStr.substring(6, 8)}`;
+    }
+    return dateStr;
+}
+
+/**
+ * Formats YYYYMMDD date string to a more readable format
+ * @param {string} dateStr
+ * @returns {string}
+ */
+function displayDate(dateStr) {
+    if (dateStr.length === 8) {
+        const year = dateStr.substring(0, 4);
+        const month = dateStr.substring(4, 6);
+        const day = dateStr.substring(6, 8);
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const monthIndex = parseInt(month, 10) - 1;
+        if (monthIndex >= 0 && monthIndex < 12) {
+            return `${monthNames[monthIndex]} ${parseInt(day, 10)}, ${year}`;
+        }
+        return `${year}-${month}-${day}`;
+    }
+    return dateStr;
+}
+
+/**
  * GitHub Pages base-path safety helper
  * @param {string} path - relative path
  * @returns {string} - full URL
@@ -244,7 +276,7 @@ async function getCachedMarkdown(slug, date, file) {
                     <a href="./article.html?slug=${escapeHtml(post.slug)}">${escapeHtml(post.title)}</a>
                 </h3>
                 <div class="blog-meta">
-                    <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
+                    <time datetime="${escapeHtml(formatDatetime(post.date))}">${escapeHtml(displayDate(post.date))}</time>
                     ${tags}
                     ${readingTimeHtml}
                 </div>
@@ -282,7 +314,7 @@ async function getCachedMarkdown(slug, date, file) {
                     <a href="./article.html?slug=${escapeHtml(post.slug)}">${escapeHtml(post.title)}</a>
                 </h3>
                 <div class="blog-meta">
-                    <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
+                    <time datetime="${escapeHtml(formatDatetime(post.date))}">${escapeHtml(displayDate(post.date))}</time>
                     ${tags}
                     ${readingTimeHtml}
                 </div>
@@ -892,7 +924,7 @@ async function getCachedMarkdown(slug, date, file) {
         articleEl.innerHTML = `
             ${titleHtml}
             <div class="blog-article-meta">
-                <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
+                <time datetime="${escapeHtml(formatDatetime(post.date))}">${escapeHtml(displayDate(post.date))}</time>
                 <span class="blog-reading-time">~${readingTime} min read</span>
             </div>
             ${htmlContent}
