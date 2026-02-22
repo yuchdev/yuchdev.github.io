@@ -5,7 +5,7 @@ If you personally didn't meet raw new/delete in 2026, it's not the fault of `new
 1.Have you ever called a **destructor** directly (**not** `operator delete()`)? 🙂
 
 This is a perfectly valid pattern in freestanding C++, in real-time or bare metal code, where storage and lifetime are separate concerns.
-Now explain how to teach this to a student who has only vague knowledge (at best) of what operator `new()` actually does.
+Now explain how to teach this to a student who has only vague knowledge (at best) of what operator `new()` *actually* does.
 
 [Placement New Example 1](https://tinyurl.com/bdd2c9hw)
 

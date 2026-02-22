@@ -100,8 +100,8 @@ function markdownToPlainText(Markdown) {
     let text = Markdown;
     // Remove inline code
     text = text.replace(/`([^`]+)`/g, '$1');
-    // Remove emphasis markers
-    text = text.replace(/[*_~]/g, '');
+    // Remove bold and italic markers
+    text = text.replace(/(\*\*\*|___|(\*\*|__)|(\*|_))/g, '');
     // Transform links [text](url) → text
     text = text.replace(/\[([^\]]+)]\([^)]+\)/g, '$1');
     // Remove heading markers
@@ -866,11 +866,20 @@ async function getCachedMarkdown(slug, date, file) {
     }
 
     /**
-     * Process inline Markdown (code, links)
+     * Processes inline Markdown elements (bold, italic, code, links)
      * @param {string} text - already HTML-escaped text
      * @returns {string}
      */
     function processInline(text) {
+        // Bold and Italic: ***text*** or ___text___
+        text = text.replace(/(\*\*\*|___)(.*?)\1/g, '<strong><em>$2</em></strong>');
+
+        // Bold: **text** or __text__
+        text = text.replace(/(\*\*|__)(.*?)\1/g, '<strong>$2</strong>');
+
+        // Italic: *text* or _text_
+        text = text.replace(/(\*|_)(.*?)\1/g, '<em>$2</em>');
+
         // Inline code: `code` (text is already escaped)
         text = text.replace(/`([^`]+)`/g, (match, code) => {
             return `<code>${code}</code>`;
