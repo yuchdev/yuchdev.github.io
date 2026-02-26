@@ -1,22 +1,18 @@
-## Portfolio Is Not Decoration. It’s Due Diligence.
+## Portfolio Is Not Decoration. It's Due Diligence.
 
-When a developer builds a serious portfolio, it’s not vanity.
+When a developer builds a serious portfolio, it's not vanity.
 
-It’s engineering documentation.
+It's a signal worth paying attention to.
 
-A portfolio is the distilled result of years of architectural decisions, trade-offs, refactors, CI failures, design reviews, performance benchmarks, and late-night debugging sessions. It’s a curated signal of how a person thinks, structures systems, writes tests, documents APIs, and evolves code over time.
+Carefully crafted portfolio is the distilled result of years of architectural decisions, trade-offs, refactors, CI failures, design reviews, performance benchmarks, and debugging sessions. It's a curated signal of how a person thinks, structures systems, writes tests, documents APIs, and evolves code over time. It is practically a gift to the employer: a high-signal sample of real work, available upfront. Reviewing it usually takes less than an hour - often far less than the time burned in multiple interview rounds.
 
-If an employer dismisses that without serious consideration, it’s not a neutral act.
-
-It’s a red flag.
+If an employer dismisses that without serious consideration, it's a red flag.
 
 ---
 
 ## My Experience
 
-At one point I had a newborn daughter.
-
-I was working full-time. Sleeping in fragments. Still preparing seriously for interviews.
+Once I was working full-time, had a newborn daughter, sleeping in fragments, but still preparing seriously for interviews.
 
 I passed:
 
@@ -24,30 +20,28 @@ I passed:
 * system design interviews
 * deep technical discussions
 
-Then, at the very end, I was asked to implement a test assignment.
+Then, at the very end, I was asked to implement a test assignment. 
 
-I was not told upfront that this would be required.
+Importantly, I was **not** told upfront that this would be required.
 
-The task was not trivial. It involved a lock-free data structure with a full test suite and statistics collection. This is not a “2-hour sanity check.” This is serious engineering work.
+And the task was not trivial. It involved a lock-free data structure with a full test suite and statistics collection. This is not a "2-hour sanity check" - a serious engineering work.
 
-I explained clearly:
+I suggested an alternative:
 
-* I work full-time.
-* I am parenting.
-* For exactly this reason I maintain a portfolio.
-* I have public examples of multithreaded data structures.
-* I have architectural decisions documented.
-* I have benchmarks, tests, CI pipelines.
+* I work full-time
+* I am parenting
+* For exactly these situations I maintain a portfolio
+* I have public examples of multithreaded data structures
+* They have architectural decisions documented
+* They have benchmarks, tests, CI pipelines
 
 It was not considered satisfactory.
 
-And I was ghosted.
+By this moment I was mildly irritated, but after all, we don't owe each other anything, so I suggested not to waste our mutual time to each other.
 
-This wasn’t an isolated case. I have spent 8–16 hours building high-performance web servers for companies — only to receive silence.
+If only this was an isolated case. I have spent 8–16 hours building high-performance web servers for companies - only to receive silence.
 
-That’s not assessment.
-
-That’s extraction.
+That's not a knowledge assessment. That's extraction.
 
 ---
 
@@ -57,13 +51,13 @@ I maintain:
 
 * **54 public repositories**
 * **6 selected portfolio projects**
-* Projects with hundreds of stars
-* Examples of multithreaded systems
-* Architecture documentation
+* Some with hundreds of stars
+* Some are examples of multithreaded systems
+* Selected project has architecture documentation
 * CI/CD setup
 * Testing discipline
 * Performance benchmarking
-* Clear commit history showing evolution
+* Clear commit history showing evolution for more than a decade of work
 
 GitHub:
 👉 [https://github.com/yuchdev](https://github.com/yuchdev)
@@ -71,7 +65,7 @@ GitHub:
 Personal site and blog:
 👉 [https://yuchdev.github.io/index.html](https://yuchdev.github.io/index.html)
 
-I’ve invested hundreds of hours into those repositories.
+I've invested hundreds of hours into those repositories.
 
 They are not code dumps.
 
@@ -79,7 +73,7 @@ They represent my engineering standards.
 
 ---
 
-## Why Portfolio Should Replace Most Test Assignments
+## Why Portfolio Can Replace Most Test Assignments
 
 A serious portfolio allows you to evaluate:
 
@@ -94,12 +88,27 @@ A serious portfolio allows you to evaluate:
 
 Unlike a rushed weekend assignment, portfolio code:
 
-* Was written without artificial time pressure.
-* Was refactored over time.
-* Has real-world usage.
-* Shows evolution and maturity.
+* Was written without artificial time pressure
+* Was refactored over time
+* Has real-world usage
+* Shows evolution and maturity
 
-If a hiring team cannot extract signal from that, what exactly are they evaluating?
+And yes - portfolios evolved in the AI era too.
+
+If a project is clearly built *in the AI epoch*, that does not make it "less real". It shifts where the strongest signal comes from. The core value becomes:
+
+* System design decisions
+* Requirements breakdown
+* API railguards and trade-offs
+* Consistency across modules
+* Review discipline (what was accepted, what was rejected, what was fixed)
+* Ability to turn a fast prototype into a maintainable system
+
+AI can accelerate implementation, but it cannot fake sustained engineering judgment over weeks and months. A repo with coherent architecture, tests that actually protect behavior, clean interfaces, and thoughtful evolution still represents skill - even if parts of the code were generated.
+
+And if the project was created **10 years ago**, before copilots and "generate README" buttons, the signal is even more direct: the candidate wrote the code, the documentation, the structure, and the tooling manually. That level of discipline and structured work is not a small thing - it's exactly what most teams claim they want.
+
+So if a hiring team cannot extract signal from a portfolio in either context, what exactly are they evaluating?
 
 ---
 
@@ -121,9 +130,9 @@ But in that case:
 3. The estimated time commitment must be honest.
 4. The company should explain why the portfolio is insufficient.
 
-“Because we want you to write our code” is not an explanation.
+"Because we want you to write our code" is not an explanation.
 
-That is a process failure.
+That is a process failure. And in AI reality a plain stupidity.
 
 ---
 
@@ -165,18 +174,18 @@ You cannot build good systems with broken evaluation systems.
 
 ## The Standard We Should Normalize
 
-A fair and professional hiring process should state clearly:
+A fair and professional hiring process should state clearly **from the beginning**
 
 * Is there a test assignment?
 * At which stage?
 * What is its expected size?
 * How many hours?
 * Does portfolio substitute for it?
-* If not — why exactly?
+* If not - why exactly?
 
 And if the answer is:
 
-> “Because we want to see how you write code.”
+> "Because we want to see how you write code."
 
 Then read the code I already wrote.
 
@@ -186,7 +195,7 @@ Then read the code I already wrote.
 
 A portfolio is not a shortcut around evaluation.
 
-It is evidence of sustained engineering capability.
+It is evidence of sustained engineering capability - whether that capability shows up as clean manual craftsmanship (pre-AI), or as strong system design and engineering judgment (AI era).
 
 If a company cannot recognize that, it is not questioning the candidate.
 
@@ -194,4 +203,4 @@ It is revealing itself.
 
 Respect for engineering starts with respect for time, clarity, and intellectual work.
 
-If those are missing in the hiring process, they will be missing in the codebase too.
+If those are missing in the hiring process, they will be missing in the working process too.

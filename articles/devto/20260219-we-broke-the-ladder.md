@@ -2,7 +2,7 @@
 
 The article was designed as an answer to a warning posted by @NorthernDev on [The Junior Developer is Extinct (And we are creating a disaster)](https://dev.to/the_nortern_dev/the-junior-developer-is-extinct-and-we-are-creating-a-disaster-3jh2)
 
-My initial reaction wasn't just agreement - it was discomfort. Because the thesis is not just largely correct, but it quietly being ignored, in a hope that the problem will "resolve itself" as the industry "adjusts"
+My initial reaction wasn't just agreement - it was discomfort. It comes too closely to the reality I observe in the industry. Because the thesis is not just largely correct, but it quietly being ignored, in a hope that the problem will "resolve itself" as the industry "adjusts"
 
 So what do we have:
 
@@ -16,11 +16,11 @@ And here's the uncomfortable truth: if we remove the grunt work, we remove the g
 
 But I, as an engineer, also have that stubborn assurance that if something breaks, we can design a fix. This isn't the first structural shift our industry has faced, and it won't be the last, and I'd rather engineer a fix than accept the loss.
 
-First, instead of arguing about whether AI replaces Juniors or prematurely declaring the role obsolete, we should be redesigning what "Junior" role actually means in an AI-first environment.
+First, instead of arguing about whether AI replaces Juniors or prematurely declaring the role obsolete, we should try redesigning what "Junior" role actually means in an AI-first environment.
 
 Second, we should shape the ladder the way when it isn't disappearing, but changing shape. Our job is to intentionally reshape it.
 
-Here are several practical approaches that demonstrably work in real teams - and crucially, don't rely on pretending AI is going away. They are intentionally sorted by impact and risk exposure. The earlier scenarios assume AI-assisted development within controlled engineering workflows. The later ones assume something deeper: AI embedded into operational pipelines, powering internal workflows, or even shipping as a customer-facing AI-first product. As AI moves from "assistant" to "actor", the blast radius increases - and so must the level of responsibility, resilience, and training.
+And here are several practical approaches that demonstrably work in real teams - and crucially, don't rely on pretending AI is going away. They are intentionally sorted by impact and risk exposure. The earlier scenarios assume AI-assisted development within controlled engineering workflows. The later ones assume something deeper: AI embedded into operational pipelines, powering internal workflows, or even shipping as a customer-facing AI-first product. As AI moves from "assistant" to "actor", the blast radius increases - and so must the level of responsibility, resilience, and training.
 
 ---
 
@@ -155,15 +155,15 @@ This is not administrative overhead. It is software hygiene in a probabilistic e
 
 A Junior engineer owning this layer would be responsible for:
 
-### 1. Prompt lifecycle management.
+### Step 1. Prompt lifecycle management.
 
 Treat prompts like code. Refactor them. Add comments. Remove ambiguity. Track breaking changes. Review them through PRs.
 
-### 2. Output reproducibility checks.
+### Step 2. Output reproducibility checks.
 
 Ensure that, under fixed configuration (model, seed if supported, temperature, inputs), outputs remain within acceptable bounds. When they don't, surface that change explicitly instead of letting it slip silently into production.
 
-### 3. Model drift analysis
+### Step 3. Model drift analysis
 When upgrading from Model X to Model Y, measure behavioral differences.
 Did performance improve or regress?
 Did hallucination frequency change?
@@ -171,7 +171,7 @@ Did formatting or structural guarantees degrade?
 
 This forces Juniors to think statistically and architecturally.
 
-### 4. CI Gating and Traceability.
+### Step 4. CI Gating and Traceability.
 Every generated artifact should answer:
 
 * Which model produced this?
@@ -346,7 +346,7 @@ It's ensuring that engineering, at every level, remains about judgment, ownershi
 
 Because if we use AI to erase the profession, we're not saving time.
 
-We're selling our future supply of Senior engineers for this quarter's velocity.
+We're selling our future supply of Engineers for this quarter's velocity.
 
 And the companies that win in a decade won't be the ones who prompted fastest.
 
