@@ -403,7 +403,7 @@ If you want them in C, you must:
 
 * Import third-party libraries
 * Write them yourself (it each cases their mutual compatibility is questionable at best)
-* In case of generic types, you likely have to rely unsafe macro-based code
+* In case of generic types, you likely have to rely on unsafe macro-based code
 
 STL is not bloated - it's comprehensive.
 
