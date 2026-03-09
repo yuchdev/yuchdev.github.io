@@ -62,5 +62,13 @@
     "file": "20260110-vibe-coding-from-engineering.md",
     "tags": ["ai", "software", "engineering", "experiments", "vibecoding"],
     "display_title": false
+  },
+  {
+    "slug": "lets-take-safe-by-design",
+    "title": "\"Let's Take Safe-by-Design and Ordinary C++ Languages\" (from 90s ads)",
+    "date": "20260308",
+    "file": "20260308-lets-take-safe-by-design.md",
+    "tags": ["cpp", "c++", "rust", "security"],
+    "display_title": false
   }
 ]

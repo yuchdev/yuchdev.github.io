@@ -1,12 +1,12 @@
-# Why “C Is Faster Than C++” — A Claim Without Proof
+# Why "C Is Faster Than C++" - A Claim Without Proof
 
-For almost two decades I’ve been writing production systems in both C and C++. Anti-malware, network stacks, low-latency messaging systems, embedded software for drones and medtech, system libraries and utilities. And during all those years I’ve repeatedly heard the same confident claim:
+For almost two decades I've been writing production systems in both C and C++. Anti-malware, network stacks, low-latency messaging systems, embedded software for drones and medtech, system libraries and utilities. And during all those years I've repeatedly heard the same confident claim:
 
-> “C++ is slower than C. At best, it can match it.”
+> "C++ is slower than C. At best, it can match it."
 
 This statement has no meaningful theoretical or practical proof behind it.
 
-Let’s structure the discussion properly.
+Let's structure the discussion properly.
 
 ---
 
@@ -14,7 +14,7 @@ Let’s structure the discussion properly.
 
 Modern C++ compilers (Clang, GCC, MSVC) use the same optimization backends for both C and C++. After parsing, both languages are lowered to intermediate representation (IR). From that point forward, optimization is identical.
 
-If you write C-style procedural code in C++ — avoiding dynamic polymorphism, exceptions, heavy runtime features — the generated assembly is typically identical.
+If you write C-style procedural code in C++ - avoiding dynamic polymorphism, exceptions, heavy runtime features - the generated assembly is typically identical.
 
 C++ does not impose:
 
@@ -25,19 +25,19 @@ C++ does not impose:
 
 Everything that might introduce overhead is opt-in.
 
-* If you don’t use virtual functions, there is no vtable.
-* If you don’t use exceptions, there is no runtime and stack unwinding penalty.
-* If you don’t allocate, there is no allocator cost.
+* If you don't use virtual functions, there is no vtable.
+* If you don't use exceptions, there is no runtime and stack unwinding penalty.
+* If you don't allocate, there is no allocator cost.
 
 There is no inherent performance tax in C++.
 
 ---
 
-## 2. Myths About Why C++ “Can Be Slower”
+## 2. Myths About Why C++ "Can Be Slower"
 
-The common arguments usually revolve around abstractions. Let’s examine them.
+The common arguments usually revolve around abstractions. Let's examine them.
 
-### Myth 1: “OOP Adds Overhead”
+### Myth 1: "OOP Adds Overhead"
 
 This statement is vague at best, and usually reflects a misunderstanding of what actually introduces runtime cost.
 
@@ -62,7 +62,7 @@ struct Vec {
 };
 ```
 
-Compiles to a normal function taking a pointer (`this`) — exactly like manually passing a struct pointer in C.
+Compiles to a normal function taking a pointer (`this`) - exactly like manually passing a struct pointer in C.
 
 There is no dispatch cost.
 The function can be inlined.
@@ -134,11 +134,11 @@ This introduces:
 * A vtable pointer (typically one pointer per object)
 * An indirect call when dispatching via base pointer/reference
 
-But this is **dynamic polymorphism**, not “OOP” in general.
+But this is **dynamic polymorphism**, not "OOP" in general.
 
 And it is opt-in.
 
-If you don’t use `virtual`, you don’t pay.
+If you don't use `virtual`, you don't pay.
 
 ---
 
@@ -155,7 +155,7 @@ void process(T& obj) {
 
 This is resolved at compile time - the call is inlined, There is no vtable, no indirection.
 
-This is strictly more powerful than C’s macro-based generic programming — and safer.
+This is strictly more powerful than C's macro-based generic programming - and safer.
 
 ---
 
@@ -168,7 +168,7 @@ Historically:
 
 But C++ is not a managed runtime language - it is a zero-cost abstraction language.
 
-Abstractions like dynamic polymorphism adds a predictable, well-defined overhead — exactly the same kind of overhead you would incur in C using function pointers.
+Abstractions like dynamic polymorphism adds a predictable, well-defined overhead - exactly the same kind of overhead you would incur in C using function pointers.
 
 ---
 
@@ -188,7 +188,7 @@ C dynamic dispatch does not allow this possibility.
 
 ---
 
-### Myth 2: “Templates Are Heavy”
+### Myth 2: "Templates Are Heavy"
 
 This myth is typically launched by people who do not understand how templates work.
 
@@ -266,18 +266,18 @@ Because:
 
 But none of that is runtime cost.
 
-Actually, templates are one of the strongest performance tools C++ has, shifting work from runtime to compile time — which is exactly what high-performance systems want, and one of the practical reasons C++ can outperform C in real-world scenarios - not the opposite.
+Actually, templates are one of the strongest performance tools C++ has, shifting work from runtime to compile time - which is exactly what high-performance systems want, and one of the practical reasons C++ can outperform C in real-world scenarios - not the opposite.
 
 ---
 
-### Myth 3: “STL Is Bloated”
+### Myth 3: "STL Is Bloated"
 
 This claim usually comes from two misunderstandings:
 
 1. Confusing *feature richness* with runtime overhead.
 2. Confusing `iostream` performance with the entire STL.
 
-Let’s separate facts from folklore.
+Let's separate facts from folklore.
 
 ---
 
@@ -290,7 +290,7 @@ Most STL containers are:
 
 They generate concrete, optimized code for each use.
 
-There is no runtime “STL engine”
+There is no runtime "STL engine"
 
 ---
 
@@ -345,7 +345,7 @@ C standard library provides:
 * `bsearch`
 * Basic C arrays
 
-That’s it.
+That's it.
 
 C++ STL provides:
 
@@ -405,7 +405,7 @@ If you want them in C, you must:
 * Write them yourself (it each cases their mutual compatibility is questionable at best)
 * In case of generic types, you likely have to rely unsafe macro-based code
 
-STL is not bloated — it’s comprehensive.
+STL is not bloated - it's comprehensive.
 
 ---
 
@@ -427,13 +427,13 @@ All are:
 * Type-specialized
 * Often better optimized than typical C handwritten loops
 
-Again — no runtime abstraction layer.
+Again - no runtime abstraction layer.
 
 ---
 
 #### What About C++ I/O?
 
-Yes — `std::iostream` is slower than `printf`.
+Yes - `std::iostream` is slower than `printf`.
 
 But it is conveniently overlooked that it solves a different problem.
 
@@ -458,7 +458,7 @@ Are still the part of standard library of C++
 
 ---
 
-#### Where the “Bloated” Myth Comes From
+#### Where the "Bloated" Myth Comes From
 
 Usually from:
 
@@ -471,7 +471,7 @@ None of these equal runtime inefficiency.
 
 ---
 
-### Myth 4: “Exceptions Slow Everything Down”
+### Myth 4: "Exceptions Slow Everything Down"
 
 This myth usually comes from outdated knowledge or from misunderstanding how modern C++ exception handling works.
 
@@ -481,7 +481,7 @@ That term has a very specific meaning.
 
 ---
 
-#### What “Zero-Cost” Actually Means
+#### What "Zero-Cost" Actually Means
 
 In mainstream compilers (GCC, Clang, MSVC on modern platforms):
 
@@ -497,7 +497,7 @@ If no exception is thrown:
 
 The cost exists only if an exception is actually thrown.
 
-And throwing is intentionally expensive — because it represents an exceptional condition.
+And throwing is intentionally expensive - because it represents an exceptional condition.
 
 ---
 
@@ -575,9 +575,9 @@ Historically:
 
 * Early exception models were inefficient.
 * Embedded systems avoided them.
-* Some developers equate “complex feature” with “slow.”
+* Some developers equate "complex feature" with "slow."
 
-Additionally, throwing exceptions is expensive — intentionally so.
+Additionally, throwing exceptions is expensive - intentionally so.
 
 But that cost occurs only when throwing.
 
@@ -600,9 +600,9 @@ And that is not runtime slowdown.
 
 ---
 
-### Myth 5: “C++ Hides What Happens”
+### Myth 5: "C++ Hides What Happens"
 
-This statement is emotionally powerful — but technically shallow.
+This statement is emotionally powerful - but technically shallow.
 
 Yes, C++, like most or programming languages, allows abstraction. And abstractions can hide details.
 
@@ -612,11 +612,11 @@ And more importantly:
 
 **Poor design hides costs.**
 
-**Good design hides complexity — and sometimes hides optimizations.**
+**Good design hides complexity - and sometimes hides optimizations.**
 
 ---
 
-#### C Also “Hides What Happens”
+#### C Also "Hides What Happens"
 
 When you call:
 
@@ -650,7 +650,7 @@ No.
 
 Abstraction exists in C too.
 
-The difference is not visibility — it is expressiveness.
+The difference is not visibility - it is expressiveness.
 
 ---
 
@@ -658,7 +658,7 @@ The difference is not visibility — it is expressiveness.
 
 C++ is built around the principle of **zero-cost abstractions**:
 
-> What you don’t use, you don’t pay for.
+> What you don't use, you don't pay for.
 
 An abstraction is dangerous only when it introduces hidden runtime behavior.
 
@@ -690,7 +690,7 @@ Using:
 * Metaprogramming
 * Concepts
 
-If something can be resolved at compile time — it will not exist at runtime. What's the benefit?
+If something can be resolved at compile time - it will not exist at runtime. What's the benefit?
 
 No branching.
 
@@ -727,7 +727,7 @@ But the compiler on the way will:
 * Eliminate temporaries
 * Evaluate constants at compile time
 
-The abstraction hides complexity — not cost.
+The abstraction hides complexity - not cost.
 
 Sometimes it hides optimizations that would be extremely tedious to implement manually in C.
 
@@ -742,7 +742,7 @@ If you:
 * Abuse virtual dispatch
 * Over-engineer object hierarchies
 
-Then yes — performance suffers.
+Then yes - performance suffers.
 
 But the same applies in C and any other language.
 
@@ -758,9 +758,9 @@ Engineers do.
 
 ---
 
-### “Closer to the Metal” Is Not Automatically Faster
+### "Closer to the Metal" Is Not Automatically Faster
 
-C is often described as “closer to the metal”
+C is often described as "closer to the metal"
 
 Even there's no precise sense to this word.
 
@@ -771,7 +771,7 @@ But modern compilers already abstract hardware heavily:
 * Register allocation
 * Pipeline scheduling
 
-The “metal” is no longer directly programmable in naive source code anyway.
+The "metal" is no longer directly programmable in naive source code anyway.
 
 The real performance frontier today is:
 
@@ -790,7 +790,7 @@ Not fewer.
 
 Some argue:
 
-“C++ is too heavy for embedded”
+"C++ is too heavy for embedded"
 
 Yet modern freestanding C++ toolchains:
 
@@ -822,7 +822,7 @@ C++ hides complexity by making abstraction compile-time whenever possible.
 
 One limits what you can express.
 
-The other lets you express more — and often eliminate runtime cost.
+The other lets you express more - and often eliminate runtime cost.
 
 ---
 
@@ -836,8 +836,8 @@ Now the part that is often ignored.
 
 ### Compile-Time Polymorphism
 
-C’s `qsort` requires a function pointer comparator.
-C++’s `std::sort` uses templates.
+C's `qsort` requires a function pointer comparator.
+C++'s `std::sort` uses templates.
 
 Result:
 
@@ -853,7 +853,7 @@ Measured differences often reach 2× on large datasets.
 
 C++ can move logic to compile time.
 
-Lookup tables, state machines, precomputed values — all can be generated at compile time.
+Lookup tables, state machines, precomputed values - all can be generated at compile time.
 
 C cannot do this.
 
@@ -938,7 +938,7 @@ When C++ is slower, it is almost always because of:
 * Misuse of `std::function`
 * Unnecessary virtual dispatch
 
-These are engineering mistakes — not language limitations.
+These are engineering mistakes - not language limitations.
 
 ---
 
@@ -957,7 +957,7 @@ But achieving that in C often requires:
 
 In C++, the compiler performs this specialization automatically via templates.
 
-C can match C++ — but usually at greater manual engineering cost.
+C can match C++ - but usually at greater manual engineering cost.
 
 C++ simply gives you more compile-time tools to reach the same or better performance with safer abstractions.
 
@@ -967,13 +967,13 @@ C++ simply gives you more compile-time tools to reach the same or better perform
 
 C is a powerful, elegant systems language.
 
-C++ is not “C with overhead.”
-It is “C with compile-time power.”
+C++ is not "C with overhead."
+It is "C with compile-time power."
 
 And compile-time power is performance power.
 
 The statement that C is inherently faster than C++ has neither theoretical foundation nor consistent empirical evidence.
 
-Performance depends on design, memory layout, and algorithm choice — not on whether the file extension is `.c` or `.cpp`.
+Performance depends on design, memory layout, and algorithm choice - not on whether the file extension is `.c` or `.cpp`.
 
-If anything, modern C++ gives you more ways to be faster — not fewer.
+If anything, modern C++ gives you more ways to be faster - not fewer.
