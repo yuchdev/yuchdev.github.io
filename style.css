@@ -815,6 +815,44 @@ ul.projects p {
     display: inline-block; /* Ensure it only takes up needed space for better hover */
 }
 
+/* ----------------------------------------------------------------------------
+   20) Article Content Styles (Tables, etc.)
+   ---------------------------------------------------------------------------- */
+
+.blog-article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    font-size: 0.95em;
+    overflow-x: auto;
+    display: block;
+}
+
+.blog-article th, 
+.blog-article td {
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+.blog-article th {
+    background-color: #f8f8f8;
+    font-weight: 600;
+}
+
+.blog-article tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.blog-article table a {
+    color: #1C9C94;
+    text-decoration: none;
+}
+
+.blog-article table a:hover {
+    text-decoration: underline;
+}
+
 .quote-tooltip {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.85);

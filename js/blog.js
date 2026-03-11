@@ -786,6 +786,62 @@ async function getCachedMarkdown(slug, date, file) {
                 continue;
             }
 
+            // Table support
+            if (trimmedLine.startsWith('|') && i + 1 < lines.length && lines[i + 1].trim().match(/^\|[:\s-]*\|/)) {
+                if (currentParagraph.length > 0) {
+                    result.push(`<p>${currentParagraph.join('<br>')}</p>`);
+                    currentParagraph = [];
+                }
+                if (inList) {
+                    result.push('</ul>');
+                    inList = false;
+                }
+
+                let tableHtml = '<table>';
+
+                // Header
+                const headerCells = trimmedLine.split('|').filter((cell, index, array) => {
+                    return (index > 0 && index < array.length - 1) || cell.trim() !== '';
+                });
+
+                // Alignment
+                const alignLine = lines[i + 1].trim();
+                const alignCells = alignLine.split('|').filter((cell, index, array) => {
+                    return (index > 0 && index < array.length - 1) || cell.trim() !== '';
+                });
+                const alignments = alignCells.map(cell => {
+                    if (cell.startsWith(':') && cell.endsWith(':')) return 'center';
+                    if (cell.endsWith(':')) return 'right';
+                    if (cell.startsWith(':')) return 'left';
+                    return '';
+                });
+
+                tableHtml += '<thead><tr>';
+                headerCells.forEach((cell, idx) => {
+                    const align = alignments[idx] ? ` align="${alignments[idx]}"` : '';
+                    tableHtml += `<th${align}>${processInline(cell.trim())}</th>`;
+                });
+                tableHtml += '</tr></thead><tbody>';
+
+                i += 1; // skip alignment line
+                while (i + 1 < lines.length && lines[i + 1].trim().startsWith('|')) {
+                    i++;
+                    const rowLine = lines[i].trim();
+                    const rowCells = rowLine.split('|').filter((cell, index, array) => {
+                        return (index > 0 && index < array.length - 1) || cell.trim() !== '';
+                    });
+                    tableHtml += '<tr>';
+                    rowCells.forEach((cell, idx) => {
+                        const align = alignments[idx] ? ` align="${alignments[idx]}"` : '';
+                        tableHtml += `<td${align}>${processInline(cell.trim())}</td>`;
+                    });
+                    tableHtml += '</tr>';
+                }
+                tableHtml += '</tbody></table>';
+                result.push(tableHtml);
+                continue;
+            }
+
             // Check if a line is already a code block (from our pre-processing)
             if (trimmedLine.startsWith('&lt;pre&gt;&lt;code&gt;')) {
                 if (currentParagraph.length > 0) {
