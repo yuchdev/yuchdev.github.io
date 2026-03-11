@@ -1,4 +1,4 @@
-# The Technical and Practical Superiority of C++ over C in High-Performance Systems
+# C vs C++ Performance: Myth and Reality
 
 For almost two decades I've been writing production systems in both C and C++. Anti-malware engines, network stacks, low-latency messaging systems, embedded software for drones and medtech, system libraries and utilities. And during all those years I've repeatedly heard the same confident claim:
 

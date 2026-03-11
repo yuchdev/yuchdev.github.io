@@ -70,5 +70,13 @@
     "file": "20260308-lets-take-safe-by-design.md",
     "tags": ["cpp", "c++", "rust", "security"],
     "display_title": false
+  },
+  {
+    "slug": "c-vs-cpp-performance-myth",
+    "title": "C vs C++ Performance: Myth and Reality",
+    "date": "20260312",
+    "file": "20260312-c-vs-cpp-performance-myth.md",
+    "tags": ["c++", "cpp", "c", "performance"],
+    "display_title": false
   }
 ]
