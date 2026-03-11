@@ -4,7 +4,7 @@ For almost two decades I've been writing production systems in both C and C++. A
 
 > "C++ is slower than C. At best, it can match it."
 
-This belief is surprisingly persistent in systems programming discussions. The argument usually sounds simple: [C is inherently faster than C++](https://www.reddit.com/r/C_Programming/comments/1bcw6or/why_is_c_so_fast_and_is_it_possible_to_create_a/) because it is supposedly *"closer to the hardware"* and avoids abstraction overhead.
+This belief is surprisingly persistent in systems programming discussions. The argument usually sounds simply [C is inherently faster than C++](https://www.reddit.com/r/C_Programming/comments/1bcw6or/why_is_c_so_fast_and_is_it_possible_to_create_a/) because it is supposedly *"closer to the hardware"* and avoids abstraction overhead.
 
 The problem is that this phrase is rarely explained in any concrete technical sense.
 
