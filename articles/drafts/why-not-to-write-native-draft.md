@@ -6,7 +6,6 @@ Python isn't just a language - it's an ecosystem.
 
 AI/ML libraries (PyTorch, TensorFlow, NumPy, Pandas, HuggingFace), data tooling, scripting and orchestration, DevOps glue, mature web frameworks (Django, Flask)
 
-
 In AI-heavy systems, the backend and the ML stack are deeply intertwined. Choosing a different backend language often means building bridges to Python anyway. So in most cases bringing additional distress is lose-lose for team and product.
 
 2. Institutional knowledge
@@ -90,7 +89,6 @@ hiring pipeline
 
 Mature stacks win because they reduce uncertainty.
 
-
 ---
 
 The real answer
@@ -99,16 +97,11 @@ Language choice isn't only about raw performance or theoretical safety.
 
 It's about:
 
-ecosystem maturity
-
-hiring market
-
-interoperability
-
-deployment model
-
-long-term maintenance
-
+* ecosystem maturity
+* hiring market
+* interoperability
+* deployment model
+* long-term maintenance
 
 And right now, Python still sits at the center of AI infrastructure. That gravitational pull matters more than the marginal performance gain of switching to Java or Go.
 
