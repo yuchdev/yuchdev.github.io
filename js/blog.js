@@ -760,18 +760,48 @@ async function getCachedMarkdown(slug, date, file) {
         // Process fenced code blocks first (```lang\n...\n```)
         html = html.replace(/```([^\n]*)\n([\s\S]*?)```/g, (match, lang, code) => {
             // code is already escaped
-            return `<pre><code>${code.trim()}</code></pre>`;
+            return `START_CODE_BLOCK\n${code}END_CODE_BLOCK`;
         });
 
         // Split into lines for processing
         const lines = html.split('\n');
         const result = [];
         let inList = false;
+        let inCodeBlock = false;
         let currentParagraph = [];
 
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
             const trimmedLine = line.trim();
+
+            if (trimmedLine === 'START_CODE_BLOCK') {
+                if (currentParagraph.length > 0) {
+                    result.push(`<p>${currentParagraph.join('<br>')}</p>`);
+                    currentParagraph = [];
+                }
+                if (inList) {
+                    result.push('</ul>');
+                    inList = false;
+                }
+                inCodeBlock = true;
+                result.push('<pre><code>');
+                continue;
+            }
+
+            if (trimmedLine === 'END_CODE_BLOCK') {
+                inCodeBlock = false;
+                // Remove trailing newline from code block if any
+                if (result.length > 0 && result[result.length - 1] === '') {
+                    result.pop();
+                }
+                result.push('</code></pre>');
+                continue;
+            }
+
+            if (inCodeBlock) {
+                result.push(line);
+                continue;
+            }
 
             // Skip empty lines - they end paragraphs
             if (trimmedLine === '') {
@@ -839,33 +869,6 @@ async function getCachedMarkdown(slug, date, file) {
                 }
                 tableHtml += '</tbody></table>';
                 result.push(tableHtml);
-                continue;
-            }
-
-            // Check if a line is already a code block (from our pre-processing)
-            if (trimmedLine.startsWith('&lt;pre&gt;&lt;code&gt;')) {
-                if (currentParagraph.length > 0) {
-                    result.push(`<p>${currentParagraph.join('<br>')}</p>`);
-                    currentParagraph = [];
-                }
-                if (inList) {
-                    result.push('</ul>');
-                    inList = false;
-                }
-                // Find the end of the code block
-                let codeBlock = [line];
-                while (i + 1 < lines.length && !lines[i + 1].includes('&lt;/code&gt;&lt;/pre&gt;')) {
-                    i++;
-                    codeBlock.push(lines[i]);
-                }
-                if (i + 1 < lines.length) {
-                    i++;
-                    codeBlock.push(lines[i]);
-                }
-                // Unescape the code block tags
-                result.push(codeBlock.join('\n')
-                    .replace(/&lt;pre&gt;&lt;code&gt;/g, '<pre><code>')
-                    .replace(/&lt;\/code&gt;&lt;\/pre&gt;/g, '</code></pre>'));
                 continue;
             }
 
