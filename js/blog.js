@@ -872,6 +872,20 @@ async function getCachedMarkdown(slug, date, file) {
                 continue;
             }
 
+            // Horizontal rules (3 or more dashes)
+            if (trimmedLine.match(/^---(-*)$/)) {
+                if (currentParagraph.length > 0) {
+                    result.push(`<p>${currentParagraph.join('<br>')}</p>`);
+                    currentParagraph = [];
+                }
+                if (inList) {
+                    result.push('</ul>');
+                    inList = false;
+                }
+                result.push('<hr>');
+                continue;
+            }
+
             // Headings (# to ######)
             const headingMatch = trimmedLine.match(/^(#{1,6})\s+(.+)$/);
             if (headingMatch) {

@@ -1,5 +1,21 @@
 [
   {
+    "slug": "c-vs-cpp-performance-myth",
+    "title": "C vs C++ Performance: Myth Without a Proof",
+    "date": "20260312",
+    "file": "20260312-c-vs-cpp-performance-myth.md",
+    "tags": ["c++", "cpp", "c", "performance"],
+    "display_title": false
+  },
+  {
+    "slug": "lets-take-safe-by-design",
+    "title": "\"Let's Take Safe-by-Design and Ordinary C++ Languages\" (from 90s ads)",
+    "date": "20260308",
+    "file": "20260308-lets-take-safe-by-design.md",
+    "tags": ["cpp", "c++", "rust", "security"],
+    "display_title": false
+  },
+  {
     "slug": "modern-cpp-still-stands",
     "title": "Modern C++ still stands on raw pointers",
     "date": "20260220",
@@ -61,22 +77,6 @@
     "date": "20260110",
     "file": "20260110-vibe-coding-from-engineering.md",
     "tags": ["ai", "software", "engineering", "experiments", "vibecoding"],
-    "display_title": false
-  },
-  {
-    "slug": "lets-take-safe-by-design",
-    "title": "\"Let's Take Safe-by-Design and Ordinary C++ Languages\" (from 90s ads)",
-    "date": "20260308",
-    "file": "20260308-lets-take-safe-by-design.md",
-    "tags": ["cpp", "c++", "rust", "security"],
-    "display_title": false
-  },
-  {
-    "slug": "c-vs-cpp-performance-myth",
-    "title": "C vs C++ Performance: Myth Without a Proof",
-    "date": "20260312",
-    "file": "20260312-c-vs-cpp-performance-myth.md",
-    "tags": ["c++", "cpp", "c", "performance"],
     "display_title": false
   }
 ]
