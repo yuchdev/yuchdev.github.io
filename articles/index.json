@@ -73,7 +73,7 @@
   },
   {
     "slug": "c-vs-cpp-performance-myth",
-    "title": "C vs C++ Performance: Myth and Reality",
+    "title": "C vs C++ Performance: Myth Without a Proof",
     "date": "20260312",
     "file": "20260312-c-vs-cpp-performance-myth.md",
     "tags": ["c++", "cpp", "c", "performance"],

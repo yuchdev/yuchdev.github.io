@@ -1,6 +1,6 @@
-Freestanding C++ is not "C++ but broken."
+Freestanding C++ is not "C++ but broken"
 
-It's C++ on a strict diet.
+Think of it as of C++ on a strict diet.
 
 No exceptions.
 No RTTI.
