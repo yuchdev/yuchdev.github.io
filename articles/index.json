@@ -1,5 +1,13 @@
 [
   {
+    "slug": "debugging-in-orbit",
+    "title": "Debugging in Orbit: How to Design a Space Probe in a System Design Interview",
+    "date": "20260319",
+    "file": "20260319-debugging-in-orbit.md",
+    "tags": ["systemdesign", "interview", "architecture", "programming"],
+    "display_title": false
+  },
+  {
     "slug": "c-vs-cpp-performance-myth",
     "title": "C vs C++ Performance: Myth Without a Proof",
     "date": "20260312",
