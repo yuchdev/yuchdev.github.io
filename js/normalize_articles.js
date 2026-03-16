@@ -30,9 +30,16 @@ function normalizeMarkdown(content) {
       // Inside code block: preserve as is
       resultLines.push(line);
     } else {
-      // Outside code block: normalize spaces
+      // Outside code block: normalize spaces and special characters
       // Replace multiple spaces with a single one
-      const normalizedLine = line.replace(/ +/g, ' ');
+      let normalizedLine = line.replace(/ +/g, ' ');
+
+      // Normalize special characters
+      normalizedLine = normalizedLine
+        .replace(/—/g, '-')
+        .replace(/[‘’]/g, "'")
+        .replace(/[“”]/g, '"');
+
       resultLines.push(normalizedLine);
     }
   }
