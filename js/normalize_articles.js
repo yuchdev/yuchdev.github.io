@@ -5,7 +5,7 @@ const ARTICLES_DIR = 'articles';
 const INDEX_JSON = path.join(ARTICLES_DIR, 'index.json');
 
 /**
- * Normalizes markdown content.
+ * Normalizes Markdown content.
  * - Multiple \n replace to a single one.
  * - Multiple spaces replace to a single one, unless inside code example.
  * @param {string} content
@@ -55,7 +55,7 @@ function normalizeMarkdown(content) {
 }
 
 /**
- * Recursively find all markdown files in a directory.
+ * Recursively find all Markdown files in a directory.
  * @param {string} dir
  * @returns {string[]}
  */
