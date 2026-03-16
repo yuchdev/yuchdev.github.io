@@ -27,7 +27,7 @@ function normalizeMarkdown(content) {
     }
 
     if (inCodeBlock) {
-      // Inside code block: preserve as is
+      // Inside the code block: preserve as is
       resultLines.push(line);
     } else {
       // Outside code block: normalize spaces and special characters
