@@ -88,7 +88,7 @@ function main() {
     }
   });
 
-  // 2. Normalize markdown files
+  // 2. Normalize Markdown files
   const mdFiles = findMarkdownFiles(ARTICLES_DIR);
   mdFiles.forEach(filePath => {
     console.log(`Normalizing: ${filePath}`);
