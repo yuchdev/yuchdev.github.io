@@ -42,8 +42,8 @@ I have designed and maintained systems where:
 
 * C++ and Java coexist in large enterprise platforms
 * Python and C++ interact in both directions:
-  * Clean, stable Python APIs over high-performance C++ cores
-  * Native C++ libraries loaded into Python/Django environments for compute-heavy workloads
+ * Clean, stable Python APIs over high-performance C++ cores
+ * Native C++ libraries loaded into Python/Django environments for compute-heavy workloads
 
 This approach allows me to combine Python's agility with C++'s raw performance, without losing clarity, debuggability, or operational stability.
 
