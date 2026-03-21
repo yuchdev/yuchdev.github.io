@@ -1,5 +1,13 @@
 [
   {
+    "slug": "protecting-children-preserve-privacy",
+    "title": "Protect Children, Preserve Privacy, Internet Freedom: Pick Two",
+    "date": "20260321",
+    "file": "20260321-protecting-children-preserve-privacy.md",
+    "tags": ["privacy", "security", "opinion", "internet"],
+    "display_title": false
+  },
+  {
     "slug": "debugging-in-orbit",
     "title": "Debugging in Orbit: How to Design a Space Probe in a System Design Interview",
     "date": "20260319",
