@@ -1,13 +1,19 @@
 ## Why I don't believe in rewriting software (Part 1)
+
 Every few years, our industry rediscovers the same idea and calls it progress:
+
 > "This system is old. We should rewrite it."
+
 I've seen this play out in environments with *everything* going for them:
 top engineers, analysts, risk managers, big budgets, new hardware, executive support.
 Including a rewrite of a **risk management system in an investment bank**.
+
 It still failed.
+
 Not because people were incompetent.
 Not because the architecture was "wrong".
 But because rewrites misunderstand what legacy systems actually are.
+
 Legacy systems aren't just messy codebases.
 They're systems **trained by reality**.
 Years of production shaped them:

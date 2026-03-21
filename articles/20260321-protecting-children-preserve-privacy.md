@@ -2,14 +2,19 @@
 
 Kids are incredible.
 
-They learn things frighteningly fast. Give a five-year-old a tablet, and in fifteen minutes they know how to install apps, open YouTube, use voice search, skip ads, and find cartoons you didn't even know existed.
+They learn things frighteningly fast. Give a five-year-old a tablet, and fifteen minutes later they know how to install apps, open YouTube, use voice search, skip ads, and find cartoons you didn’t even know existed.
+
+Somewhere around minute twenty they also discover the one button you wish they hadn’t pressed.
 
 They are equally talented in two areas: learning new technologies and lying to their parents about how they use them.
 So when we hand them a smartphone as the universal answer to curiosity -
 *"Google it"* - we shouldn't be surprised when they master the device faster than we master the consequences.
 
-Now governments are trying to fix the consequences, being late for a couple of decades.
-But the question is: **how exactly are they going to enforce it?**
+Now governments are trying to fix the consequences.
+
+Only about twenty years after the technology escaped the lab and moved into every kid’s pocket.
+
+It's appropriate to ask the question: **how exactly are they going to enforce it?**
 
 ---
 
@@ -20,8 +25,8 @@ There are only a few technical options.
 ## A) Self-declared age (current model)
 
 * "Enter your birthdate"
-* Completely ineffective
-* Every 12-year-old knows how to type *1998*
+* The digital equivalent of a pinkie promise
+* Every 12-year-old knows how to type *1998* with absolute confidence
 
 This is what most platforms already do - and, frankly, it mostly exists for legal paperwork rather than actual protection.
 Everyone knows it doesn't work.
@@ -80,6 +85,8 @@ But still easy to bypass:
 Teenagers are remarkably inventive when motivated.
 And prohibition is a **very strong motivator.**
 
+Give them a restriction and within a week they will invent a tutorial, a workaround, and a Discord server explaining both.
+
 ---
 
 ## D) ISP-level blocking
@@ -101,7 +108,9 @@ In Russia, Iran, Belarus, China - even children know what a VPN is.
 History shows something interesting:
 
 > When you restrict access, technical literacy increases.
+
 Sometimes dramatically.
+Not in schools. In your kids' bedrooms.
 
 ---
 
@@ -207,11 +216,18 @@ Less prohibition - more friction.
 
 # 8. As a father of a 4-year-old
 
-I completely understand the instinct.
-You want safety for your children. You want to protect them from violence, manipulation, sexualized content, predatory behavior and the darker corners of the internet. That instinct is natural.
-But as a software engineer, I also know something else: *the enforcement tool matters*
+...who already knows how to unlock my phone faster than I do, I completely understand the instinct.
 
-If the solution requires building a permanent digital identity infrastructure, the cure may become worse than the disease.
-Because history shows something very consistent:
+You want safety for your children. You want to protect them from violence, manipulation, sexualized content, predatory behavior and the darker corners of the internet. 
+That instinct is natural, there's nothing political in it.
+It is something much simpler: you want the world to stay safe for them a little longer.
 
-> Infrastructure built for children rarely stays limited to children.
+But as a software engineer, I also know something uncomfortable: *the enforcement tool matters as much as the intention behind it.*
+
+If the solution requires building a permanent digital identity infrastructure,
+the cure may quietly become worse than the disease.
+Because infrastructures, once built, rarely disappear and easily can be reused.
+
+And if history already taught us something, it is:
+
+> Limitations built for children rarely stays limited to children. Eventually, they becomes limitations for everyone.

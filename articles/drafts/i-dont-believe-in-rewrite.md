@@ -1,7 +1,9 @@
 Alright, let's turn this into a **proper dev.to article** - opinionated, analytical, a bit uncomfortable, and grounded in real systems thinking rather than folklore.
 ---
 # Why I Don't Believe in Rewriting Software
-*Rewrites are not a technical decision. They're a psychological one.*
+
+*Rewrites are rarely technical decisions. They're psychological ones - the software equivalent of declaring bankruptcy and starting life over in another city.*
+
 Every few years, the industry rediscovers the same idea and treats it like progress:
 > "This system is old. We should rewrite it."
 It sounds responsible. Even brave.
@@ -40,24 +42,33 @@ Somewhere in a slide deck, two columns appear:
 * Lower long-term cost
 At the end of the deck, a sentence appears:
 > "When the cost of maintaining the legacy system exceeds the cost of rewriting…"
+
 This sentence sounds precise.
-It is not.
+It even looks good in a slide deck.
+Unfortunately, in fact it is not.
+
 ---
+
 ## Costs Are Not "Estimated" - They're Believed
 Here's the uncomfortable truth:
 **Rewrite decisions are not based on estimates.**
 They are made under uncertainty, using proxies, heuristics, and political pressure.
 Let's break this down.
 ### 1. Legacy Costs Are Painful - and Visible
-Legacy systems hurt in ways people can feel:
+
+Legacy systems hurt in ways people can feel - not in spreadsheets, but at 3 am:
+
 * Pager fatigue
-* Ancient build systems
-* Slow onboarding
-* "Don't touch this" modules
-* Fear-driven development
+* Build systems older than some junior developers
+* Onboarding measured in geological time
+* "Don't touch unless the building is on fire" modules
+* Entire teams practicing fear-driven development
+
 These costs are **present, emotional, and constant**.
 So they look expensive.
+
 ---
+
 ### 2. Rewrite Costs Are Abstract - and Imaginary
 Rewrite costs live in the future.
 They are:
@@ -112,13 +123,18 @@ Then auditors get involved.
 ---
 ### Stage 4: Performance Paradox
 Here's the shock:
+
 > The old, ugly, poorly designed system is faster.
-Not marginally.
-**Systemically.**
+
+Not marginally. **Embarrassingly faster.**
+
 Why?
+
 Because performance is not an architectural property.
 It's an **emergent one**.
+
 ---
+
 ## Performance Is Trained, Not Designed
 Legacy systems survive because they are shaped by production:
 * Hot paths were discovered accidentally
@@ -149,9 +165,12 @@ they lose **institutional memory**.
 ## Why Smart People Still Get This Wrong
 Even with top engineers and analysts, rewrites fail because:
 ### ❌ Software Is Treated Like Construction
-Software is not a building.
-It's a **living organism under selective pressure**.
+
+Software is not a building you demolish and rebuild.
+It's closer to a coral reef - layers accumulated over years, inhabited by living organisms under selective pressure.
+
 ### ❌ Behavioral Coupling Is Ignored
+
 New system ≠ same users
 Same users ≠ same behavior
 Same behavior ≠ same load
