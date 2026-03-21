@@ -1,15 +1,16 @@
 # Vibe-Coding from the Engineering Perspective: A Horror Story
 
-I can tell about the "vibe-coding" experiment from an engineering prospective.
+I can tell a story about a vibe-coding experiment from an engineering perspective.
+It starts like a productivity miracle, and ends like a horror story - just like any story about vibe-coding.
 
 I asked an AI agent to write a game, and I asked for all the "grown-up" things too: documentation per component, ADRs, and a full test suite - unit tests for logic, mocks for boundaries, integration for the wiring. And I made one rule: I would not look at the code, only at errors. No architecture reviews. No "wait, why is this class doing that?" I wanted the pure experiment: can vibe-coded momentum outrun engineering gravity?
 
-Features landed fast. Bugs got fixed faster than I could reproduce them. The agent looked like a disciplined team: every module had docstrings, everything was neatly formatted, the tests were green. It felt like watching a factory line - request goes in, working feature comes out. And because I wasn't inspecting anything, the codebase stayed "Schrödinger-maintainable" - alive as long as nobody opened the box.
+Features landed fast. Bugs got fixed faster than I could reproduce them. The agent looked like a disciplined team: every module had docstrings, everything was neatly formatted, the tests were green. It felt like watching a factory line - request goes in, working feature comes out. And because I wasn't inspecting anything, the codebase stayed "Schrödinger-maintainable" - perfectly healthy as long as nobody opened the box.
 
 Then came a totally normal request. I wanted more power in the (already implemented) scripting engine - the part you extend when you want flexible game logic without rewriting the core - more hooks, more events, a better API. Slightly richer state access. Nothing exotic.
 
 And that's where the system hit the wall.
-Not "one more bug." Not "we need a refactor." A wall. Every attempt to add a feature produced a new weird failure somewhere else: some unrelated subsystem broke, tests stayed green when they should have screamed, or everything "worked" but the behavior was wrong. I tried more precise prompts, additional tests, "don't touch unrelated files," "preserve public API" - nothing worked.
+Not "one more bug." Not "we need a refactor." A wall. Every attempt to add a feature produced a new, bizarre failure somewhere else: some unrelated subsystem broke, tests stayed green when they should have screamed, or everything "worked" but the behavior was wrong. I tried more precise prompts, additional tests, "don't touch unrelated files," "preserve public API" - nothing worked.
 
 Then, under a fanfare, I revealed the code.
 
@@ -47,4 +48,4 @@ And eventually, sooner or later, you open the door that requires real engineerin
 
 You didn't build a system.
 
-You built a haunted house with tests and documentation.
+You built a haunted house - with tests, documentation, and something moving behind the walls.

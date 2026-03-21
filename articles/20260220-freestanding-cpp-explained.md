@@ -1,20 +1,26 @@
 # Freestanding C++: The Language You Already Use (Even If You Pretend You Don't)
-I once met an embedded developer who asked me, with genuine concern:
+I once met an embedded developer who asked me, with genuine concern, the kind usually reserved for safety briefings and kernel panics:
+
 *"Why would I need C++? Virtual functions ruin kernel performance."*
+
 At the time I was working in anti-malware, from GUI to kernel land, so I asked the only reasonable question:
+
 *"Who told you that you must use virtual functions?"*
+
 That was, apparently, a day of discoveries.
-Because one of the central ideas of C++ is still widely misunderstood:
+Because one of the central ideas of C++ is still widely misunderstood, even by people who have been writing systems software for years:
+
 > *You don't pay for what you don't use.*
+
 And freestanding C++ is where that principle stops being a slogan and becomes a practical engineering tool.
-This is the kind of C++ used in kernels, bare metal firmware, drone controllers, automotive units, medical devices, boot code, and other places where software is not sitting comfortably on top of an OS with a rich runtime and a forgiving memory model. In those environments, C++ is often stripped down, tightly controlled, and forced to behave like a disciplined systems language. Which, inconveniently for some myths, it does quite well.
+This is the kind of C++ used in kernels, bare-metal firmware, drone controllers, automotive ECUs, medical devices, boot code, and other places where software is not sitting comfortably on top of an OS with a rich runtime and a warm runtime blanket. In those environments, C++ is often stripped down, tightly controlled, and forced to behave like a disciplined systems language. Which, inconveniently for some myths, it does quite well.
 Let's unpack what freestanding C++ actually is, how it talks to bare metal, why certain language features are deliberately disabled, what remains after the "purge," and where plain C still has a legitimate edge.
 
 ---
 
 ## Hosted vs Freestanding: Same Language, Different World
 In standard terms, C++ distinguishes between a *hosted* implementation and a *freestanding* one.
-A hosted implementation is what most application developers know: OS present, runtime present, full standard library expected, process model assumed. The language lives in a comfortable apartment with plumbing, heating, and internet.
+A hosted implementation is what most application developers know: OS present, runtime present, full standard library expected, process model assumed. The language lives in a comfortable apartment with plumbing, heating, and internet. Freestanding C++ lives in a tent in the wilderness and has to bring its own fire.
 A freestanding implementation is different. It assumes little or nothing about the environment. There may be no OS, no file system, no threads, no full standard library, no dynamic loader, and in some cases barely a runtime at all.
 Freestanding entry point is different from hosted `int main(int argc, char** argv)`. It is `void main()` - you don't have any entitiy where to return the exit code.
 Freestanding does not mean "crippled C++" - it means C++ without the usual furniture.
@@ -83,7 +89,7 @@ Exceptions depend on runtime support for stack unwinding. That means extra metad
 In a desktop app, that may be acceptable. In a hard real-time controller or kernel boundary, it often is not.
 If you must guarantee worst-case timing, "something somewhere unwinds an unknown number of frames" is not a sentence that inspires peace.
 
-So in these systems, `-fno-exceptions` is usually not dogma. It is engineering.
+So in these systems, `-fno-exceptions` is usually not dogma. It is engineering math.
 And explicit error handling is not a primitive fallback. It is often the design that best matches the environment.
 
 ```cpp
@@ -103,7 +109,8 @@ Run-time type information supports features like `dynamic_cast` and `typeid`. Us
 In constrained systems, that cost often buys very little. Many designs simply do not need runtime type discovery. So RTTI gets disabled, and the codebase moves toward static relationships instead.
 
 ### No unrestricted heap - because fragmentation and latency are real
-The myth that "C++ means heap" refuses to die, although it deserves it.
+
+The myth that "C++ means heap allocation everywhere" refuses to die, although it deserves it.
 Dynamic allocation is often restricted or banned in real-time and safety-critical systems because it introduces two problems engineers care about deeply: *fragmentation* and *unpredictable latency*.
 If your allocator has variable-time behavior, or if heap health depends on past allocation history, you have already made your timing analysis miserable.
 So many systems avoid general-purpose heap allocation entirely. They use static storage, bounded stack usage, object pools, fixed blocks, placement new, or arena allocators.
@@ -190,7 +197,8 @@ struct UartConfig {
 Now the device does not calculate the divisor at runtime. The compiler does. The branch disappears, the constant appears, and the code path gets simpler.
 That is one of C++'s killer advantages in constrained systems:
 
-> *Don't compute on the device what the compiler can compute for you.*
+> *Never compute on the device what the compiler can compute for you.*
+
 So yes, templates are a tradeoff. They are neither automatically good nor automatically bad. They are a lever. Pull it intelligently.
 
 ---
@@ -236,6 +244,7 @@ This matters because many anti-C++ arguments quietly assume that "C++" means "fu
 ---
 
 ## C++ Is a Solid Choice for Kernels and Bare Metal
+
 This point deserves to be said plainly.
 C++ is not merely "usable" in kernels and bare-metal software. It is often a *solid engineering choice*.
 If you configure it properly, it gives you structure without mandatory runtime baggage. It lets you model hardware more safely, express invariants more clearly, push logic into compile time, wrap dangerous operations in deterministic scopes, and build interfaces that are harder to misuse.
@@ -291,4 +300,4 @@ C still has places where it is the better tool. Absolutely.
 But in kernels, bare metal, real-time controllers, and safety-critical systems, well-configured freestanding C++ is not a gimmick. It is often a very serious option - and sometimes a very strong one.
 Because in the end, serious engineering is not about choosing a tribe.
 It is about understanding the hardware, the runtime you do or do not have, the guarantees you must provide, and the costs you are willing to pay.
-And in that world, ideology crashes faster than code.
+And in that world, ideology tends to crash much faster than code.

@@ -1,17 +1,24 @@
- # "Let's Take Safe-by-Design and Ordinary C++ Languages" (from 90s ads)
+# "Let's Take Safe-by-Design... and Ordinary C++" (from 90s ads)
+
 "C++ is under attack", "Rust is safe by design", "WG21 has 10 years" - all of these catchy headlines miss the real issue.
+
 ### 1. Security is not a property of a programming language in isolation
+
 It's an emergent result of engineering practice.
-Memory safety helps, but real security still comes from reviews, threat modeling, fuzzing, SAST/DAST, CI gates, dependency hygiene, incident response - and experienced engineers. With poor practices or inexperienced teams, the most "safe-by-design" tool becomes unsafe.
+Memory safety helps, but real security still comes engineering machinery: reviews, threat modeling, fuzzing, SAST/DAST, CI gates, dependency hygiene, incident response - and experienced engineers. With poor practices or inexperienced teams, the most "safe-by-design" tool becomes unsafe.
 What is often ignored is that real-world security comes from:
 - code review culture and reviewer competence
 - fuzzing, sanitizers, static and dynamic analysis
 - CI gates, deployment discipline, and incident response
 - ecosystem maturity and operational experience
+
 ### 2. Leave the old bugs in the past
-Then, If not for a decade, then at least for the last 7-8 years, I honestly haven't seen classic C/C++ memory bugs in production code outside of multithreading contexts.
+
+In fact, for roughly the last seven or eight years, I have rarely seen classic C/C++ memory bugs in production code outside of multithreading contexts.
+
 With C++11 and later, single-threaded code is increasingly hard to break in "old-school" ways.
-RAII, smart pointers, containers, move semantics, lifetime-bound references, sanitizers - the language and tooling stack is simply too strong now.
+RAII, smart pointers, containers, move semantics, lifetime-bound references, sanitizers - the language and tooling ecosystem has simply become too strong for those mistakes to remain common.
+
 In practice, memory safety issues today are overwhelmingly concurrency issues:
 - A thread accessing an object that has already been destroyed
 - A lambda / async task outliving the scope it captured

@@ -1,10 +1,13 @@
 # C vs C++ Performance: Myth and Reality
-For almost two decades I've been writing production systems in both C and C++. Anti-malware engines, network stacks, low-latency messaging systems, embedded software for drones and medtech, system libraries and utilities. And during all those years I've repeatedly heard the same confident claim:
+
+For almost two decades I've been writing production systems in both C and C++. Anti-malware engines, network stacks, low-latency messaging systems, embedded software for drones and medtech, system libraries and utilities. And during all those years I've heard the same confident claim so many times that it has practically become part of the office wallpaper:
+
 > "C++ is slower than C. At best, it can match it."
+
 This belief is surprisingly persistent in systems programming discussions. The argument usually sounds simply [C is inherently faster than C++](https://www.reddit.com/r/C_Programming/comments/1bcw6or/why_is_c_so_fast_and_is_it_possible_to_create_a/) because it is supposedly *"closer to the hardware"* and avoids abstraction overhead.
-The problem is that this phrase is rarely explained in any concrete technical sense.
+The problem is that this phrase is usually delivered with enormous confidence and no slightest technical explanation.
 Historically the perception had some basis. Early C++ compilers were immature, and the language itself was often described as "C with Classes." In that environment it was easy to write inefficient code, and compiler optimizations were far less sophisticated than today.
-But modern reality is very different.
+But modern reality is not the 1990s in a moustache and suspenders.
 Today both C and C++ are compiled by toolchains that share the same optimization back-ends. GCC, Clang, and MSVC ultimately lower both languages into similar intermediate representations and apply the same aggressive optimization passes before generating machine code.
 At the same time, C++ was explicitly designed around the concept of [zero-cost abstractions](https://without.boats/blog/zero-cost-abstractions/): abstractions that provide expressive power at the language level without imposing runtime overhead.
 In practice this means that when comparable engineering effort is invested, C++ programs frequently produce executables that [match or exceed](https://news.ycombinator.com/item?id=43827096) the performance of equivalent C implementations.
@@ -20,9 +23,12 @@ It can be summarized in two rules:
 This idea sharply contrasts with many modern runtime-driven languages where abstractions **[inherently carry a runtime cost](https://dev.to/kanywst/rust-zero-cost-abstractions-deep-dive-5a0m)**.
 In C++, abstraction cost is intentionally **shifted away from runtime** and into compilation. The compiler performs the heavy lifting: template expansion, inlining, specialization, constant folding, and static analysis.
 Yes, this often results in longer compilation times.
-But the payoff is that complex high-level constructs can collapse into **[highly optimized assembly instructions](https://www.reddit.com/r/cpp/comments/sqhy8m/how_does_c_achieve_zero_overhead_abstraction/)** with no runtime penalty.
+But the payoff is that complex high-level constructs can collapse into **[brutally efficient machine code](https://www.reddit.com/r/cpp/comments/sqhy8m/how_does_c_achieve_zero_overhead_abstraction/)**, as if the abstraction politely removed itself before runtime began.
+
 ---
+
 ### The OOP Performance Myth
+
 A common argument is that object-oriented programming in C++ is **[inherently slow](https://dev.to/kanywst/rust-zero-cost-abstractions-deep-dive-5a0m)**.
 In reality, that claim confuses language features with specific design choices.
 A C++ class **without virtual functions** is layout-compatible with a C `struct`.
@@ -30,12 +36,14 @@ There is:
 * no hidden metadata
 * no hidden runtime
 * no implicit allocations
-A class is simply a struct with better semantics.
+A class, in the non-virtual case, is basically a `struct` that went to school and learned good manners.
+
 Member functions compile into ordinary functions that receive a `this` pointer - essentially the same thing you would manually pass in C.
+
 ---
 ### Where Overhead Actually Appears
-Dynamic dispatch via virtual functions **does** introduce indirection - specifically a vtable lookup.
-But this is not automatic. It must be **[explicitly opted into](https://dev.to/kanywst/rust-zero-cost-abstractions-deep-dive-5a0m)** using the `virtual` keyword.
+Dynamic dispatch via virtual functions **does** introduce indirection - specifically a vtable lookup. But let's be precise: the overhead is not "OOP". It is a very specific thing - an extra indirection through a vtable.
+It must be **[explicitly opted into](https://dev.to/kanywst/rust-zero-cost-abstractions-deep-dive-5a0m)** using the `virtual` keyword.
 If you don't use virtual functions, there is no vtable.
 Without them, a C++ class remains memory-equivalent to a C struct, and member function calls compile to operations **[identical to free function calls](https://www.reddit.com/r/cpp/comments/sqhy8m/how_does_c_achieve_zero_overhead_abstraction/)** in C.
 Modern compilers go even further.
@@ -61,7 +69,8 @@ struct Interface {
     void (*foo)(void*);
 };
 ```
-This is essentially a **manual vtable**.
+This is essentially a **a hand-carved vtable**.
+Which is always amusing, because people will write this in C and still insist they are heroically avoiding “C++ overhead.”
 The theoretical runtime cost is identical to C++ dynamic polymorphism.
 But there is a crucial difference: the compiler cannot safely optimize this pattern in the same way.
 C++ compilers can aggressively analyze virtual calls and convert them to static calls when possible.
@@ -91,7 +100,8 @@ This has several performance consequences:
 * branch prediction becomes harder
 * instruction pipelines may stall
 * loop optimizations are limited
-All of these effects accumulate inside the inner loop of the sorting algorithm - exactly where performance matters most.
+All of these effects accumulate inside the inner loop of the sorting algorithm - the one place in the entire program where performance is least interested in philosophical excuses.
+
 Now compare this to `std::sort`.
 `std::sort` is a template. When you sort an array of `double`, the compiler generates a **sorting routine specialized specifically for `double` values**, and it can [inline the comparison logic directly](https://www.oreateai.com/blog/cs-qsort-vs-cs-sort-a-tale-of-two-sorting-functions/5fd2db7baef931ab70e2946f7f5d76c4) into the algorithm.
 The result is:
@@ -153,7 +163,8 @@ There is:
 * no dynamic cost
 In many real-world cases, templates actually make programs **faster** by eliminating indirection and enabling deeper compiler optimization.
 The abstraction exists only at compile time.
-At runtime, the machine simply sees efficient code.
+At runtime, the CPU does not care that templates ever existed. It just sees efficient code.
+
 ## Move Semantics and the Shift from Runtime to Compilation
 The introduction of **[move semantics](https://stackoverflow.com/questions/50198991/whats-the-connection-between-value-semantics-and-move-semantics-in-c)** in C++11 fundamentally changed how resources are handled in systems programming.
 Before C++11, programmers were often forced to choose between two imperfect options.
@@ -552,4 +563,4 @@ And after two decades of working with both languages, my conclusion is simple:
 C is a brilliant language and an essential foundation for systems programming.
 But the claim that it is *inherently faster than C++* has neither theoretical basis nor practical evidence.
 In the hands of a skilled engineer, modern C++ is not slower.
-More often than not - it is faster.
+More often than not, it is not merely competitive. It is the factually proven better performance tool.
