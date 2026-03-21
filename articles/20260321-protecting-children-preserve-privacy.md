@@ -2,9 +2,9 @@
 
 Kids are incredible.
 
-They learn things frighteningly fast. Give a five-year-old a tablet, and fifteen minutes later they know how to install apps, open YouTube, use voice search, skip ads, and find cartoons you didn’t even know existed.
+They learn things frighteningly fast. Give a five-year-old a tablet, and fifteen minutes later they know how to install apps, open YouTube, use voice search, skip ads, and find cartoons you didn't even know existed.
 
-Somewhere around minute twenty they also discover the one button you wish they hadn’t pressed.
+Somewhere around minute twenty they also discover the one button you wish they hadn't pressed.
 
 They are equally talented in two areas: learning new technologies and lying to their parents about how they use them.
 So when we hand them a smartphone as the universal answer to curiosity -
@@ -12,7 +12,7 @@ So when we hand them a smartphone as the universal answer to curiosity -
 
 Now governments are trying to fix the consequences.
 
-Only about twenty years after the technology escaped the lab and moved into every kid’s pocket.
+Only about twenty years after the technology escaped the lab and moved into every kid's pocket.
 
 It's appropriate to ask the question: **how exactly are they going to enforce it?**
 

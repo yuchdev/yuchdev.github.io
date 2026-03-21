@@ -1,6 +1,7 @@
 # RAII: One of the Most Powerful Patterns in C++
 
 One of the most powerful ideas in C++ is surprisingly simple: *tie resource management to object lifetime*.
+
 It sounds almost trivial - until you realize how many systems in other languages are still trying to reinvent this idea thirty years later.
 
 This pattern is known as *RAII* - Resource Acquisition Is Initialization. Despite the slightly confusing name, the principle is straightforward:
@@ -17,9 +18,11 @@ Second, RAII provides strong exception safety almost for free. If an exception o
 Third, RAII scales naturally with program complexity. Complex systems become easier to reason about because *ownership and lifetime are expressed directly in the type system* rather than hidden in procedural cleanup logic.
 
 For these reasons RAII became one of the defining idioms of C++ programming long before the modern standard library appeared. 
+
 Developers routinely wrote tiny wrapper classes around files, sockets, mutexes, and other resources, relying on destructors to guarantee cleanup. Entire codebases quietly accumulated small RAII guardians protecting resources from leaks and forgotten cleanup paths.
 
 Modern smart pointers did not invent this pattern - they simply standardized one of its most common applications.
+
 C++ developers often discuss smart pointers in terms of ownership models: `unique_ptr`, `shared_ptr`, `weak_ptr`. But historically, smart pointers are really something simpler.
 
 ### The RAII pattern before C++11
@@ -29,7 +32,9 @@ Before C++11, the RAII pattern was already deeply embedded in everyday C++ progr
 > Acquire the resource once, and forget about cleanup - the destructor will handle it.
 
 Files, sockets, mutexes, transactions, GUI state guards, C API handles - the pattern appeared everywhere.
+
 Often these wrappers were extremely small. It was common to define them locally inside functions, exactly the way we use lambdas today.
+
 The following example shows a typical RAII wrapper that many C++ developers wrote long before the standard library provided smart pointers.
 
 [Example 1](https://godbolt.org/z/sYen75jsM) - classic RAII wrapper "before standard smart pointers"
@@ -64,40 +69,63 @@ int main()
     return 0;
 }
 ```
+
 ---
+
 ### Why `unique_ptr` became the default RAII tool
+
 Modern C++ (starting from C++11) simply standardized this ownership pattern.
+
 In most real code, `std::unique_ptr` is enough in the overwhelming majority of cases (such an `std::vector` of smart pointers). It expresses exclusive ownership, has no reference counting overhead, and requires no additional allocations.
+
 A container like
+
 ```
 std::vector<std::unique_ptr<T>>
 ```
+
 represents exactly what RAII was designed for: clear ownership and deterministic cleanup.
+
 #### Optimized smart pointer
+
 In practice, `unique_ptr` is often optimized down to something as small and cheap as a raw pointer.
+
 There is also a nuance many developers overlook.
+
 If the deleter is *stateless*, `unique_ptr` usually *does not increase the pointer size at all*. This works thanks to *Empty Base Optimization*: the deleter occupies no storage.
+
 This means wrapping C APIs like `FILE*`, `SDL_Window*`, or other handles can remain *pointer-sized*, while still being fully RAII-safe.
+
 #### Type-safety and compile-time control
+
 Another important detail is that the deleter is *part of the `unique_ptr` type itself*
+
 For example:
+
 ```cpp
 std::unique_ptr<T>
 std::unique_ptr<T, FileCloser>
 ```
+
 These are *different types*. The deletion policy is encoded directly in the type system.
+
 At first glance this may look like a minor technical detail, but it reflects a core philosophy of C++: important program properties should be visible in the type system whenever possible.
+
 With `unique_ptr`, the compiler knows exactly:
 * what object is owned
 * how it will be destroyed
 * whether ownership can be transferred
+
 This information is available *at compile time*, which allows the compiler to optimize aggressively and catch certain mistakes early.
+
 It also reinforces one of the classic C++ principles:
 
 > *You don't pay for what you don't use.*
 
 Because the deleter type is known at compile time, the compiler can often inline it completely. When the deleter is stateless, Empty Base Optimization ensures it consumes no storage, so the smart pointer remains pointer-sized.
+
 This is one of the reasons `unique_ptr` is such a good match for wrapping low-level C APIs. We gain type safety and deterministic lifetime management without paying any runtime overhead.
+
 The following example demonstrates this property.
 
 [Example 2](https://godbolt.org/z/GbcfxrKnv) - `std::unique_ptr` with stateless deleter
@@ -172,7 +200,7 @@ The following example demonstrates this idea: the program chooses the deletion m
 
 [Example 3](https://godbolt.org/z/G4cMPTPYY) - `std::shared_ptr` with runtime-selected deleter
 ```cpp
-/ runtime decision from CLI
+/** runtime decision from CLI
  * ./example03 -> uses new/delete
  * ./example03 x -> uses malloc/free
  */
@@ -211,6 +239,7 @@ This flexibility comes with real costs.
 A `shared_ptr` seems extremely convenient, but but under the hood it carries a small accounting department tracking reference counts, deleters, and control blocks. As a result, using `shared_ptr` typically involves additional allocations and atomic operations.
 
 There is also a subtle consequence of this design that surprises many developers.
+
 When using `make_shared`, the object is constructed inside the control block, which allows the implementation to allocate both the control structure and the object in a single memory block. However, this optimization means that `make_shared` cannot accept a custom deleter. If a custom deletion policy is required, the object must be created manually:
 
 ```cpp
@@ -219,6 +248,7 @@ std::shared_ptr<Foo> p(new Foo, deleter);
 ```
 
 In that case the implementation usually performs two allocations again - one for the object and one for the control block.
+
 Another cost becomes visible in multithreaded systems. Every copy and destruction of a `shared_ptr` updates the reference counter:
 
 | High-level action | Resulting count |
@@ -252,6 +282,7 @@ For this reason many performance-sensitive codebases follow a very simple rule o
 ## Conclusion
 
 RAII itself did not change with modern C++.
+
 What changed is that the standard library provided reusable, well-defined implementations of the most common RAII ownership patterns.
 
 `unique_ptr` represents deterministic ownership with minimal overhead.

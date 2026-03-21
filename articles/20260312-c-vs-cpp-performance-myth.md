@@ -70,7 +70,7 @@ struct Interface {
 };
 ```
 This is essentially a **a hand-carved vtable**.
-Which is always amusing, because people will write this in C and still insist they are heroically avoiding “C++ overhead.”
+Which is always amusing, because people will write this in C and still insist they are heroically avoiding "C++ overhead."
 The theoretical runtime cost is identical to C++ dynamic polymorphism.
 But there is a crucial difference: the compiler cannot safely optimize this pattern in the same way.
 C++ compilers can aggressively analyze virtual calls and convert them to static calls when possible.
