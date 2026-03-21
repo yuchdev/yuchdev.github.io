@@ -1,74 +1,18 @@
-There are several structural reasons Python remains dominant for backend work, even in the AI era.
+If you've spent more than five minutes in a room with AI enthusiasts lately, you've likely heard the Great Performance Prophecy. It goes like this: "Since AI can type at ten thousand words per minute and doesn't care about syntax, why are we still using 'slow' languages like Python or JavaScript? Why not just ask the LLM to generate everything in C++, Rust, or hand-optimized Assembly? We could have the performance of a Ferrari with the development cost of a bicycle."
 
-1. Ecosystem gravity
-Python isn't just a language - it's an ecosystem.
-AI/ML libraries (PyTorch, TensorFlow, NumPy, Pandas, HuggingFace), data tooling, scripting and orchestration, DevOps glue, mature web frameworks (Django, Flask)
-In AI-heavy systems, the backend and the ML stack are deeply intertwined. Choosing a different backend language often means building bridges to Python anyway. So in most cases bringing additional distress is lose-lose for team and product.
+It’s a seductive vision. If the cost of typing code has dropped to near zero, surely we should move to the most "optimal" stack possible. Why bother with heavy frameworks when AI can generate a bespoke, tiny runtime tailored exactly for your specific task?
 
-2. Institutional knowledge
+The logic seems sound at the first glance, but it usually collapses into a heap of technical debt already at the second.
 
-Large organizations accumulate:
-- tooling
-- CI/CD pipelines
-- coding standards
-- documentation
-A full stack rewrite is not just a technical change - it's a full organizational reset. That's expensive, risky, and rarely justified unless there's a clear, multifactor bottleneck.
-Changing language means retraining teams, rewriting internal libraries, adjusting protocols, auditing security, and re-validating compliance. That's not "just switching compilers"
+The fundamental misunderstanding is this: AI has dramatically reduced the cost of writing code, but it hasn't touched the cost of correctness, verification, and ecosystem support. And in professional software engineering, those aren't just details—they are the entire game.
 
-3. Performance itself is usually not the bottleneck
-Most backend systems are:
-* I/O bound
-* network bound
-* database bound
+In this article, we explore why the "native-everything" future is a mirage, and why AI actually makes existing ecosystems *more* valuable, not less:
 
-Raw CPU performance is rarely the primary constraint.
-And when it is, Python systems already use C/C++/Rust extensions for hotvpaths and native modules, multiprocessing, async I/O
-In other words, Python is often the control plane - not the execution engine.
+1.  The Statistical Gravity of Training Data: LLMs don't "know" languages; they learn patterns. Python and JavaScript dominate the training sets. When you ask for a React component, the AI is operating in a dense, well-mapped city. When you ask it to invent a custom C++ runtime, you're asking it to guide you through a dark forest where even the AI hasn't been before.
+2.  The "Reviewer's Nightmare" Effect: If AI generates a custom framework for you, congratulations—you are now the only person on Earth who knows how it works. You've traded a well-known ecosystem for a private archaeological site that your colleagues (and your future self) will have to painstakingly reverse-engineer.
+3.  The Complexity Tax: Most systems aren't CPU-bound; they are bound by network latency, databases, and human error. Moving from Python to Rust doesn't magically fix a slow database query, but it *does* force you to pay the "complexity tax" of memory safety and low-level management where it might not be needed.
+4.  Verification is the New Typing: In an AI-driven world, the bottleneck isn't getting characters into the editor. It's ensuring the resulting binary doesn't explode in production. Frameworks are "pre-paid cognitive infrastructure"—they provide the safety rails that AI-generated code desperately needs.
 
-4. AI doesn't eliminate architecture
+The real takeaway? AI didn't kill the framework. It amplified its necessity. The more code we can generate, the more we need the "prior art" of millions of existing projects to keep us sane.
 
-Even if agents write code, humans still:
-
-* design system boundaries
-* define SLAs
-* ensure observability
-* manage reliability
-* review correctness
-* handle production incidents
-
-Language ecosystems affect debugging, profiling, introspection, and operational tooling. These don't disappear with AI.
-
-5. Full stack change is usually a bad idea
-Rewriting entire stacks for theoretical gains is historically one of the most expensive mistakes in software engineering.
-Unless:
-* You have measurable scaling pain
-* You hit language-level constraints that cannot be mitigated
-* You are building something fundamentally CPU-bound or latency-critical
-A complete migration rarely pays off.
-Most successful systems evolve incrementally:
-Keep Python. Introduce Go/Java/Rust where needed. Carve out high-performance services. Isolate bottlenecks
----
-6. Risk vs theoretical optimization
-Optimizing for performance "just because AI writes the code" ignores:
-integration cost
-migration risk
-operational stability
-team productivity
-hiring pipeline
-Mature stacks win because they reduce uncertainty.
-
-The real answer
-Language choice isn't only about raw performance or theoretical safety.
-
-It's about:
-* ecosystem maturity
-* hiring market
-* interoperability
-* deployment model
-* long-term maintenance
-
-And right now, Python still sits at the center of AI infrastructure. That gravitational pull matters more than the marginal performance gain of switching to Java or Go.
-
-AI changes how we write code.
-
-It doesn't eliminate economics, inertia, or systems engineering reality.
+Read the full article here: [If AI can generate any language, why don't we write everything in C++/Rust?](articles/drafts/why-not-to-write-native.md)
