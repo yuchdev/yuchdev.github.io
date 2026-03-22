@@ -250,9 +250,10 @@ Prohibition historically creates parallel markets - from alcohol to software pir
 
 ## 4. Speaking of alcohol: why the analogy is imperfect
 
-The comparison sounds intuitive.
+The comparison sold us as something that sounds intuitive.
 
 > "We regulate alcohol. So regulate social media."
+
 But the analogy breaks down quickly.
 
 ### 🍺 Alcohol
@@ -287,9 +288,11 @@ To enforce age, you likely create identity-linked digital access, which fundamen
 ## 6. The real question is deeper
 
 The real trade-off isn't:
+
 > Kids safety vs freedom.
 
 The real trade-off is:
+
 > Child protection vs digital anonymity infrastructure.
 
 If enforcement requires:
@@ -297,6 +300,7 @@ If enforcement requires:
 * biometric verification
 * national digital IDs
 * centralized authentication systems
+
 Then society must openly admit that we are not just protecting children - we attempt to change the architecture of the internet, and is not a small shift.
 
 ---
@@ -322,7 +326,7 @@ Less prohibition - more friction.
 
 You want safety for your children. You want to protect them from violence, manipulation, sexualized content, predatory behavior and the darker corners of the internet. 
 That instinct is natural, there's nothing political in it.
-It is something much simpler: you want the world to stay safe for them a little longer.
+It is something much simpler: you want the world to stay safe for your little ones a little longer.
 
 But as a software engineer, I also know something uncomfortable: *the enforcement tool matters as much as the intention behind it.*
 
