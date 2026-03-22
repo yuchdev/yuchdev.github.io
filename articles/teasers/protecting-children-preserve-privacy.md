@@ -1,6 +1,8 @@
+PROTECT CHILDREN, PRESERVE PRIVACY, INTERNET FREEDOM: PICK TWO
+
 Kids are incredible.
 
-They learn things frighteningly fast. Give a child a phone and in minutes they know how to install apps, skip ads, and find exactly what they want.
+They learn things frighteningly fast. Give a child a phone, and in minutes they know how to install apps, skip ads, and find exactly what they want.
 
 They are equally good at two things:
 Learning technology - and hiding how they use it from parents.
@@ -23,7 +25,6 @@ There are only a few real options:
 - Device-level controls - easy to bypass
 - ISP blocking - welcome to the VPN era
 - Mandatory OS-level controls - entry to the surveillance state from the back door
-
 
 The only solution that actually works at scale is identity verification.
 
@@ -76,9 +77,10 @@ Because if the answer is:
 – digital ID
 – biometric verification
 – centralized access control
+- turning your OS into an ultimate authority
 
-Then we are not just protecting kids - we protecting these vulnerable and centralized systems.
-And we are protecting our right to privacy (Granted to you by the UN Declaration of Human Rights)
+Then we are not just protecting kids - we're protecting these vulnerable and centralized systems.
+And we are protecting our right to privacy (Granted to you by the UN Declaration of Human Rights).
 And we are changing how the internet works.
 
 Of course, as a father of a 4-year-old, I want safety.
