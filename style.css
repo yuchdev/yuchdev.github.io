@@ -794,6 +794,15 @@ ul.projects p {
 
 /* Responsive adjustments for search and featured */
 @media (max-width: 640px) {
+    main section {
+        margin: 0.5em;
+        padding: 0.5em;
+    }
+
+    .blog-article {
+        padding: 1em 0.5em;
+    }
+
     #blog-search {
         max-width: 100%;
     }

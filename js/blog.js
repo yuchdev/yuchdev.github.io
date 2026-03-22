@@ -903,8 +903,8 @@ async function getCachedMarkdown(slug, date, file) {
                 continue;
             }
 
-            // Unordered list items (- item)
-            const listMatch = trimmedLine.match(/^-\s+(.+)$/);
+            // Unordered list items (- item or * item)
+            const listMatch = trimmedLine.match(/^[*-]\s+(.+)$/);
             if (listMatch) {
                 if (currentParagraph.length > 0) {
                     result.push(`<p>${currentParagraph.join('<br>')}</p>`);

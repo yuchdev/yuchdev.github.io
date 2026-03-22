@@ -36,6 +36,7 @@ Everyone knows it doesn't work.
 ### B) ID-based age verification
 
 You upload:
+
 * passport
 * national ID
 * facial scan
@@ -69,6 +70,7 @@ But systems have a tendency to evolve.
 Another approach is pushing responsibility onto device vendors.
 
 For example:
+
 * require age-linked Apple/Google/whatever accounts
 * restrict app installation under a certain age
 * enforce parental control gates
@@ -112,9 +114,9 @@ History shows something interesting:
 Sometimes dramatically.
 Not in schools. In your kids' bedrooms.
 
-### E) OS-level mandatory age verification (the "trust your device" model)
+### E) OS-level mandatory age verification
 
-One of the more radical and frankly outrageous ideas already appearing in legislation discussions (including the law in California) is:
+One of the more radical and frankly outrageous ideas already appearing in legislation (including the controversial law in California) is:
 
 * require operating systems to verify the user's age at the system level
 * expose that information to apps via a trusted API
@@ -187,7 +189,7 @@ What starts as child protection can evolve into a generalized access control lay
 
 ##### 4. The Linux paradox
 
-Even ecosystems historically built on freedom and modularity are not immune.
+Even ecosystems historically built for freedom, privacy and modularity is not immune.
 
 If such mechanisms become part of core components:
 
@@ -272,6 +274,7 @@ No database tracks what you thought, said, liked, or read.
 ## 5. Social media is fundamentally different
 
 Social media is:
+
 * an ongoing identity-bound service
 * a system of continuous behavioral tracking
 * a platform where speech, opinions and social interaction occur
