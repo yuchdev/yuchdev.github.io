@@ -305,7 +305,7 @@ Evidence suggests other approaches may be more effective:
 * regulating addictive recommendation algorithms for minors
 * default screen time limits
 * platform liability for harmful targeting
-* strong parental tools that *do not rely on centralized identity tracking*
+* strong parental control tools that *do not rely on centralized identity tracking*
 * digital literacy education in schools
 * delayed smartphone ownership norms
 

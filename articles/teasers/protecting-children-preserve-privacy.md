@@ -22,6 +22,8 @@ There are only a few real options:
 - ID verification - effective, but kills anonymity
 - Device-level controls - easy to bypass
 - ISP blocking - welcome to the VPN era
+- Mandatory OS-level controls - entry to the surveillance state from the back door
+
 
 The only solution that actually works at scale is identity verification.
 
@@ -88,7 +90,7 @@ THE ARCHITECTURE INTRODUCED TO PROTECT CHILDREN WON'T STAY LIMITED TO CHILDREN
 Maybe the answer is less about prohibition - and more about friction:
 
 – safer algorithms
-– better parental tools
+– better parental control tools
 – education
 – delayed exposure
 
