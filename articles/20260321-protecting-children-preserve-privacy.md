@@ -18,11 +18,11 @@ It's appropriate to ask the question: **how exactly are they going to enforce it
 
 ---
 
-# 1. How could governments realistically control it?
+## 1. How could governments realistically control it?
 
 There are only a few technical options.
 
-## A) Self-declared age (current model)
+### A) Self-declared age (current model)
 
 * "Enter your birthdate"
 * The digital equivalent of a pinkie promise
@@ -33,7 +33,7 @@ Everyone knows it doesn't work.
 
 ---
 
-## B) ID-based age verification
+### B) ID-based age verification
 
 You upload:
 * passport
@@ -64,7 +64,7 @@ But systems have a tendency to evolve.
 
 ---
 
-## C) Device-level enforcement (OS controls)
+### C) Device-level enforcement
 
 Another approach is pushing responsibility onto device vendors.
 
@@ -85,11 +85,11 @@ But still easy to bypass:
 Teenagers are remarkably inventive when motivated.
 And prohibition is a **very strong motivator.**
 
-Give them a restriction and within a week they will invent a tutorial, a workaround, and a Discord server explaining both.
+Give them a restriction, and within a week they will invent a tutorial, a workaround, and a Discord server explaining both.
 
 ---
 
-## D) ISP-level blocking
+### D) ISP-level blocking
 
 Governments could require:
 
@@ -112,9 +112,107 @@ History shows something interesting:
 Sometimes dramatically.
 Not in schools. In your kids' bedrooms.
 
+### E) OS-level mandatory age verification (the "trust your device" model)
+
+One of the more radical and frankly outrageous ideas already appearing in legislation discussions (including the law in California) is:
+
+* require operating systems to verify the user's age at the system level
+* expose that information to apps via a trusted API
+* block or restrict apps based on that OS-level age signal
+
+According to the system designers, this sounds like "verify once - enforce everywhere"
+
+In practice, it quietly introduces a number of security and privacy risks.
+
+First - your OS becomes an identity gatekeeper.
+
+Not just a device anymore, but a system that must:
+
+* know who you are
+* persist that information
+* expose it to third-party software
+
+Which means:
+
+* a standardized, always-on identity layer
+* a new class of APIs for "who is using this device"
+* a powerful control point sitting below all applications
+
+At this point, the idea of embedding policy-driven user identity handling into low-level Linux components (like already did `systemd`) sparked strong backlash from the open-source community, precisely because it represented a fundamental shift in the role of this operating system.
+
 ---
 
-# 2. The "secret network" problem
+#### Where it can go wrong
+
+Like most "clean" centralized solutions, failure modes are subtle - and ugly.
+
+##### 1. Misclassification
+
+* adult locked out due to incorrect age detection (as usual, it happens in a critical moment)
+* child incorrectly marked as adult
+* no clear recovery path without submitting even more personal data
+
+Now your operating system becomes a bureaucratic authority.
+
+---
+
+##### 2. Device sharing reality
+
+Real life is messy:
+
+* family tablets
+* shared laptops
+* second-hand devices
+* developer machines used by multiple people
+
+An OS that assumes a single verified identity per device will constantly be wrong.
+
+---
+
+##### 3. API abuse and scope creep
+
+Once apps can query:
+
+> "Is this user above X age?"
+
+It's only a small step toward:
+
+* "Is this user verified?"
+* "Is this user allowed to post?"
+* "Is this user compliant with policy Y?"
+
+What starts as child protection can evolve into a generalized access control layer for the internet.
+
+---
+
+##### 4. The Linux paradox
+
+Even ecosystems historically built on freedom and modularity are not immune.
+
+If such mechanisms become part of core components:
+
+* distributions inherit them by default
+* opting out becomes non-trivial
+* compliance pressure replaces user choice
+
+That shift - from *user-controlled system* to *policy-enforced platform* - is exactly what many developers tried to avoid for decades.
+
+---
+
+#### The uncomfortable part
+
+This model is technically attractive because it centralizes control.
+
+And that is precisely the problem.
+
+It doesn't just regulate access to content -
+it **redefines the role of the operating system**:
+
+> From tool - to authority.
+
+---
+
+## 2. The "secret network" problem
 
 When something becomes forbidden:
 
@@ -132,7 +230,7 @@ A ban might not eliminate exposure. It might simply push it into darker, less mo
 
 ---
 
-# 3. Gray market devices
+## 3. Gray market devices
 
 Yes - this would happen.
 If official devices require strict age-linked verification, the market will respond in predictable ways.
@@ -148,7 +246,7 @@ Prohibition historically creates parallel markets - from alcohol to software pir
 
 ---
 
-# 4. Speaking of alcohol: why the analogy is imperfect
+## 4. Speaking of alcohol: why the analogy is imperfect
 
 The comparison sounds intuitive.
 
@@ -171,18 +269,19 @@ No database tracks what you thought, said, liked, or read.
 
 ---
 
-# 5. Social media is fundamentally different
+## 5. Social media is fundamentally different
 
 Social media is:
 * an ongoing identity-bound service
 * a system of continuous behavioral tracking
 * a platform where speech, opinions and social interaction occur
 * dependent on persistent accounts
+
 To enforce age, you likely create identity-linked digital access, which fundamentally changes anonymity norms So the analogy fails because alcohol control regulates transaction access, and social media control regulates speech access. That's a constitutional and philosophical difference.
 
 ---
 
-# 6. The real question is deeper
+## 6. The real question is deeper
 
 The real trade-off isn't:
 > Kids safety vs freedom.
@@ -199,7 +298,7 @@ Then society must openly admit that we are not just protecting children - we att
 
 ---
 
-# 7. What might actually work better?
+## 7. What might actually work better?
 
 Evidence suggests other approaches may be more effective:
 
@@ -214,9 +313,9 @@ Less prohibition - more friction.
 
 ---
 
-# 8. As a father of a 4-year-old
+## 8. As a father of a 4-year-old
 
-...who already knows how to unlock my phone faster than I do, I completely understand the instinct.
+...who already knows how to unlock my phone faster than I do and even type the year of my birth in parental control, I completely understand the instinct.
 
 You want safety for your children. You want to protect them from violence, manipulation, sexualized content, predatory behavior and the darker corners of the internet. 
 That instinct is natural, there's nothing political in it.
@@ -224,10 +323,8 @@ It is something much simpler: you want the world to stay safe for them a little 
 
 But as a software engineer, I also know something uncomfortable: *the enforcement tool matters as much as the intention behind it.*
 
-If the solution requires building a permanent digital identity infrastructure,
-the cure may quietly become worse than the disease.
-Because infrastructures, once built, rarely disappear and easily can be reused.
+If the solution requires building a permanent digital identity infrastructure, the cure may quietly become worse than the disease. Because infrastructures, once built, rarely disappear and easily can be reused.
 
 And if history already taught us something, it is:
 
-> Limitations built for children rarely stays limited to children. Eventually, they becomes limitations for everyone.
+> Limitations built for children rarely stays limited to children. Eventually, they become limitations for everyone.
