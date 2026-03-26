@@ -75,9 +75,13 @@ For example:
 * restrict app installation under a certain age
 * enforce parental control gates
 
-This is more practical.
+There are already real-world attempts to go further - for example, a law in France to restrict or ban social media access for minors.
 
-But still easy to bypass:
+In practice, such bans don't exist in a vacuum. They must rely on one (or a combination) of technical device and platform enforcement layers.
+
+From the point of authorities, this is more practical.
+
+But still easy to bypass if your child have such an urgent need: 
 
 * older siblings may have an account and kind heart
 * second-hand device may be sold without the clean reset 
@@ -88,6 +92,12 @@ Teenagers are remarkably inventive when motivated.
 And prohibition is a **very strong motivator.**
 
 Give them a restriction, and within a week they will invent a tutorial, a workaround, and a Discord server explaining both.
+
+Which means after kids find answers to their questions, parents still scratch their heads on another one:
+
+> *where exactly do they enforce it - and who is the gatekeeper?*
+
+Because once that gatekeeper exists, it rarely stays limited to a single use case.
 
 ---
 
@@ -113,6 +123,8 @@ History shows something interesting:
 
 Sometimes dramatically.
 Not in schools. In your kids' bedrooms.
+
+---
 
 ### E) OS-level mandatory age verification
 
@@ -230,9 +242,68 @@ Teenagers are extremely good at:
 
 A ban might not eliminate exposure. It might simply push it into darker, less moderated spaces - which is worse in most cases.
 
+### Real-world example: France-style blanket bans
+
+Take the France that has been actively imposing restrictions on social media access for younger users - sometimes framed as bans below a certain age or requiring parental consent.
+
+On paper, this sounds straightforward:
+
+> *"Just don't allow minors to use social media."*
+
+In practice, blanket bans tend to collide with reality in interesting ways.
+
 ---
 
-## 3. Gray market devices
+### Where it may go wrong
+
+#### 1. False positives (the "you are not you" problem)
+
+Facial recognition or automated checks may fail:
+
+* adults misclassified as minors → locked out
+* minors misclassified as adults → bypass restrictions
+
+Both cases happen - just not symmetrically.
+
+---
+
+#### 2. The shared-device problem
+
+Families don't live in clean technical models:
+
+* one tablet for everyone
+* parents' phones used by children
+* logged-in accounts reused
+
+A system that assumes "one person = one device = one identity" will constantly break.
+
+---
+
+#### 3. Platform migration (the Hydra effect)
+
+Restriction on mainstream platforms doesn't remove behavior:
+
+* kids move to less regulated platforms
+* private groups, invite-only servers, obscure apps
+* less moderation - higher risk
+
+The visible layer becomes cleaner. The hidden layer becomes darker.
+
+---
+
+#### 4. Incentivized deception
+
+If access is blocked, the incentive structure changes:
+
+* lying becomes the default path
+* workarounds become social currency
+* bypass guides spread faster than official rules
+
+The system unintentionally teaches exactly the opposite of what it tries to enforce.
+
+---
+
+## 3. Gray market will explode
 
 Yes - this would happen.
 If official devices require strict age-linked verification, the market will respond in predictable ways.
@@ -272,7 +343,7 @@ No database tracks what you thought, said, liked, or read.
 
 ---
 
-## 5. Social media is fundamentally different
+### Social media is fundamentally different
 
 Social media is:
 
@@ -285,7 +356,7 @@ To enforce age, you likely create identity-linked digital access, which fundamen
 
 ---
 
-## 6. The real question is deeper
+## 5. The real question is deeper
 
 The real trade-off isn't:
 
@@ -305,7 +376,7 @@ Then society must openly admit that we are not just protecting children - we att
 
 ---
 
-## 7. What might actually work better?
+## 6. What might actually work better?
 
 Evidence suggests other approaches may be more effective:
 
@@ -320,7 +391,7 @@ Less prohibition - more friction.
 
 ---
 
-## 8. As a father of a 4-year-old
+## 7. As a father of a 4-year-old
 
 ...who already knows how to unlock my phone faster than I do and even type the year of my birth in parental control, I completely understand the instinct.
 
