@@ -1,27 +1,28 @@
-# Why I Don't Believe in Rewriting Software
+# Part I. Why I Don't Believe in Rewrites
 
-*Rewrites are rarely technical decisions. They're psychological ones - the software equivalent of declaring bankruptcy and starting life over in another city.*
+Every few years, the industry rediscovers the same idea and presents it as progress:
 
-Every few years, the industry rediscovers the same idea and treats it like progress:
+> “This system is old. We should rewrite it”
 
-> "This system is old. We should rewrite it."
+It sounds responsible. Even courageous.
 
-It sounds responsible. Even brave.
-And it is almost always wrong.
+But before we dive deeper, I need to say something important: software rewrites are almost never purely technical decisions. Technical arguments may play a role, but they are usually just bishops and rooks in a much larger political chess game.
 
-This article is about **why rewrites keep failing**, even in organizations with:
+Eventually, the rewrite faction declares checkmate. The papers are signed, budgets approved, presentations delivered, and entire armies of developers, QAs, analysts, architects, and managers roll up their sleeves and get to work.
 
-* unlimited budgets,
-* top-tier engineers,
-* analysts, architects, and risk managers,
-* brand-new hardware,
-* and executive sponsorship.
+And yet, no matter how many sleeves are rolled up, statistically, rewrites keep failing - even when backed by:
+
+* seemingly unlimited budgets
+* top-tier engineers
+* architects, analysts, and risk managers
+* brand-new infrastructure
+* and full executive sponsorship
 
 The central example is a **risk management system in an investment bank** - the kind of system where failure doesn't mean "downtime", but **real money and real consequences**.
 
-Spoiler: it didn't work out.
+*Guess if it worked out.*
 
-After years of effort, the bank quietly went back to the **20-year-old "legacy" system** that everyone initially wanted to kill.
+Long story short, after years of effort, the bank quietly went back to the **20-year-old "legacy" system** that everyone initially wanted to kill.
 
 Let's talk about why that outcome is not an accident.
 
@@ -34,7 +35,7 @@ Rewrites usually start with a clean narrative:
 * "The architecture is outdated"
 * "The code is messy"
 * "Nobody understands it anymore"
-* "We can't hire for this stack"
+* "We can't hire for this stack anymore"
 * "Modern hardware will compensate"
 * "We'll design it properly this time"
 
@@ -47,6 +48,7 @@ Somewhere in a slide deck, two columns appear:
 * Ugly code
 * Tribal knowledge
 * Risky
+* Total: cost of support
 
 ### New System
 
@@ -55,10 +57,11 @@ Somewhere in a slide deck, two columns appear:
 * Easier hiring
 * Better correctness
 * Lower long-term cost
+* Total: cost of implementation
 
 At the end of the deck, a sentence appears:
 
-> "When the cost of maintaining the legacy system exceeds the cost of rewriting…"
+> "When the cost of maintaining the legacy system exceeds the cost of rewriting..."
 
 This sentence sounds precise. It even looks good in a slide deck.
 
@@ -72,6 +75,8 @@ Here's the uncomfortable truth:
 
 **Rewrite decisions are not based on estimates.**
 
+At least not on realistic ones.
+
 They are made under uncertainty, using proxies, heuristics, and political pressure.
 
 Let's break this down.
@@ -83,7 +88,7 @@ Legacy systems hurt in ways people can feel - not in spreadsheets, but at 3 am:
 * Pager fatigue
 * Build systems older than some junior developers
 * Onboarding measured in geological time
-* "Don't touch unless the building is on fire" modules
+* "Don't touch unless the building is on fire" principle
 * Entire teams practicing fear-driven development
 
 These costs are **present, emotional, and constant**.
@@ -121,9 +126,9 @@ Let's walk through how the rewrite of a risk system typically develops.
 ### Stage 1: The Pompous Beginning
 
 * Executive sponsorship secured
-* Big-name engineers hired
+* Big-name engineers hired or transfered
 * Analysts model risk flows
-* New hardware ordered
+* New top hardware ordered
 * Architecture diagrams look beautiful
 
 The language changes:
@@ -142,10 +147,10 @@ Morale is high.
 Early prototypes work - in isolation.
 Then real constraints show up:
 
-* market bursts,
-* end-of-day spikes,
-* pathological portfolios,
-* regulatory reporting windows.
+* market bursts
+* end-of-day spikes
+* pathological portfolios
+* regulatory reporting windows
 
 Latency assumptions crack.
 
@@ -161,10 +166,10 @@ People say:
 The new system is fed real data.
 Discrepancies appear:
 
-* slight risk mismatches,
-* delayed calculations,
-* unexplained spikes,
-* "rare" scenarios that suddenly aren't rare.
+* slight risk mismatches
+* delayed calculations
+* unexplained spikes
+* "rare" scenarios that suddenly aren't rare
 
 Someone says:
 
@@ -199,13 +204,14 @@ Legacy systems survive because they are shaped by production:
 * Data distributions trained the code
 * Abstractions were violated where needed
 * Cache lines mattered - even if nobody documented why
+* Ugly hacks are tolerated as long as they boost the performance
 
 The rewrite:
 
-* assumes "reasonable" workloads,
-* reintroduces abstraction overhead,
-* trusts frameworks too much,
-* assumes hardware behaves politely.
+* assumes "reasonable" workloads
+* reintroduces abstraction overhead
+* trusts frameworks too much
+* assumes hardware behaves politely
 
 Finance doesn't reward politeness.
 
@@ -226,7 +232,7 @@ You cannot model it.
 You can only **inherit it**.
 
 Rewrites don't lose code -
-they lose **institutional memory**.
+they lose **institutional memory**. And only the system itself posesses this knowledge.
 
 ---
 
@@ -237,7 +243,7 @@ Even with top engineers and analysts, rewrites fail because:
 ### ❌ Software Is Treated Like Construction
 
 Software is not a building you demolish and rebuild.
-It's closer to a coral reef - layers accumulated over years, inhabited by living organisms under selective pressure.
+It's closer to a coral reef - layers accumulated over years, inhabited by all sorts of living organisms under selective pressure.
 
 ### ❌ Behavioral Coupling Is Ignored
 
@@ -260,22 +266,22 @@ Until it doesn't.
 
 Quietly.
 
-Deadlines slip.
+6-12 before the end:
 
-Scope narrows.
-
-"Temporary" bridges become permanent.
-
-The legacy system stays online "just in case".
+* Deadlines slip
+* Scope narrows
+* "Temporary" bridges become permanent
+* The legacy system stays online "just in case"
 
 Then one day:
-* traffic is shifted back,
-* the old system becomes "authoritative" again,
-* the rewrite is rebranded as "support tooling".
+
+* Traffic is shifted back
+* The old system becomes "authoritative" again
+* The rewrite is rebranded as "support tooling"
 
 No postmortem.
+
 No press release.
-Just institutional silence.
 
 ---
 
@@ -293,8 +299,8 @@ Notice the keyword: **sometimes**.
 
 Either:
 
-* same language, new architecture, or
-* same architecture, new language
+* Same technical stack, new architecture, or
+* Same architecture, new technical stack
 
 Never both.
 
@@ -317,9 +323,9 @@ That familiar sentence again:
 Those costs are unknowable in advance.
 So what actually happens is:
 
-* someone believes the rewrite must be true,
-* someone needs it to be true,
-* someone sells the narrative.
+* Someone believes the rewrite must be true
+* Someone needs it to be true
+* Someone sells the narrative
 
 Reality always arrives later.
 
@@ -332,10 +338,10 @@ They fail because **legacy systems are optimized for reality, not correctness**.
 
 And once a system has survived:
 
-* real users,
-* real money,
-* real outages,
-* real regulators,
+* real users
+* real money
+* real outages
+* real regulators
 
 ...it contains knowledge that cannot be specified.
 Only inherited.
@@ -345,12 +351,7 @@ That's experience speaking.
 
 ---
 
-Alright, let's write **Part II** as a companion article - lighter tone, still sharp, titled around the idea of
-**"Okay, I'll make it right"** 😄
-
----
-
-# "Fine. I'll Make It Right."
+# Part II. "Fine, I'll Make It Right."
 
 ## When Rewrites *Actually* Work (and Why That's Rare)
 
@@ -358,15 +359,16 @@ After writing *Why I Don't Believe in Rewriting Software*, a predictable reactio
 
 > "Sure, rewrites fail - but **I've seen ones that worked**."
 
-Same.
+I've actually seen the same.
 
 They exist.
 
-They're just nothing like the rewrites people usually mean.
+They're just nothing like the "rewrites" people usually mean.
 This article is about **what successful rewrites actually look like** - and why calling them "rewrites" is often misleading.
 
 ---
-## Case 1: The Same Risk System - This Time With Patience
+
+## Case 1: This Time With Patience
 
 Same domain.
 Same terrifying, decades-old risk management system.
@@ -375,22 +377,31 @@ Different mindset.
 
 ### Step 1: No Rewrite. One System.
 
-The first key decision was boring but crucial:
+The first major decision sounds almost disappointingly conservative - but crucial:
 
-> There will be **one system**.
+> There will always be **only one system**.
 
-No parallel greenfield replacement.
-No "new platform" running in shadow.
-Everything happens **inside** the existing system.
+* No parallel greenfield replacement
+* No "new platform" running in shadow
+* No years-long divergence between "legacy" and "future"
+* Everything happens **inside** the existing system
+
+Because the moment you maintain two systems in parallel, you also create two sources of truth, two operational realities, two sets of bugs, and eventually two competing political camps inside the organization.
+
+Do not split reality in half.
 
 ---
 
 ### Step 2: Decouple Without Deleting
 
 Instead of ripping code out, engineers started doing something slower and harder:
-* patiently isolating responsibilities,
-* carving out *actual* modules,
-* defining real APIs around behavior that already existed.
+
+* Patiently isolating responsibilities intertwined for years
+* extracting real modules from accidental ones
+* Defining stable APIs around behavior that already existed
+* Cover every critical path (and I mean it) with regression tests
+
+Not because testing is fashionable, but because once you start changing internals of a live production system, undocumented behavior becomes your biggest enemy.
 
 The code stayed ugly for a long time.
 But suddenly, some parts had **edges**.
@@ -400,61 +411,69 @@ That's progress.
 
 ### Step 3: Multiple Implementations, Same Interface
 
-Once a module had a stable API, something interesting became possible:
+Once a module had a stable API, something powerful became possible.
 
-* keep the old implementation,
-* introduce a new one behind the same interface,
-* switch between them **at runtime or per release**.
+The team no longer had to choose between "keep the old system" and "rewrite everything." They could do both simultaneously:
 
-Not for heroics.
+* Keep the old implementation
+* Introduce a new one behind the same interface
+* Switch between them **at runtime**
+* Compare behavior under real workloads
+* Roll back instantly if necessary
 
-For **measurement**.
+This changes the entire risk profile.
 
-Discrepancies were logged, analyzed, explained.
-Nothing was deleted until it was boring.
+A rewrite is no longer a giant irreversible migration event. It becomes a controlled engineering experiment.
 
 ---
 
 ### Step 4: Bottlenecks First, Beauty Later
 
-Instead of "clean architecture", the focus was ruthless:
+The priority was never “clean architecture.”
 
-* isolate hot paths,
-* understand why they're hot,
-* measure before touching,
-* optimize before abstracting.
+The priority was survival under real load.
+
+So the engineering approach became almost brutally pragmatic:
+
+* Isolate hot paths
+* Understand why they're hot
+* Measure before touching
+* Optimize before abstracting
+* Remove complexity only when reality proves it unnecessary
 
 Some bottlenecks turned out to be architectural.
 Others were data-related.
-A few were "this looks insane but saves 40% latency".
+A few were "this looks insane but saves 40% latency."
 
-Those stayed.
+Those pieces stayed.
 
 ---
 
-### Step 5: New Tech - Carefully, Late
+### Step 5: New Tech - Carefully and Slow
 
 Only after years of refactoring muscle memory did new tech appear:
 
-* newer language features,
-* better concurrency primitives,
-* improved tooling.
+* Newer language features
+* Safer concurrency primitives
+* Improved tooling and observability
+* Better testing and deployment infrastructure
 
-Introduced locally.
-Measured continuously.
-Never all at once.
-No launch party.
-But real progress.
+But none of it arrived through a giant migration initiative.
+
+New technology was introduced gradually. Locally. Under measurement. Behind stable interfaces. One subsystem at a time.
+
+Just slow, measurable progress.
 
 ---
 
-### Why This Worked
+### Why This Actually Worked
 
-Because it wasn't a rewrite.
+Because it was never treated as a rewrite.
 
 It was **continuous inheritance**.
 
-The system never lost contact with reality.
+The system evolved without severing itself from production reality. Without discarding operational knowledge. Without betting the company on a multi-year engineering gamble.
+At every moment, the software remained alive, tested, deployed, and exposed to real users - and that changed everything.
 
 ---
 
@@ -483,27 +502,27 @@ Java's `double` is not.
 
 Suddenly:
 
-* rounding errors appear,
-* reconciliations don't match,
-* auditors get nervous.
+* Rounding errors appear
+* Reconciliations don't match
+* Auditors get nervous
 
 Result:
 
-* custom fixed-point libraries,
-* explicit scale everywhere,
-* performance costs nobody planned for.
+* Custom fixed-point libraries
+* Explicit scale everywhere
+* Performance costs nobody planned for
 
 ---
 
 ### Then Came the Hidden Traps
 
-Typical COBOL → Java surprises:
+Typical COBOL-to-Java surprises:
 
-* implicit record layouts vs explicit object graphs
-* batch-oriented logic vs request-driven execution
-* "impossible" states that happen daily
-* reliance on file ordering guarantees
-* overnight jobs that assume time stands still
+* Implicit record layouts vs explicit object graphs
+* Batch-oriented logic vs request-driven execution
+* "Impossible" states that happen daily
+* Reliance on file ordering guarantees
+* Overnight jobs that assume time stands still
 
 Each one required:
 
@@ -514,7 +533,7 @@ Each one required:
 Budgets grew.
 Deadlines slipped.
 
-Ot happens more than once.
+It happened more than once.
 
 ---
 
@@ -524,15 +543,16 @@ Define success carefully.
 
 The system:
 
-* eventually replaced the COBOL one
-* passed audits
-* kept the business running
+* Eventually replaced the COBOL one
+* Passed audits
+* Kept the business running
 
 But:
 
-* it cost several times the original estimate
-* took years longer
-* and never became "simple"
+* It cost several times the original estimate
+* Took years longer
+* And never became "simple"
+
 It survived - because failure wasn't allowed.
 
 That's not a success story you can generalize.
@@ -543,11 +563,11 @@ That's not a success story you can generalize.
 
 If you strip the romance away, successful rewrites share traits:
 
-* they move **slowly**,
-* they keep production feedback at all times,
-* they privilege equivalence over elegance,
-* they treat legacy behavior as *truth*, not a bug,
-* they accept higher cost as the price of safety.
+* They move **slowly**
+* They keep production feedback at all times
+* They privilege equivalence over elegance
+* They treat legacy behavior as *truth*, not a bug
+* They accept higher cost as the price of safety
 
 They are closer to **system transplantation** than rebuilding.
 
