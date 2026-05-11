@@ -1,7 +1,7 @@
 # Vibe-Coding from the Engineering Perspective: A Horror Story
 
 I can tell a story about a vibe-coding experiment from an engineering perspective.
-It starts like a productivity miracle, and ends like a horror story - just like any story about vibe-coding.
+It starts like a productivity miracle and ends like a horror story - just like any story about vibe-coding.
 
 I asked an AI agent to write a game, and I asked for all the "grown-up" things too: documentation per component, ADRs, and a full test suite - unit tests for logic, mocks for boundaries, integration for the wiring. And I made one rule: I would not look at the code, only at errors. No architecture reviews. No "wait, why is this class doing that?" I wanted the pure experiment: can vibe-coded momentum outrun engineering gravity?
 
@@ -16,7 +16,7 @@ Then, under a fanfare, I revealed the code.
 
 It was a horror story written in perfect grammar.
 
-A pseudo-organized horrific mess: clean docstrings and neat formatting wrapped around an architecture that didn't exist. The ADRs read like a thoughtful team's decisions - and the implementation read like a desperate person crawling through air ducts.
+A pseudo-organized horrific mess: clean docstrings and neat formatting wrapped around an architecture that didn't exist. The ADRs read like a thoughtful team's decisions - and the implementation reads like a desperate person crawling through air ducts.
 
 Encapsulation was "in name only." Classes that should never touch each other were hacking into internal state like burglars. "Temporary" hacks were permanent load-bearing beams. There were huge slabs of code that did *absolutely nothing* - functions called for side effects that never happened, values computed and discarded, dead branches preserved like museum exhibits.
 
