@@ -10,7 +10,7 @@ They are equally talented in two areas: learning new technologies and lying to t
 So when we hand them a smartphone as the universal answer to curiosity -
 *"Google it"* - we shouldn't be surprised when they master the device faster than we master the consequences.
 
-Now governments are trying to fix the consequences.
+Now governments are trying to fix that consequences.
 
 Only about twenty years after the technology escaped the lab and moved into every kid's pocket.
 

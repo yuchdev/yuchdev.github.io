@@ -37,7 +37,7 @@ Video calls are usually better than chat or voice. Seeing colleagues improves un
 4. Maintain personal discipline.
 Even small things help - wearing business casual instead of "home mode", keeping a daily routine, creating clear mental transitions between work and rest.
 
-5. Accept the trade-offs and adapt - as engineer supposed to do during any paradigmal shift, no matter it is technology or workflow.
+5. Accept the trade-offs and adapt - as an engineer is supposed to do during any paradigmal shift, no matter it is technology or workflow.
 Remote work saves commuting time and offers flexibility. But it requires conscious structure to avoid the hidden costs.
 
 WFH is neither a miracle nor a disaster. Like many technological shifts in our industry, it simply requires new habits and new discipline. The best future probably lies somewhere in the middle - a balanced hybrid model combining flexibility with real human interaction.

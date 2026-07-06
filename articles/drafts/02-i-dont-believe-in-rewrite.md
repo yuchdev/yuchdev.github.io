@@ -22,9 +22,7 @@ The central example is a **risk management system in an investment bank** - the 
 
 *Guess if it worked out.*
 
-Long story short, after years of effort, the bank quietly went back to the **20-year-old "legacy" system** that everyone initially wanted to kill.
-
-Let's talk about why that outcome is not an accident.
+Let's talk about the outcome, and why it was not an accident.
 
 ---
 

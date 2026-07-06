@@ -4,95 +4,200 @@
     "title": "Protect Children, Preserve Privacy, Internet Freedom: Pick Two",
     "date": "20260321",
     "file": "20260321-protecting-children-preserve-privacy.md",
-    "tags": ["privacy", "security", "opinion", "internet"],
-    "display_title": false
+    "tags": [
+      "privacy",
+      "security",
+      "opinion",
+      "internet"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260321-protecting-children-preserve-privacy.webp",
+      "fullsize": "images/articles/fullsize/20260321-protecting-children-preserve-privacy.webp"
+    }
   },
   {
     "slug": "debugging-in-orbit",
     "title": "Debugging in Orbit: How to Design a Space Probe in a System Design Interview",
     "date": "20260319",
     "file": "20260319-debugging-in-orbit.md",
-    "tags": ["systemdesign", "interview", "architecture", "programming"],
-    "display_title": false
+    "tags": [
+      "systemdesign",
+      "interview",
+      "architecture",
+      "programming"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260319-debugging-in-orbit.webp",
+      "fullsize": "images/articles/fullsize/20260319-debugging-in-orbit.webp"
+    }
   },
   {
     "slug": "c-vs-cpp-performance-myth",
     "title": "C vs C++ Performance: Myth Without a Proof",
     "date": "20260312",
     "file": "20260312-c-vs-cpp-performance-myth.md",
-    "tags": ["c++", "cpp", "c", "performance"],
-    "display_title": false
+    "tags": [
+      "c++",
+      "cpp",
+      "c",
+      "performance"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260312-c-vs-cpp-performance-myth.webp",
+      "fullsize": "images/articles/fullsize/20260312-c-vs-cpp-performance-myth.webp"
+    }
   },
   {
     "slug": "lets-take-safe-by-design",
     "title": "\"Let's Take Safe-by-Design and Ordinary C++ Languages\" (from 90s ads)",
     "date": "20260308",
     "file": "20260308-lets-take-safe-by-design.md",
-    "tags": ["cpp", "c++", "rust", "security"],
-    "display_title": false
+    "tags": [
+      "cpp",
+      "c++",
+      "rust",
+      "security"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260308-lets-take-safe-by-design.webp",
+      "fullsize": "images/articles/fullsize/20260308-lets-take-safe-by-design.webp"
+    }
   },
   {
     "slug": "modern-cpp-still-stands",
     "title": "Modern C++ still stands on raw pointers",
     "date": "20260220",
     "file": "20260220-modern-cpp-still-stands.md",
-    "tags": ["cpp", "c++", "lowlevel"],
-    "display_title": false
+    "tags": [
+      "cpp",
+      "c++",
+      "lowlevel"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260220-modern-cpp-still-stands.webp",
+      "fullsize": "images/articles/fullsize/20260220-modern-cpp-still-stands.webp"
+    }
   },
   {
     "slug": "freestanding-cpp-explained",
     "title": "Freestanding C++ Explained",
     "date": "20260220",
     "file": "20260220-freestanding-cpp-explained.md",
-    "tags": ["cpp", "c++", "embedded"],
-    "display_title": false
+    "tags": [
+      "cpp",
+      "c++",
+      "embedded"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260220-freestanding-cpp-explained.webp",
+      "fullsize": "images/articles/fullsize/20260220-freestanding-cpp-explained.webp"
+    }
   },
   {
     "slug": "portfolio-is-not-decoration",
     "title": "Portfolio Is Not Decoration. It's Due Diligence.",
     "date": "20260219",
     "file": "20260219-portfolio-is-not-decoration.md",
-    "tags": ["career", "engineering"],
-    "display_title": false
+    "tags": [
+      "career",
+      "engineering"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260219-portfolio-is-not-decoration.webp",
+      "fullsize": "images/articles/fullsize/20260219-portfolio-is-not-decoration.webp"
+    }
   },
   {
     "slug": "congrats-we-optimized-away",
     "title": "Congratulations, We Optimized Away the Future!",
     "date": "20260214",
     "file": "20260214-congrats-we-optimized-away.md",
-    "tags": ["engineering", "juniors", "ai"],
-    "display_title": false
+    "tags": [
+      "engineering",
+      "juniors",
+      "ai"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260214-congrats-we-optimized-away.webp",
+      "fullsize": "images/articles/fullsize/20260214-congrats-we-optimized-away.webp"
+    }
   },
   {
     "slug": "general-cpp-knowledge",
     "title": "General C++ Knowledge",
     "date": "20260127",
     "file": "20260127-general-cpp-knowledge.md",
-    "tags": ["cpp", "c++", "interviews"],
-    "display_title": false
+    "tags": [
+      "cpp",
+      "c++",
+      "interviews"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260127-general-cpp-knowledge.webp",
+      "fullsize": "images/articles/fullsize/20260127-general-cpp-knowledge.webp"
+    }
   },
   {
     "slug": "planed-obsolescence-perfected",
     "title": "Planed Obsolescence: Perfected",
     "date": "20260120",
     "file": "20260120-planed-obsolescence-perfected.md",
-    "tags": ["apple", "obsolescence", "marketing", "ecosystem"],
-    "display_title": false
+    "tags": [
+      "apple",
+      "obsolescence",
+      "marketing",
+      "ecosystem"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260120-planed-obsolescence-perfected.webp",
+      "fullsize": "images/articles/fullsize/20260120-planed-obsolescence-perfected.webp"
+    }
   },
   {
     "slug": "ctrl-c-ctrl-candidate",
     "title": "Ctrl-C (Ctrl-Candidate)",
     "date": "20260115",
     "file": "20260115-ctrl-c-ctrl-candidate.md",
-    "tags": ["interviews", "cpp", "c++", "qt", "humor", "antipatterns"],
-    "display_title": false
+    "tags": [
+      "interviews",
+      "cpp",
+      "c++",
+      "qt",
+      "humor",
+      "antipatterns"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260115-ctrl-c-ctrl-candidate.webp",
+      "fullsize": "images/articles/fullsize/20260115-ctrl-c-ctrl-candidate.webp"
+    }
   },
   {
     "slug": "vibe-coding-from-engineering",
     "title": "Vibe-Coding from Engineering Perspective: A Horror Story",
     "date": "20260110",
     "file": "20260110-vibe-coding-from-engineering.md",
-    "tags": ["ai", "software", "engineering", "experiments", "vibecoding"],
-    "display_title": false
+    "tags": [
+      "ai",
+      "software",
+      "engineering",
+      "experiments",
+      "vibecoding"
+    ],
+    "display_title": false,
+    "image": {
+      "thumbnail": "images/articles/thumbnails/20260110-vibe-coding-from-engineering.webp",
+      "fullsize": "images/articles/fullsize/20260110-vibe-coding-from-engineering.webp"
+    }
   }
 ]

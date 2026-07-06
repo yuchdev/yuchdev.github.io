@@ -270,20 +270,29 @@ async function getCachedMarkdown(slug, date, file) {
             ? `<span class="blog-reading-time">~${readingTime} min read</span>`
             : '';
 
+        const thumbnailHtml = post.image && post.image.thumbnail
+            ? `<div class="blog-card__image"><img src="${escapeHtml(baseUrl(post.image.thumbnail))}" alt="${escapeHtml(post.title)} thumbnail"></div>`
+            : '';
+
         return `
             <article class="blog-card">
                 <h3 class="blog-card__title">
                     <a href="./article.html?slug=${escapeHtml(post.slug)}">${escapeHtml(post.title)}</a>
                 </h3>
-                <div class="blog-meta">
-                    <time datetime="${escapeHtml(formatDatetime(post.date))}">${escapeHtml(displayDate(post.date))}</time>
-                    ${tags}
-                    ${readingTimeHtml}
+                <div class="blog-card__content-wrapper">
+                    ${thumbnailHtml}
+                    <div class="blog-card__text">
+                        <div class="blog-meta">
+                            <time datetime="${escapeHtml(formatDatetime(post.date))}">${escapeHtml(displayDate(post.date))}</time>
+                            ${tags}
+                            ${readingTimeHtml}
+                        </div>
+                        <div class="blog-preview">
+                            ${previewHtml.join('\n')}
+                        </div>
+                        <a class="blog-readmore" href="./article.html?slug=${escapeHtml(post.slug)}">Continue reading →</a>
+                    </div>
                 </div>
-                <div class="blog-preview">
-                    ${previewHtml.join('\n')}
-                </div>
-                <a class="blog-readmore" href="./article.html?slug=${escapeHtml(post.slug)}">Continue reading →</a>
             </article>
         `;
     }
@@ -307,21 +316,30 @@ async function getCachedMarkdown(slug, date, file) {
         // Use a shorter preview for the featured post (first paragraph only)
         const shortPreview = previewHtml.length > 0 ? previewHtml[0] : '';
 
+        const thumbnailHtml = post.image && post.image.thumbnail
+            ? `<div class="blog-featured__image"><img src="${escapeHtml(baseUrl(post.image.thumbnail))}" alt="${escapeHtml(post.title)} thumbnail"></div>`
+            : '';
+
         return `
             <article class="blog-featured">
                 <div class="blog-featured__label">Latest Post</div>
                 <h3 class="blog-featured__title">
                     <a href="./article.html?slug=${escapeHtml(post.slug)}">${escapeHtml(post.title)}</a>
                 </h3>
-                <div class="blog-meta">
-                    <time datetime="${escapeHtml(formatDatetime(post.date))}">${escapeHtml(displayDate(post.date))}</time>
-                    ${tags}
-                    ${readingTimeHtml}
+                <div class="blog-featured__content-wrapper">
+                    ${thumbnailHtml}
+                    <div class="blog-featured__text">
+                        <div class="blog-meta">
+                            <time datetime="${escapeHtml(formatDatetime(post.date))}">${escapeHtml(displayDate(post.date))}</time>
+                            ${tags}
+                            ${readingTimeHtml}
+                        </div>
+                        <div class="blog-preview">
+                            ${shortPreview}
+                        </div>
+                        <a class="blog-readmore" href="./article.html?slug=${escapeHtml(post.slug)}">Continue reading →</a>
+                    </div>
                 </div>
-                <div class="blog-preview">
-                    ${shortPreview}
-                </div>
-                <a class="blog-readmore" href="./article.html?slug=${escapeHtml(post.slug)}">Continue reading →</a>
             </article>
         `;
     }
@@ -1003,12 +1021,17 @@ async function getCachedMarkdown(slug, date, file) {
         
         // Render article
         const titleHtml = post.display_title !== false ? `<h1>${escapeHtml(post.title)}</h1>` : '';
+        const fullsizeImageHtml = post.image && post.image.fullsize
+            ? `<div class="blog-article-image"><img src="${escapeHtml(baseUrl(post.image.fullsize))}" alt="${escapeHtml(post.title)} fullsize"></div>`
+            : '';
+
         articleEl.innerHTML = `
             ${titleHtml}
             <div class="blog-article-meta">
                 <time datetime="${escapeHtml(formatDatetime(post.date))}">${escapeHtml(displayDate(post.date))}</time>
                 <span class="blog-reading-time">~${readingTime} min read</span>
             </div>
+            ${fullsizeImageHtml}
             ${htmlContent}
         `;
     }

@@ -1,4 +1,6 @@
-# THE MOST USELESS INTERVIEW FILTER
+# The Most Useless Interview Filter
+
+## The Problem
 
 If a company relies on LeetCode-style problems as the primary interview filter, I withdraw my candidacy.
 
@@ -12,7 +14,7 @@ What I don't do is sit all day solving isolated puzzles with textbook data struc
 
 ## The Outcome
 
-As a result of such practice, the industry experience side effect nobody talks about. This hiring pattern doesn't just filter candidates - it actively reshapes the entire learning ecosystem.
+As a result of such practice, the industry experiences side effects nobody talks about. This hiring pattern doesn't just filter candidates - it actively reshapes the entire learning ecosystem.
 
 Students are rational. They optimize for what gets them hired.
 

@@ -88,6 +88,29 @@ function runTests() {
             console.log(`FAIL: File name "${article.file}" does not start with date "${article.date}"`);
             process.exit(1);
         }
+
+        // Check image paths
+        if (!article.image || !article.image.thumbnail || !article.image.fullsize) {
+            console.log(`FAIL: Article "${article.slug}" is missing image configuration.`);
+            process.exit(1);
+        }
+
+        const thumbPath = path.join(__dirname, '..', article.image.thumbnail);
+        const fullsizePath = path.join(__dirname, '..', article.image.fullsize);
+
+        if (!fs.existsSync(thumbPath)) {
+            console.log(`FAIL: Thumbnail not found for "${article.slug}": ${article.image.thumbnail}`);
+            process.exit(1);
+        } else {
+            console.log(`PASS: Thumbnail exists for "${article.slug}"`);
+        }
+
+        if (!fs.existsSync(fullsizePath)) {
+            console.log(`FAIL: Fullsize image not found for "${article.slug}": ${article.image.fullsize}`);
+            process.exit(1);
+        } else {
+            console.log(`PASS: Fullsize image exists for "${article.slug}"`);
+        }
     });
 
     console.log('\nAll tests passed successfully!');
