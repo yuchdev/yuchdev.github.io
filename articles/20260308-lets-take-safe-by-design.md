@@ -1,4 +1,4 @@
-# "Let's Take Safe-by-Design... and Ordinary C++" (from 90s ads)
+# "Let's Take Safe-by-Design Language and Ordinary C++" (from 90s ads)
 
 "C++ is under attack", "Rust is safe by design", "WG21 has 10 years" - all of these catchy headlines miss the real issue.
 

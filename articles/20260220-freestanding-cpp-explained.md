@@ -1,4 +1,5 @@
 # Freestanding C++: The Language You Already Use (Even If You Pretend You Don't)
+
 I once met an embedded developer who asked me, with genuine concern, the kind usually reserved for safety briefings and kernel panics:
 
 *"Why would I need C++? Virtual functions ruin kernel performance."*
@@ -19,16 +20,34 @@ Let's unpack what freestanding C++ actually is, how it talks to bare metal, why 
 ---
 
 ## Hosted vs Freestanding: Same Language, Different World
+
 In standard terms, C++ distinguishes between a *hosted* implementation and a *freestanding* one.
+
 A hosted implementation is what most application developers know: OS present, runtime present, full standard library expected, process model assumed. The language lives in a comfortable apartment with plumbing, heating, and internet. Freestanding C++ lives in a tent in the wilderness and has to bring its own fire.
+
 A freestanding implementation is different. It assumes little or nothing about the environment. There may be no OS, no file system, no threads, no full standard library, no dynamic loader, and in some cases barely a runtime at all.
-Freestanding entry point is different from hosted `int main(int argc, char** argv)`. It is `void main()` - you don't have any entitiy where to return the exit code.
+
+Freestanding entry point is different from hosted 
+
+```
+int main(int argc, char** argv)
+``` 
+
+It is 
+
+```
+void main()
+```
+
+You don't have any entitiy where to return the exit code.
+
 Freestanding does not mean "crippled C++" - it means C++ without the usual furniture.
 And that distinction matters, because many arguments against C++ in embedded and low-level work are really arguments against *hosted assumptions*, not against the language itself.
 
 ---
 
 ## How C++ Actually Talks to Bare Metal
+
 This part is often strangely mystical to people who have never worked below the application layer, so let's make it concrete.
 C++ does not need an OS to become machine code. The compiler still translates your code into instructions for the target CPU. The linker still places code and data into specific memory regions. The only difference is that on bare metal, *you* or your platform must provide the things an operating system would normally provide for free.
 
@@ -45,6 +64,7 @@ At the lowest level, hardware usually appears as addresses. A UART control regis
 Instead of scattering raw addresses and masks all over the program, you can expose them upward as structured interfaces: register wrappers, driver objects, interrupt guards, typed handles, state machines, or compile-time configuration objects.
 
 So the basic shape looks like this:
+
 * *Below*: raw silicon, MMIO addresses, interrupts, startup code
 * *In the middle*: low-level register access and hardware abstraction
 * *Above*: device drivers, protocol logic, control loops, business logic
@@ -53,7 +73,8 @@ The point is not that C++ magically makes hardware object-oriented. The point is
 For example, this is not "high-level fluff":
 
 ```cpp
-class Register32 {
+class Register32 
+{
 public:
     explicit Register32(std::uint32_t* addr) : addr_(addr) {}
     void write(std::uint32_t value) { *addr_ = value; }
@@ -175,11 +196,14 @@ You keep *templates* and *`constexpr`*, which are some of the strongest weapons 
 ---
 
 ## Templates: Dangerous in Excess, Brilliant in Moderation
+
 Templates in embedded are a delicate balance between flash size and optimization.
 Used carelessly, templates can absolutely bloat code. Every new instantiation may generate more machine code. Generic layers piled on generic layers can turn firmware into a cathedral of duplicate symbols.
 That criticism is real.
 But that is only half the story.
+
 Used well, templates let you move work from the device into the compiler:
+
 * precompute lookup tables
 * resolve configuration at compile time
 * eliminate runtime branches

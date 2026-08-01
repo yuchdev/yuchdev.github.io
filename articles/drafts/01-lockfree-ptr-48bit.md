@@ -308,8 +308,6 @@ That is where quality lives.
 
 ---
 
-If you want, I can also turn this into a sharper LinkedIn companion post with a more sarcastic opening and a shorter punchier ending.
-
 [1]: https://www.boost.org/doc/libs/latest/doc/html/lockfree/rationale.html "Rationale"
 [2]: https://cdrdv2-public.intel.com/671442/5-level-paging-white-paper.pdf "5-Level Paging and 5-Level EPT"
 [3]: https://docs.kernel.org/arch/arm64/memory-tagging-extension.html "Memory Tagging Extension (MTE) in AArch64 Linux - The Linux Kernel  documentation"

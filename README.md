@@ -15,6 +15,23 @@ Social:
 
 This site includes a blog with markdown-based articles. 
 Security features prevent HTML injection and malicious links.
+Articles can include thumbnails for the blog list and full-size images for the article view.
+
+### Blog Image Generation
+
+Images for articles are stored in:
+- `images/articles/thumbnails/` - 200x100 thumbnails
+- `images/articles/fullsize/` - 840x420 full-size images
+
+To generate stub images for new articles and update the manifest, use:
+```bash
+node scripts/generate_stubs.js
+node scripts/update_manifest.js
+```
+The stubs are white WebP files with a black border.
+- Full-size: 840x420
+- Thumbnail: 200x100
+Note that generating these stubs requires `cwebp` to be installed on the system.
 
 ## Overview
 

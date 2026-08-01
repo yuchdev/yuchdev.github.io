@@ -8,7 +8,7 @@ I still remember what the internet felt like 15 years ago. It wasn't perfect, bu
 
 Google used to be a tool for finding information, not a maze designed to trap you in SEO sludge and ads. It had a clean interface, real signal in search results, useful analytics, cached pages that actually helped recover lost content- and didn't feel like a surveillance product first and a search sengine second.
 
-YouTube didn't behave like a paranoid censor with a constantly shifting rulebook created in North Korean GULAG. Videos that had been perfectly fine for a decade didn't suddenly vanish because they became "offensive" to someone, somewhere, under rules nobody can clearly explain. Entire channels on humam history, harmless humor, customers rights and privacy just disappear overnight with no meaningful recourse.
+YouTube didn't behave like a paranoid censor with a constantly shifting rulebook created in North Korean GULAG. Videos that had been perfectly fine for a decade didn't suddenly vanish because they became "offensive" to someone, somewhere, under rules nobody can clearly explain. Entire channels on humam history, harmless humor, customers' rights and privacy just disappear overnight with no meaningful recourse.
 
 Over the years, an enormous amount of information has simply vanished from the internet - completely and without a trace.
 Entire websites. Articles. Forums. Videos. Communities collapse and take decades of accumulated knowledge with them.
