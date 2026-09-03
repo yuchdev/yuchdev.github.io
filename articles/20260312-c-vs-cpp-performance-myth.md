@@ -1,4 +1,4 @@
-# C vs C++ Performance: Myth and Reality
+# C vs. C++ Performance: Myth and Reality
 
 For almost two decades I've been writing production systems in both C and C++. Anti-malware engines, network stacks, low-latency messaging systems, embedded software for drones and medtech, system libraries and utilities. And during all those years I've heard the same confident claim so many times that it has practically become part of the office wallpaper:
 
@@ -64,16 +64,16 @@ This level of optimization is extremely difficult to reproduce manually with C-s
 
 ---
 
-### Abstraction vs Manual Engineering
+### Abstraction vs. Manual Engineering
 
 Many tasks that require careful manual engineering in C can be expressed directly in C++ while remaining fully optimizable.
 
-| Optimization Feature | C Mechanism | C++ Mechanism | Semantic Advantage |
+| Optimization Feature | C Mechanism                   | C++ Mechanism           | Semantic Advantage                                                                                                                                              |
 |----------------------|-------------------------------|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Generic Logic | `void*` and function pointers | Templates and inlining | [C++ preserves type info for the optimizer](https://www.oreateai.com/blog/cs-qsort-vs-cs-sort-a-tale-of-two-sorting-functions/5fd2db7baef931ab70e2946f7f5d76c4) |
-| Resource Management | Manual `malloc/free` | RAII and Smart Pointers | [C++ automates optimal cleanup paths](https://www.reddit.com/r/highfreqtrading/comments/1jlr95c/why_c_over_c_for_hft/) |
-| Error Handling | Return codes and branches | Zero-cost Exceptions | [C++ removes checks from the happy path](https://cfallin.org/blog/2025/11/06/exceptions/) |
-| Constants | Preprocessor macros | `constexpr` and TMP | [C++ offers type-safe compile-time computation](https://www.reddit.com/r/cpp_questions/comments/1g0pusz/since_cpp_offers_constexpr_for_compiletime/) |
+| Generic Logic        | `void*` and function pointers | Templates and inlining  | [C++ preserves type info for the optimizer](https://www.oreateai.com/blog/cs-qsort-vs-cs-sort-a-tale-of-two-sorting-functions/5fd2db7baef931ab70e2946f7f5d76c4) |
+| Resource Management  | Manual `malloc/free`          | RAII and Smart Pointers | [C++ automates optimal cleanup paths](https://www.reddit.com/r/highfreqtrading/comments/1jlr95c/why_c_over_c_for_hft/)                                          |
+| Error Handling       | Return codes and branches     | Zero-cost Exceptions    | [C++ removes checks from the happy path](https://cfallin.org/blog/2025/11/06/exceptions/)                                                                       |
+| Constants            | Preprocessor macros           | `constexpr` and TMP     | [C++ offers type-safe compile-time computation](https://www.reddit.com/r/cpp_questions/comments/1g0pusz/since_cpp_offers_constexpr_for_compiletime/)            |
 
 The key difference is **semantic information**.
 
@@ -91,7 +91,7 @@ struct Interface {
 };
 ```
 
-This is essentially a **a hand-carved vtable**.
+This is essentially **a hand-carved vtable**.
 Which is always amusing, because people will write this in C and still insist they are heroically avoiding "C++ overhead."
 
 The theoretical runtime cost is identical to C++ dynamic polymorphism.
@@ -200,7 +200,7 @@ By resolving decisions at compile time, templates remove layers of runtime indir
 
 ---
 
-### Compile-Time Work vs Runtime Work
+### Compile-Time Work vs. Runtime Work
 
 This illustrates a broader principle behind C++ design.
 Templates move complexity **from runtime to compile time**.
@@ -255,7 +255,7 @@ Instead of copying large objects, C++ allows the compiler to **["steal"](https:/
 ### How Move Semantics Works
 
 Technically, move semantics is enabled through **rvalue references**.
-An rvalue reference tells the compiler that an object is temporary and that its internal resources can be safely transferred instead of copied.
+Rvalue references tells the compiler that an object is temporary and that its internal resources can be safely transferred instead of copied.
 For example, when a function returns a `std::vector` or a `std::string`, the move constructor simply transfers ownership of the underlying heap memory.
 
 Instead of copying millions of elements, the operation becomes:
@@ -278,7 +278,7 @@ Move semantics makes the fast solution the *default* one.
 
 ---
 
-### Benchmarking Move vs Copy
+### Benchmarking Move vs. Copy
 
 Real benchmarks demonstrate how dramatic the difference can be.
 According to a [benchmark study](https://www.javacodegeeks.com/2026/01/cs-move-semantics-the-performance-feature-that-changed-everything.html), move operations for `std::string` can be roughly **15,000 times faster** than copy operations.
@@ -295,16 +295,16 @@ A move operation only performs a pointer transfer.
 
 ---
 
-### Performance Ratios: Move vs Copy
+### Performance Ratios: Move vs. Copy
 
 The following benchmark data highlights the difference (see [https://www.modernescpp.com/index.php/copy-versus-move-semantic-a-few-numbers](https://www.modernescpp.com/index.php/copy-versus-move-semantic-a-few-numbers)):
 
-| Container Type | Copy Time (ms) | Move Time (ms) | Speedup Ratio |
-| ----------------------- | -------------- | -------------- | ------------- |
-| `std::vector<int>` (10M) | 45.2 | 0.003 | 15,066x |
-| `std::string (Large)` | 12.8 | 0.0008 | 16,000x |
-| `std::list<double>` (1M) | 88.5 | 0.005 | 17,700x |
-| `std::map<int, int>` (1M) | 210.3 | 0.012 | 17,525x |
+| Container Type            | Copy Time (ms) | Move Time (ms) | Speedup Ratio |
+|---------------------------|----------------|----------------|---------------|
+| `std::vector<int>` (10M)  | 45.2           | 0.003          | 15,066x       |
+| `std::string (Large)`     | 12.8           | 0.0008         | 16,000x       |
+| `std::list<double>` (1M)  | 88.5           | 0.005          | 17,700x       |
+| `std::map<int, int>` (1M) | 210.3          | 0.012          | 17,525x       |
 
 These numbers look extreme, but they reflect a simple reality: copying large data structures is expensive, while transferring ownership is almost free.
 
@@ -313,7 +313,7 @@ These numbers look extreme, but they reflect a simple reality: copying large dat
 ### RVO and NRVO: When Even Moves Disappear
 
 Move semantics works closely with compiler optimizations such as **[Return Value Optimization](https://medium.com/@mickiedd/rvo-optimization-in-c-b603c319b333)** (RVO) and **Named Return Value Optimization (NRVO)**.
-These optimizations eliminate even the move operation.
+These optimizations even eliminate the move operation.
 Instead of constructing a temporary object and moving it, the compiler constructs the object **directly in the destination memory location**.
 
 In other words:
@@ -332,7 +332,7 @@ While similar optimizations can theoretically occur in C, C++ provides a much br
 Move semantics demonstrates a core design principle of modern C++: **shift work from runtime to compile time**.
 Instead of forcing programmers to manually manage ownership through pointers, the language provides a formal mechanism for efficient resource transfer.
 
-The result is code that is simultaneously:
+The result is code that is simultaneous:
 
 * safer
 * more expressive
@@ -410,14 +410,14 @@ In systems where failures are rare, this design can actually make the program **
 
 ---
 
-### C vs C++ Error Handling Model
+### C vs. C++ Error Handling Model
 
-| Feature | C-Style Error Handling | C++ Zero-Cost Exceptions |
-| ------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Happy Path Overhead | Conditional branches after every call | [Zero runtime overhead](https://cfallin.org/blog/2025/11/06/exceptions/) |
-| Error Path Cost | [Low (single jump)](https://stackoverflow.com/questions/13835817/are-exceptions-in-c-really-slow) | [High (stack unwinding, table search)](https://mortoray.com/the-true-cost-of-zero-cost-exceptions/) |
-| Binary Size | Minimal | [Increased due to unwind tables](http://deus.co.uk/Exceptions-Part-2/) |
-| Correctness | [Relies on manual checks](https://stackoverflow.com/questions/13835817/are-exceptions-in-c-really-slow) | [Enforced by the language](https://www.reddit.com/r/highfreqtrading/comments/1jlr95c/why_c_over_c_for_hft/) |
+| Feature             | C-Style Error Handling                                                                                  | C++ Zero-Cost Exceptions                                                                                    |
+|---------------------|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| Happy Path Overhead | Conditional branches after every call                                                                   | [Zero runtime overhead](https://cfallin.org/blog/2025/11/06/exceptions/)                                    |
+| Error Path Cost     | [Low (single jump)](https://stackoverflow.com/questions/13835817/are-exceptions-in-c-really-slow)       | [High (stack unwinding, table search)](https://mortoray.com/the-true-cost-of-zero-cost-exceptions/)         |
+| Binary Size         | Minimal                                                                                                 | [Increased due to unwind tables](http://deus.co.uk/Exceptions-Part-2/)                                      |
+| Correctness         | [Relies on manual checks](https://stackoverflow.com/questions/13835817/are-exceptions-in-c-really-slow) | [Enforced by the language](https://www.reddit.com/r/highfreqtrading/comments/1jlr95c/why_c_over_c_for_hft/) |
 
 ---
 
@@ -562,12 +562,12 @@ In some scenarios, it even outperforms classic C switch-based implementations.
 
 Results from the Boost.SML benchmark suite (see [https://github.com/boost-ext/sml](https://github.com/boost-ext/sml)):
 
-| FSM Implementation | Execution Time (Complex Test) | Memory Footprint | Dispatch Complexity |
-| ------------------ | ----------------------------- | ---------------- | -------------------- |
-| C Switch/Case | 679 ms | 1 byte | `O(N)` or `O(log N)` |
-| C++ Boost.SML | 622 ms | 1 byte | `O(1)` |
-| C++ std::variant | 827 ms | 8+ bytes | `O(1)` |
-| Boost.Statechart | 2282 ms | 224 bytes | `O(1)` |
+| FSM Implementation | Execution Time (Complex Test) | Memory Footprint | Dispatch Complexity  |
+|--------------------|-------------------------------|------------------|----------------------|
+| C Switch/Case      | 679 ms                        | 1 byte           | `O(N)` or `O(log N)` |
+| C++ Boost.SML      | 622 ms                        | 1 byte           | `O(1)`               |
+| C++ std::variant   | 827 ms                        | 8+ bytes         | `O(1)`               |
+| Boost.Statechart   | 2282 ms                       | 224 bytes        | `O(1)`               |
 
 What matters here is not just speed.
 It is **structural specialization**.
@@ -601,7 +601,7 @@ And in performance-critical domains - numerical computing, robotics, simulation,
 
 # Practical Common Sense: The Superset Argument and Strict Aliasing
 
-A useful way to approach the C vs C++ performance debate is simple common sense.
+A useful way to approach the C vs. C++ performance debate is simple common sense.
 
 C++ is roughly a **99% [superset of C](https://news.ycombinator.com/item?id=43827096)**.
 
@@ -651,9 +651,9 @@ More type information simply gives the optimizer more room to work.
 
 ---
 
-# The Industrial Reality: High-Frequency Trading, Games, and Robotics
+# The Industrial Reality: High-Frequency Trading, Game Engines and Robotics
 
-Ultimately, the most convincing evidence in the C vs C++ debate is not theoretical.
+Ultimately, the most convincing evidence in the C vs. C++ debate is not theoretical.
 It is industrial practice.
 C++ is the dominant language in industries where **performance is not optional** but existential.
 
@@ -681,13 +681,14 @@ If there were even a **consistent nanosecond-level advantage** in C over C++, HF
 
 This is an industry that already uses:
 
+* kernel-level optimizations
 * FPGA accelerators
 * custom network cards
 * even ASICs for specialized tasks
 
-If C were inherently faster, HFT engines would be written in C.
+If C were inherently faster, we've had immediately seen HFT engines written in C.
 
-They aren't.
+There are none.
 
 They are overwhelmingly written in C++.
 
@@ -724,12 +725,12 @@ These systems must manage enormous complexity without sacrificing reliability or
 
 ### Performance-Critical Domains Using C++
 
-| Sector | Core Performance Challenge | C++ Advantage |
-| -------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
-| HFT | [Nanosecond latency & jitter](https://databento.com/blog/rust-vs-cpp) | Compile-time specialization; lock-free atomics |
-| Gaming | [16ms frame budget; cache locality](https://program-ace.com/blog/unreal-engine-blueprints-vs-c/) | Manual memory control; devirtualization |
-| CAD | [Millions of geometric constraints](https://somcosoftware.com/en/blog/is-cpp-still-relevant) | Expression templates; algorithmic abstraction |
-| Robotics | [Real-time sensor fusion & control](https://m.youtube.com/shorts/6X_N4qW19T4) | Deterministic RAII; low-level hardware access |
+| Sector   | Core Performance Challenge                                                                       | C++ Advantage                                  |
+|----------|--------------------------------------------------------------------------------------------------|------------------------------------------------|
+| HFT      | [Nanosecond latency & jitter](https://databento.com/blog/rust-vs-cpp)                            | Compile-time specialization; lock-free atomics |
+| Gaming   | [16ms frame budget; cache locality](https://program-ace.com/blog/unreal-engine-blueprints-vs-c/) | Manual memory control; devirtualization        |
+| CAD      | [Millions of geometric constraints](https://somcosoftware.com/en/blog/is-cpp-still-relevant)     | Expression templates; algorithmic abstraction  |
+| Robotics | [Real-time sensor fusion & control](https://m.youtube.com/shorts/6X_N4qW19T4)                    | Deterministic RAII; low-level hardware access  |
 
 ---
 
@@ -841,6 +842,6 @@ It is the reason why C++ remains the **[industry standard for high-performance s
 And after two decades of working with both languages, my conclusion is simple:
 
 C is a brilliant language and an essential foundation for systems programming.
-But the claim that it is *inherently faster than C++* has neither theoretical basis nor practical evidence.
+But the claim that it is *inherently faster than C++* has neither a theoretical basis nor practical evidence.
 In the hands of a skilled engineer, modern C++ is not slower.
 More often than not, it is not merely competitive. It is the factually proven better performance tool.
