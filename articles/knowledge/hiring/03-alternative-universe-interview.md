@@ -107,12 +107,12 @@ Is this an isolated case - or a new normal we should all be more alert about?
 
 And here we go again - the same scam template.
 
-> BELOW HERE’S A BRIEF OVERVIEW FOR YOUR REVIEW:
+> BELOW HERE'S A BRIEF OVERVIEW FOR YOUR REVIEW:
 > Position: Senior Software Engineer / DevOps Technical Lead
 > Company: SAP
 > Location: Europe | Asia | North America | > > On-site / Hybrid / Remote
 > Employment Type: Full-time
-> Start Date: Immediate”
+> Start Date: Immediate"
 
 Conveniently tailored from my profile:
 

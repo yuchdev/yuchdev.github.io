@@ -17,12 +17,12 @@ In teams where I was responsible for the codebase, a naked TODO was treated as a
 If you introduce a TODO, it must include:
 
 1. Author name - ownership is explicit
-2. Ticket number - created first if it doesn’t already exist
+2. Ticket number - created first if it doesn't already exist
 3. Date - so aging debt is visible
 
 // TODO: Yurii Cherkasov [CDS-1732][26.01.2026] The reason of leaving TODO, detailed and comprehensive 
 
 The goal isn't to ban TODOs entirely, but to stop them from becoming invisible debt.
 
-Technical debt itself isn't dangerous because it exists - it's dangerous because it’s easy to ignore. Once the debt has a name, a ticket, and a timestamp, it stops being a vague intention and becomes a tracked obligation - uncomfortable to forget, easy to audit, and much easier to pay down.
+Technical debt itself isn't dangerous because it exists - it's dangerous because it's easy to ignore. Once the debt has a name, a ticket, and a timestamp, it stops being a vague intention and becomes a tracked obligation - uncomfortable to forget, easy to audit, and much easier to pay down.
 

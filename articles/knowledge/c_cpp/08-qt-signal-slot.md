@@ -9,7 +9,7 @@ However, as it usually happen, there are constraints making them not the best fi
 - High-frequency pipelines, realtime, embedded, deterministic systems, or "no hidden allocations" environments often prefer explicit callbacks
 - And sorry for being Captain, but they're *Qt mechanism* - you need the Qt meta-object system/event loop, which is not something you can assume in generic libraries, kernel/embedded, or mixed stacks
 
-Signals/slots are excellent inside the Qt ecosystem (and arguably one of its strongest ideas - actually, close to what early OOP theoretists like Dijkstra hoped event-driven OOP code would feel like). But they’re not a universal answer, and "imperative one-liners" like "stop using callbacks because signals are more elegant" usually don't survive contact with reality
+Signals/slots are excellent inside the Qt ecosystem (and arguably one of its strongest ideas - actually, close to what early OOP theoretists like Dijkstra hoped event-driven OOP code would feel like). But they're not a universal answer, and "imperative one-liners" like "stop using callbacks because signals are more elegant" usually don't survive contact with reality
 
 In Qt, a signal delivery can be as cheap and deterministic as a normal function call, depending on how you connect it
 

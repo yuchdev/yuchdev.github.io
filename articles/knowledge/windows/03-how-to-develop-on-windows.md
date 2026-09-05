@@ -76,7 +76,7 @@ Linters, static analyzers, build systems - all portable
 
 Yes, some Linux-native tools were missing:
 Valgrind was a pain point (though Windows had alternatives)
-Docker is not truly cross-platform by design. That's not a Windows flaw; it’s a Docker architecture choice. HyperV now run same tool sharing Windows kernel.
+Docker is not truly cross-platform by design. That's not a Windows flaw; it's a Docker architecture choice. HyperV now run same tool sharing Windows kernel.
 
 Over time, I learned to replace Docker tooling with automation (mostly Python) and platform-agnostic workflows.
 
@@ -110,11 +110,11 @@ Every OS has strong and weak sides. Pretending otherwise is just bias.
 
 Bottom line
 
-Linux is excellent for development — especially today. Windows was never "unusable" for serious dev work
+Linux is excellent for development - especially today. Windows was never "unusable" for serious dev work
 
-At that point, the OS stopped being the main bottleneck — bad architecture and bad tooling did.
+At that point, the OS stopped being the main bottleneck - bad architecture and bad tooling did.
 
-That’s the argument worth making.
+That's the argument worth making.
 
 ----------------------------------------------------------------------------------------
 
