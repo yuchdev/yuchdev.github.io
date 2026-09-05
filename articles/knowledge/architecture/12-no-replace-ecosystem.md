@@ -1,3 +1,5 @@
+TODO: possibly find such post
+
 I don't know many serious companies that simply "replace C++ with Rust."
 
 Any experienced architect or tech lead will tell you that replacing an active ecosystem - codebase, team expertise, documentation, tooling, CI, debugging practices, libraries, certification history - is usually a very expensive way to create new problems.

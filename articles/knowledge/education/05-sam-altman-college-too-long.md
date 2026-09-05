@@ -1,3 +1,5 @@
+TODO: find such post
+
 Sure. College is obviously far too long.
 
 Doctors can be prepared through a three-month weekend bootcamp. Neurosurgeons may need four months, but only because of all that unnecessary hands-on practice.

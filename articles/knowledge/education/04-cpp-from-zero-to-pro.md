@@ -1,3 +1,5 @@
+TODO: find such post
+
 C++ "from zero to pro" is a wonderfully optimistic title for a tutorial.
 
 "Zero to able to write something that compiles" can probably fit into a tutorial.

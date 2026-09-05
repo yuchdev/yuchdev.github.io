@@ -1,3 +1,5 @@
+TODO: find the post or screenshot
+
 Not sure what exactly Robert has in mind here, but modern agent systems absolutely can collaborate - and they can do it in both cooperative and adversarial modes.
 
 You can have several agents work on different parts of a problem while sharing context, or deliberately assign one agent to challenge another: find counterexamples, attack assumptions, review the implementation, or argue for an alternative solution. A third "judge" or moderator agent can then evaluate the competing outputs and select or synthesize the strongest result.
