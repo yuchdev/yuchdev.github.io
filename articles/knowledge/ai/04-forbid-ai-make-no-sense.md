@@ -6,4 +6,4 @@ And if the AI-generated code fixes the bug, well documented, passes all tests, a
 
 To me, that's just as dumb as cargo cult. Judge the code by its correctness, maintainability, and test results - not by whether someone thinks it "smells AI"
 
-Linus Torvalds recently expressed what is probably the most sensible and rational position
+Linus Torvalds recently expressed what is probably the most sensible and rational position.

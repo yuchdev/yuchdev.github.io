@@ -1,4 +1,4 @@
-Because shipping a product was never about generating a landing page and PoC.
+Shipping a product was never about generating a landing page and PoC.
 
 The first version is the easy part. The hard part starts after the first users arrive.
 
