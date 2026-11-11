@@ -33,7 +33,7 @@
 
 ## A little about me
 
-I've spent around 20 years building software across cybersecurity, finance, embedded systems, and medtech. Much of that time has gone into performance — making systems actually run faster, not just look good in design docs. Sometimes it meant rethinking an architecture and achieving 3–5× improvements. Those are still some of my favorite achievements. **A more detailed version of my CV is available** for anyone who wants to explore the projects and decisions behind this brief introduction.
+I've spent around 20 years building software across cybersecurity, finance, embedded systems, and medtech. Much of that time has gone into performance — making systems actually run faster, not just look good in design docs. Sometimes it meant rethinking an architecture and achieving 3–5× improvements. Those are still some of my favorite achievements. **A more detailed version of my CV is available** for anyone who wants to explore the projects and decisions behind this brief introduction, either upon request or on my [personal website](https://yuchdev.github.io/cv.html).
 
 Part of my work lives at the nanosecond scale: low-level tuning, concurrency, lock-free algorithms, and the kind of optimization where you really feel the hardware pushing back. But I am just as comfortable stepping back to design a backend service, lead development, improve a build system, or make a CI pipeline reliable enough for the rest of the team to trust.
 
